@@ -5,31 +5,37 @@ const services = [
 		title: 'Impresión Offset Industrial',
 		description:
 			'Alta fidelidad colorimétrica y capacidad instalada para resolver grandes volúmenes de producción con precisión.',
+		image: '/servicios/offset.jpg',
 	},
 	{
 		title: 'Encuadernación Editorial',
 		description:
 			'Producción de libros ilustrados y revistas con terminaciones premium, ideal para editoriales y autores independientes.',
+		image: '/servicios/encuadernacion.jpg',
 	},
 	{
 		title: 'Troquelados y Terminaciones',
 		description:
 			'Acabados especiales, laminados en polipropileno mate o brillante y cortes de precisión mecánica para destacar tu marca.',
+		image: '/servicios/troquelado.jpg',
 	},
 	{
 		title: 'Soporte Marca Blanca',
 		description:
 			'Actuamos como la infraestructura física y productiva para agencias de publicidad y estudios de diseño a precios de gremio.',
+		image: '/servicios/marca-blanca.jpg',
 	},
 	{
 		title: 'Corporativo y Salud',
 		description:
 			'Impresión de directorios corporativos, historias clínicas, recetarios y formularios bajo estrictos estándares de calidad.',
+		image: '/servicios/corporativo.jpg',
 	},
 	{
 		title: 'Cajas y Packaging Custom',
 		description:
 			'Estructuras troqueladas a medida para la presentación y embalaje de productos a escala industrial.',
+		image: '/servicios/packaging.jpg',
 	},
 ] as const;
 
@@ -48,7 +54,7 @@ export default function Services() {
 					>
 						<div className="relative h-48 w-full">
 							<Image
-								src="/placeholder.jpg"
+								src={service.image}
 								alt={service.title}
 								fill
 								className="object-cover"
