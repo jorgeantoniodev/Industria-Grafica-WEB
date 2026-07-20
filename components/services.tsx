@@ -52,7 +52,7 @@ export default function Services() {
 						key={service.title}
 						className="flex flex-col overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
 					>
-						<div className="relative h-120 w-full">
+						<div className="relative h-96 w-full">
 							<Image
 								src={service.image}
 								alt={service.title}
