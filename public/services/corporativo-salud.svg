@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="docGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background Folder -->
+  <rect x="80" y="40" width="340" height="320" rx="16" fill="url(#cardGrad)" filter="url(#shadow)"/>
+  
+  <!-- Folder Tab -->
+  <path d="M80 56C80 47.1634 87.1634 40 96 40H220L250 70H404C412.837 70 420 77.1634 420 86V344C420 352.837 412.837 360 404 360H96C87.1634 360 80 351.837 80 344V56Z" fill="#1e40af" opacity="0.6"/>
+
+  <!-- Document 1 (Prescription / Report) -->
+  <g filter="url(#shadow)">
+    <rect x="130" y="80" width="220" height="280" rx="12" fill="url(#docGrad)"/>
+    <!-- Medical Cross Badge -->
+    <rect x="155" y="105" width="36" height="36" rx="8" fill="#0284c7"/>
+    <path d="M173 115V131M165 123H181" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    <!-- Title Lines -->
+    <rect x="203" y="112" width="120" height="10" rx="5" fill="#1e293b"/>
+    <rect x="203" y="128" width="80" height="8" rx="4" fill="#64748b"/>
+    
+    <!-- Divider -->
+    <line x1="155" y1="160" x2="325" y2="160" stroke="#cbd5e1" stroke-width="2"/>
+    
+    <!-- Form Rows -->
+    <rect x="155" y="180" width="170" height="8" rx="4" fill="#94a3b8"/>
+    <rect x="155" y="200" width="150" height="8" rx="4" fill="#cbd5e1"/>
+    <rect x="155" y="220" width="165" height="8" rx="4" fill="#cbd5e1"/>
+    <rect x="155" y="240" width="130" height="8" rx="4" fill="#cbd5e1"/>
+    
+    <!-- Stamp -->
+    <circle cx="295" cy="295" r="28" fill="none" stroke="#0284c7" stroke-width="3" stroke-dasharray="4 2"/>
+    <text x="295" y="299" font-family="sans-serif" font-weight="800" font-size="10" fill="#0284c7" text-anchor="middle">APROBADO</text>
+  </g>
+
+  <!-- Document 2 Overlapping -->
+  <g filter="url(#shadow)" transform="rotate(-6 260 220)">
+    <rect x="220" y="100" width="200" height="260" rx="12" fill="#ffffff"/>
+    <rect x="245" y="125" width="150" height="12" rx="6" fill="#0369a1"/>
+    <rect x="245" y="147" width="110" height="8" rx="4" fill="#64748b"/>
+    <line x1="245" y1="170" x2="395" y2="170" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="245" y="190" width="150" height="6" rx="3" fill="#cbd5e1"/>
+    <rect x="245" y="206" width="130" height="6" rx="3" fill="#cbd5e1"/>
+    <rect x="245" y="222" width="140" height="6" rx="3" fill="#cbd5e1"/>
+  </g>
+</svg>

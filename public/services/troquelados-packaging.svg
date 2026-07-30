@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <defs>
+    <filter id="shadowPkg" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a21caf"/>
+      <stop offset="100%" stop-color="#4c1d95"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#shadowPkg)">
+    <!-- Main Die-Cut Packaging Box Perspective -->
+    <!-- Front Face -->
+    <path d="M140 180 L280 230 V350 L140 300 Z" fill="url(#boxGrad)"/>
+    <!-- Side Face -->
+    <path d="M280 230 L400 170 V290 L280 350 Z" fill="#581c87"/>
+    <!-- Top Flap Lid -->
+    <path d="M140 180 L260 120 L400 170 L280 230 Z" fill="#c026d3"/>
+
+    <!-- Foil Stamping / UV Varnish Accent on Top -->
+    <path d="M200 170 L260 140 L340 175 L280 205 Z" fill="#f0abfc" opacity="0.6"/>
+
+    <!-- Stand-up Packaging Box adjacent -->
+    <g transform="translate(-40, -40)">
+      <path d="M80 160 L160 120 V260 L80 300 Z" fill="#7e22ce"/>
+      <path d="M160 120 L220 150 V290 L160 260 Z" fill="#3b0764"/>
+      <path d="M80 160 L140 130 L220 150 L160 180 Z" fill="#d8b4fe"/>
+    </g>
+
+    <!-- Die Cut Dotted Fold Line Marks -->
+    <line x1="280" y1="230" x2="280" y2="350" stroke="#f472b6" stroke-width="2" stroke-dasharray="6 4"/>
+    <line x1="140" y1="180" x2="280" y2="230" stroke="#f472b6" stroke-width="2" stroke-dasharray="6 4"/>
+  </g>
+</svg>
