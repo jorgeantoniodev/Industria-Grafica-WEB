@@ -10,14 +10,23 @@ interface ClientLogo {
 }
 
 const clientLogos: ClientLogo[] = [
-	{ id: '1', src: '/logos/logo-1.svg', alt: 'Cliente 1 - Stark Tech' },
-	{ id: '2', src: '/logos/logo-2.svg', alt: 'Cliente 2 - Apex Packaging' },
-	{ id: '3', src: '/logos/logo-3.svg', alt: 'Cliente 3 - Vanguard Press' },
-	{ id: '4', src: '/logos/logo-4.svg', alt: 'Cliente 4 - Nova Logistics' },
-	{ id: '5', src: '/logos/logo-5.svg', alt: 'Cliente 5 - Zenith Media' },
-	{ id: '6', src: '/logos/logo-6.svg', alt: 'Cliente 6 - Orion Foods' },
-	{ id: '7', src: '/logos/logo-7.svg', alt: 'Cliente 7 - Pulse Agency' },
-	{ id: '8', src: '/logos/logo-8.svg', alt: 'Cliente 8 - Aura Labs' },
+	{ id: 'bando',        src: '/logos/LOGO Bando-1-Photoroom.png',            alt: 'Bando' },
+	{ id: 'caps',         src: '/logos/LOGO Caps-1-Photoroom.png',             alt: 'CAPS Semillas' },
+	{ id: 'carrara',      src: '/logos/LOGO Carrara-1-Photoroom.png',          alt: 'Carrara Pastelería Artesanal' },
+	{ id: 'cofarsur',     src: '/logos/LOGO CoFarSur-1-Photoroom.png',         alt: 'CoFarSur Droguería' },
+	{ id: 'sbacco',       src: '/logos/LOGO Cortinas Sbacco-1-Photoroom.png',  alt: 'Cortinas Sbacco' },
+	{ id: 'fumivet',      src: '/logos/LOGO Fumivet-1-Photoroom.png',          alt: 'Fumivet' },
+	{ id: 'ganados',      src: '/logos/LOGO Ganados-1-Photoroom.png',          alt: 'Ganados' },
+	{ id: 'guia-express', src: '/logos/LOGO Guia Express-1-Photoroom.png',     alt: 'Guía Express' },
+	{ id: 'insacor',      src: '/logos/LOGO InSaCor-1-Photoroom.png',          alt: 'InSaCor' },
+	{ id: 'megline',      src: '/logos/LOGO MegLine-1-Photoroom.png',          alt: 'MegLine' },
+	{ id: 'paper',        src: '/logos/LOGO Paper-1-Photoroom.png',            alt: 'Paper' },
+	{ id: 'parque-salud', src: '/logos/LOGO Parque Salud-1-Photoroom.png',     alt: 'Parque Salud' },
+	{ id: 'polidori',     src: '/logos/LOGO Polidori-1-Photoroom.png',         alt: 'Polidori' },
+	{ id: 'porta',        src: '/logos/LOGO Porta-1-Photoroom.png',            alt: 'Porta' },
+	{ id: 'buteler',      src: '/logos/LOGO Ramiro Buteler-1-Photoroom.png',   alt: 'Ramiro Buteler' },
+	{ id: 'tomaselli',    src: '/logos/LOGO Tomaselli-1-Photoroom.png',        alt: 'Tomaselli' },
+	{ id: 'vetacord',     src: '/logos/LOGO Vetacord-1-Photoroom.png',         alt: 'Vetacord' },
 ];
 
 export default function LogoCarousel() {

@@ -1,0 +1,64 @@
+'use client';
+
+import Link from 'next/link';
+import { CaretDown, MagnifyingGlass } from '@phosphor-icons/react';
+
+const NAV_LINKS = [
+    { label: 'Soluciones Industriales', href: '/soluciones-industriales' },
+    { label: 'Agencias y Marca Blanca', href: '/agencias' },
+    { label: 'Casos de Éxito',          href: '/casos-de-exito' },
+    { label: 'La Planta',               href: '/la-planta' },
+];
+
+export default function Header() {
+    return (
+        <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all">
+            <div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+                
+                {/* Sección Izquierda (Identidad de Marca) */}
+                <Link href="/" className="flex items-center gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src="/logo.png"
+                        alt="Premat Logo"
+                        width={48}
+                        height={48}
+                        className="object-contain"
+                    />
+                    <div className="flex flex-col">
+                        <span className="text-2xl md:text-3xl font-black tracking-tighter text-gray-950 leading-none">
+                            PREMAT
+                        </span>
+                        <span className="text-[10px] font-bold tracking-widest text-gray-500 uppercase -mt-1 block">
+                            INDUSTRIA GRÁFICA
+                        </span>
+                    </div>
+                </Link>
+
+                {/* Sección Central (Navegación B2B) */}
+                <nav className="hidden lg:flex items-center gap-8">
+                    {NAV_LINKS.map(({ label, href }) => (
+                        <Link
+                            key={href}
+                            href={href}
+                            className="text-sm font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
+                        >
+                            {label}
+                            <CaretDown size={15} weight="bold" className="text-gray-500" />
+                        </Link>
+                    ))}
+                </nav>
+
+                {/* Sección Derecha (Herramientas y CTA) */}
+                <div className="flex items-center gap-4 md:gap-6">
+                    <MagnifyingGlass size={20} weight="bold" className="text-gray-700 hover:text-black cursor-pointer transition-colors" />
+                    
+                    <button className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-xl px-5 py-2.5 shadow-sm hover:shadow-md transition-all active:scale-95 text-white font-semibold text-sm tracking-wide">
+                        Cotizar Producción
+                    </button>
+                </div>
+                
+            </div>
+        </header>
+    );
+}

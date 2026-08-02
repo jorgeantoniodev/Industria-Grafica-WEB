@@ -52,7 +52,7 @@ const audiences = [
 		badge: 'ALTO VOLUMEN',
 		headline: 'Soluciones institucionales de alto rendimiento.',
 		description:
-			'Especialistas en talonarios, fichas médicas y formularios de alto volumen. Garantizamos fidelidad de color sostenida en el tiempo y entregas precisas.',
+			'Producimos formularios, recetarios, revistas institucionales y catálogos corporativos. Trabajamos bajo planificación industrial',
 		themeColorText: 'text-orange-600',
         themeColorBg: 'bg-orange-600',
         themeColorLightBg: 'bg-orange-50',

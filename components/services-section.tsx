@@ -18,27 +18,27 @@ const servicesData: ServiceItem[] = [
 		title: 'Corporativo & Salud',
 		description:
 			'Impresión a gran escala de formularios, recetarios, carpetas e institucionales con fidelidad colorimétrica rigurosa.',
-		href: '/servicios/corporativo-salud',
+		href: '/soluciones-industriales',
 		bgGradient: 'bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-950',
 		imageSrc: '/services/corporativo-salud.svg',
 		imageAlt: 'Servicios de Impresión Corporativa y Salud',
 	},
 	{
 		id: 'offset',
-		title: 'Impresión Offset Industrial',
+		title: 'Impresión Offset Comercial',
 		description:
 			'Producción física pesada para grandes tirajes, folletería masiva y papelería comercial donde la precisión es clave.',
-		href: '/servicios/offset',
+		href: '/soluciones-industriales#offset',
 		bgGradient: 'bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950',
 		imageSrc: '/services/offset.svg',
-		imageAlt: 'Impresión Offset Industrial a gran escala',
+		imageAlt: 'Impresión Offset Comercial a gran escala',
 	},
 	{
 		id: 'troquelados-packaging',
 		title: 'Troquelados & Packaging',
 		description:
 			'Estuches, cajas personalizadas, troquelados complejos y acabados con laminado en polipropileno o barniz UV.',
-		href: '/servicios/troquelados-packaging',
+		href: '/soluciones-industriales#troquelados',
 		bgGradient: 'bg-gradient-to-br from-fuchsia-950 via-purple-900 to-slate-950',
 		imageSrc: '/services/troquelados-packaging.svg',
 		imageAlt: 'Troquelados y Packaging industrial',
@@ -48,7 +48,7 @@ const servicesData: ServiceItem[] = [
 		title: 'Encuadernación & Editorial',
 		description:
 			'Trenes de encuadernación abrochada y lomo cuadrado perfecto (Hotmelt) para libros, revistas y catálogos.',
-		href: '/servicios/encuadernacion-editorial',
+		href: '/soluciones-industriales#encuadernacion',
 		bgGradient: 'bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-950',
 		imageSrc: '/services/encuadernacion-editorial.png',
 		imageAlt: 'Encuadernación de libros y revistas',

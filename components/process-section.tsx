@@ -104,12 +104,19 @@ export default function ProcessSection() {
                         </p>
                     </div>
                     
-                    <div>
+                    <div className="flex flex-col sm:flex-row items-start gap-4">
                         <a
                             href="#cotizar"
                             className="inline-flex items-center justify-center rounded-full border border-slate-800 bg-transparent px-10 py-4 text-sm font-bold uppercase tracking-wider text-slate-800 transition-colors hover:bg-slate-800 hover:text-white"
                         >
                             Cotizar producción
+                        </a>
+                        <a
+                            href="/la-planta"
+                            className="inline-flex items-center gap-2 px-2 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors group"
+                        >
+                            Conocer la planta en detalle
+                            <span className="transition-transform group-hover:translate-x-1">→</span>
                         </a>
                     </div>
                 </div>
