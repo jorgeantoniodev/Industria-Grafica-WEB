@@ -17,7 +17,7 @@ const servicesData: ServiceItem[] = [
 		id: 'corporativo-salud',
 		title: 'Corporativo & Salud',
 		description:
-			'Impresión a gran escala de formularios, recetarios, carpetas e institucionales con fidelidad colorimétrica rigurosa.',
+			'Impresión a gran escala de formularios, recetarios, carpetas e institucionales, con altos estándares de calidad y cumplimiento estricto de plazos.',
 		href: '/soluciones-industriales',
 		bgGradient: 'bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-950',
 		imageSrc: '/services/corporativo-salud.svg',

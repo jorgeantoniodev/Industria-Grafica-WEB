@@ -64,8 +64,8 @@ const audiences = [
 				icon: <Stack weight="duotone" className="h-6 w-6 text-orange-600" />
 			},
 			{
-				title: 'Consistencia visual garantizada',
-				description: 'Fidelidad de color corporativo en tiradas recurrentes a lo largo de los años.',
+				title: 'Calidad sostenida en el tiempo',
+				description: 'Mismo estándar de calidad, plazos y atención en cada tirada, año tras año.',
 				icon: <Target weight="duotone" className="h-6 w-6 text-orange-600" />
 			}
 		],

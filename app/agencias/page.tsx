@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Agencias y Marca Blanca | PREMAT Industria Gráfica',
+	title: 'Agencias y Marca Blanca | Industria Gráfica Córdoba',
 	description:
 		'Servicios B2B para agencias de publicidad, estudios de diseño y distribuidores. Tarifas gremiales, marca blanca y producción confidencial en Córdoba.',
 };

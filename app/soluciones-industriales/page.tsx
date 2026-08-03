@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Impresión Offset Comercial en Córdoba | PREMAT Industria Gráfica',
+	title: 'Impresión Offset Comercial en Córdoba | Industria Gráfica Córdoba',
 	description:
-		'Offset comercial, troquelados y encuadernación industrial en Barrio San Vicente, Córdoba. Grandes tirajes, fidelidad colorimétrica y packaging a medida.',
+		'Offset comercial, troquelados y encuadernación industrial en Barrio San Vicente, Córdoba. Grandes tirajes con calidad sostenida, packaging a medida y cumplimiento de plazos.',
 };
 
 export default function SolucionesIndustrialesPage() {
@@ -33,11 +33,11 @@ export default function SolucionesIndustrialesPage() {
 						Impresión Offset Comercial
 					</h2>
 					<p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
-						Producción física pesada para grandes tirajes, folletería masiva y
-						papelería comercial donde la precisión colorimétrica es clave.
-						Trabajamos con papeles estucados, offset y especiales en pliegos
-						de hasta 70×100 cm.
-					</p>
+					Producción física pesada para grandes tirajes, folletería masiva y
+					papelería comercial con calidad sostenida y cumplimiento estricto de
+					plazos. Trabajamos con papeles estucados, offset y especiales en pliegos
+					de hasta 70×100 cm.
+				</p>
 				</div>
 			</section>
 

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'La Planta | PREMAT Industria Gráfica — Barrio San Vicente, Córdoba',
+	title: 'La Planta | Industria Gráfica Córdoba — Barrio San Vicente',
 	description:
-		'Conocé la planta de producción de PREMAT en Barrio San Vicente: maquinaria offset, trenes de encuadernación, capacidad técnica y equipo.',
+		'Conocé la planta de producción de Industria Gráfica Córdoba en Barrio San Vicente: maquinaria offset, trenes de encuadernación, capacidad técnica y equipo.',
 };
 
 export default function LaPlantaPage() {

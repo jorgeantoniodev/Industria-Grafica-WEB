@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Casos de Éxito | PREMAT Industria Gráfica',
+	title: 'Casos de Éxito | Industria Gráfica Córdoba',
 	description:
-		'Casos de éxito en impresión editorial, salud y corporativo. Cómo PREMAT resuelve proyectos de alta complejidad para marcas líderes en Córdoba.',
+		'Casos de éxito en impresión editorial, salud y corporativo. Cómo Industria Gráfica Córdoba resuelve proyectos de alta complejidad para marcas líderes en la región.',
 };
 
 export default function CasosDeExitoPage() {
@@ -29,7 +29,7 @@ export default function CasosDeExitoPage() {
 				<div className="max-w-7xl mx-auto px-6 lg:px-8">
 					<p className="text-slate-500 text-lg">
 						Próximamente: casos documentados de Carrara, CAPS Semillas,
-						Parque Salud y más clientes de PREMAT.
+						Parque Salud y más clientes de Industria Gráfica Córdoba.
 					</p>
 				</div>
 			</section>

@@ -20,17 +20,17 @@ export default function Header() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src="/logo.png"
-                        alt="Premat Logo"
-                        width={48}
-                        height={48}
+                        alt="Industria Gráfica Córdoba — Logo"
+                        width={40}
+                        height={40}
                         className="object-contain"
                     />
-                    <div className="flex flex-col">
-                        <span className="text-2xl md:text-3xl font-black tracking-tighter text-gray-950 leading-none">
-                            PREMAT
+                    <div className="flex flex-col gap-1">
+                        <span className="text-lg md:text-xl font-black tracking-tight text-gray-950 leading-none">
+                            Industria Gráfica
                         </span>
-                        <span className="text-[10px] font-bold tracking-widest text-gray-500 uppercase -mt-1 block">
-                            INDUSTRIA GRÁFICA
+                        <span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase block">
+                            Imprenta Industrial
                         </span>
                     </div>
                 </Link>
@@ -41,10 +41,10 @@ export default function Header() {
                         <Link
                             key={href}
                             href={href}
-                            className="text-sm font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
+                            className="text-base font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
                         >
                             {label}
-                            <CaretDown size={15} weight="bold" className="text-gray-500" />
+                            <CaretDown size={16} weight="bold" className="text-gray-500" />
                         </Link>
                     ))}
                 </nav>

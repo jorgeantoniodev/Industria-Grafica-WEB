@@ -5,12 +5,11 @@ export default function Hero() {
 				<div className="flex flex-col lg:flex-row">
 					<div className="flex flex-col justify-center p-10 lg:w-1/2 lg:p-16">
 						<span className="mb-6 inline-block w-fit rounded-full bg-pink-500 px-4 py-1 text-xs font-bold uppercase tracking-wider text-white lg:text-sm">
-							MÁS DE 30 AÑOS EN EL RUBRO
+							INDUSTRIA GRÁFICA
 						</span>
 
 						<h1 className="mb-6 text-5xl font-extrabold text-slate-700 lg:text-6xl">
-							Detrás de cada gran marca, está{' '}
-							<span className="text-blue-600">Premat.</span>
+							Más de 30 años transformando ideas en realidades tangibles.
 						</h1>
 
 						<h2 className="mb-3 text-2xl font-bold text-slate-700">
@@ -18,9 +17,10 @@ export default function Hero() {
 						</h2>
 
 						<p className="mb-8 max-w-md text-lg text-slate-600">
-							Producción offset a gran escala, troquelados complejos y
-							encuadernación. Proveemos infraestructura gráfica y operamos
-							como marca blanca para agencias y corporaciones.
+							Ofrecemos soluciones creativas y un gran compromiso de atención a
+							nuestros clientes. Producción offset a gran escala, troquelados
+							complejos y encuadernación: infraestructura gráfica propia, también
+							en modalidad de marca blanca para agencias y corporaciones.
 						</p>
 
 						<a
