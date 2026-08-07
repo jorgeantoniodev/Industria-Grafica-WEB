@@ -124,10 +124,10 @@ export default function ProcessSection() {
                 {/* Columna Derecha: Grilla Asimétrica (65%) */}
                 <div className="w-full lg:w-[65%] grid grid-cols-1 lg:grid-cols-10 gap-1 lg:gap-[4px]">
                     {/* Fila Superior */}
-                    <div className="relative lg:col-span-5 w-full min-h-[250px] h-full bg-slate-100">
+                    <div className="relative lg:col-span-5 w-full min-h-[320px] h-full bg-slate-100">
                         <Image src="/process-1.jpg" alt="Máquina Offset Industrial" fill className="object-cover w-full h-full" sizes="(max-width: 1024px) 100vw, 33vw" />
                     </div>
-                    <div className="relative lg:col-span-5 w-full min-h-[250px] h-full bg-slate-100">
+                    <div className="relative lg:col-span-5 w-full min-h-[320px] h-full bg-slate-100">
                         <Image src="/process-2.jpg" alt="Rodillos Offset en detalle" fill className="object-cover w-full h-full" sizes="(max-width: 1024px) 100vw, 33vw" />
                     </div>
 

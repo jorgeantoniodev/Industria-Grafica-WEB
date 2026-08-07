@@ -8,8 +8,11 @@ interface ServiceItem {
 	description: string;
 	href: string;
 	bgGradient: string;
+	glowColor: string;
 	imageSrc: string;
 	imageAlt: string;
+	/** 'multiply' para fotos con fondo blanco; undefined para PNG con transparencia */
+	imageBlend?: 'multiply';
 }
 
 const servicesData: ServiceItem[] = [
@@ -19,9 +22,11 @@ const servicesData: ServiceItem[] = [
 		description:
 			'Impresión a gran escala de formularios, recetarios, carpetas e institucionales, con altos estándares de calidad y cumplimiento estricto de plazos.',
 		href: '/soluciones-industriales',
-		bgGradient: 'bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-950',
-		imageSrc: '/services/corporativo-salud.svg',
-		imageAlt: 'Servicios de Impresión Corporativa y Salud',
+		bgGradient: 'bg-gradient-to-br from-[#084298] via-[#0d6efd] to-[#0dcaf0]',
+		glowColor: 'bg-[#0dcaf0]/25',
+		imageSrc: '/services/corporativo-salud-mockup.png',
+		imageAlt: 'Carpeta institucional y formularios de impresión corporativa y salud',
+		// PNG con canal alfa, sin blend mode necesario
 	},
 	{
 		id: 'offset',
@@ -29,9 +34,11 @@ const servicesData: ServiceItem[] = [
 		description:
 			'Producción física pesada para grandes tirajes, folletería masiva y papelería comercial donde la precisión es clave.',
 		href: '/soluciones-industriales#offset',
-		bgGradient: 'bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950',
-		imageSrc: '/services/offset.svg',
-		imageAlt: 'Impresión Offset Comercial a gran escala',
+		bgGradient: 'bg-gradient-to-br from-[#6816e2] via-[#9e77ed] to-[#d63384]',
+		glowColor: 'bg-[#d63384]/25',
+		imageSrc: '/services/offset.jpg',
+		imageAlt: 'Pliegos de papel impresos apilados para producción offset comercial',
+		imageBlend: 'multiply',
 	},
 	{
 		id: 'troquelados-packaging',
@@ -39,9 +46,11 @@ const servicesData: ServiceItem[] = [
 		description:
 			'Estuches, cajas personalizadas, troquelados complejos y acabados con laminado en polipropileno o barniz UV.',
 		href: '/soluciones-industriales#troquelados',
-		bgGradient: 'bg-gradient-to-br from-fuchsia-950 via-purple-900 to-slate-950',
-		imageSrc: '/services/troquelados-packaging.svg',
-		imageAlt: 'Troquelados y Packaging industrial',
+		bgGradient: 'bg-gradient-to-br from-[#664d03] via-[#fd7e14] to-[#ffc720]',
+		glowColor: 'bg-[#ffc720]/25',
+		imageSrc: '/services/troquelados-packaging.jpg',
+		imageAlt: 'Caja de cartón personalizada para troquelados y packaging industrial',
+		imageBlend: 'multiply',
 	},
 	{
 		id: 'encuadernacion-editorial',
@@ -49,9 +58,11 @@ const servicesData: ServiceItem[] = [
 		description:
 			'Trenes de encuadernación abrochada y lomo cuadrado perfecto (Hotmelt) para libros, revistas y catálogos.',
 		href: '/soluciones-industriales#encuadernacion',
-		bgGradient: 'bg-gradient-to-br from-emerald-950 via-teal-900 to-slate-950',
+		bgGradient: 'bg-gradient-to-br from-[#1e5208] via-[#198754] to-[#20c997]',
+		glowColor: 'bg-[#20c997]/25',
 		imageSrc: '/services/encuadernacion-editorial.png',
-		imageAlt: 'Encuadernación de libros y revistas',
+		imageAlt: 'Libro editorial tapa dura impreso para encuadernación y editorial',
+		imageBlend: 'multiply',
 	},
 ];
 
@@ -98,6 +109,9 @@ export default function ServicesSection() {
 							href={service.href}
 							className={`group relative overflow-hidden rounded-[2rem] p-8 lg:p-10 min-h-[440px] flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-xl ${service.bgGradient}`}
 						>
+							{/* Div de resplandor (glow) en el fondo abajo a la derecha */}
+							<div className={`absolute -bottom-10 -right-10 w-72 h-72 ${service.glowColor} rounded-full blur-3xl pointer-events-none z-0`} />
+
 							{/* Contenido textual (flujo normal arriba a la izquierda, max-w 60%) */}
 							<div className="relative z-10 max-w-[60%]">
 								<h4 className="text-3xl font-bold text-white tracking-tight leading-snug mb-3">
@@ -121,7 +135,9 @@ export default function ServicesSection() {
 										alt={service.imageAlt}
 										fill
 										sizes="(max-width: 768px) 100vw, 50vw"
-										className="object-contain object-bottom-right transition-transform duration-500 group-hover:scale-105"
+										loading={service.id === 'corporativo-salud' ? 'eager' : 'lazy'}
+										className="object-contain object-right-bottom transition-transform duration-500 group-hover:scale-105"
+										style={service.imageBlend ? { mixBlendMode: service.imageBlend } : undefined}
 									/>
 								</div>
 							</div>

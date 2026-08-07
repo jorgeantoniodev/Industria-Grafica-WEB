@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { CaretDown, MagnifyingGlass } from '@phosphor-icons/react';
+import QuoteModal from '@/components/ui/QuoteModal';
 
 const NAV_LINKS = [
     { label: 'Soluciones Industriales', href: '/soluciones-industriales' },
@@ -11,7 +13,10 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
+    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+
     return (
+        <>
         <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all">
             <div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
                 
@@ -53,12 +58,21 @@ export default function Header() {
                 <div className="flex items-center gap-4 md:gap-6">
                     <MagnifyingGlass size={20} weight="bold" className="text-gray-700 hover:text-black cursor-pointer transition-colors" />
                     
-                    <button className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-xl px-5 py-2.5 shadow-sm hover:shadow-md transition-all active:scale-95 text-white font-semibold text-sm tracking-wide">
+                    <button
+                        onClick={() => setIsQuoteModalOpen(true)}
+                        className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-xl px-5 py-2.5 shadow-sm hover:shadow-md transition-all active:scale-95 text-white font-semibold text-sm tracking-wide"
+                    >
                         Cotizar Producción
                     </button>
                 </div>
                 
             </div>
         </header>
+
+        <QuoteModal
+            isOpen={isQuoteModalOpen}
+            onClose={() => setIsQuoteModalOpen(false)}
+        />
+        </>
     );
 }

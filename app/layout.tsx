@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 };
 
 import Header from "@/components/header";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 export default function RootLayout({
   children,
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Header />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
