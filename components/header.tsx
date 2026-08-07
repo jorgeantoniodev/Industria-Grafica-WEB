@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import Link from 'next/link';
 import { CaretDown, MagnifyingGlass } from '@phosphor-icons/react';
 import QuoteModal from '@/components/ui/QuoteModal';
@@ -16,7 +16,7 @@ export default function Header() {
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
     return (
-        <>
+        <Fragment>
         <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all">
             <div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
                 
@@ -73,6 +73,6 @@ export default function Header() {
             isOpen={isQuoteModalOpen}
             onClose={() => setIsQuoteModalOpen(false)}
         />
-        </>
+        </Fragment>
     );
 }
