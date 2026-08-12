@@ -59,8 +59,11 @@ export default function Hero() {
 							loop
 							muted
 							playsInline
+							preload="auto"
+							poster="/process-poster.jpg"
 							className="absolute inset-0 h-full w-full object-cover"
 						>
+							<source src="/hero.webm" type="video/webm" />
 							<source src="/hero.mp4" type="video/mp4" />
 						</video>
 						<div className="pointer-events-none absolute inset-0 bg-black/5" />
