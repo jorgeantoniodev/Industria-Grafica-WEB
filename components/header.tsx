@@ -1,25 +1,40 @@
 'use client';
 
-import { Fragment } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { CaretDown, MagnifyingGlass } from '@phosphor-icons/react';
+import { CaretDown, List, X } from '@phosphor-icons/react';
 
-const NAV_LINKS = [
-    { label: 'Soluciones Industriales', href: '/soluciones-industriales' },
-    { label: 'Agencias y Marca Blanca', href: '/agencias' },
-    { label: 'Casos de Éxito',          href: '/casos-de-exito' },
-    { label: 'La Planta',               href: '/la-planta' },
+const SOLUCIONES_LINKS = [
+    { label: 'Impresión Offset Comercial',  href: '/soluciones-industriales#offset' },
+    { label: 'Troquelados & Packaging',     href: '/soluciones-industriales#troquelados' },
+    { label: 'Encuadernación & Editorial',  href: '/soluciones-industriales#encuadernacion' },
+    { label: 'Agencias & Marca Blanca',     href: '/agencias' },
 ];
 
 export default function Header() {
+    const [solucionesOpen, setSolucionesOpen]           = useState(false);
+    const [mobileOpen, setMobileOpen]                   = useState(false);
+    const [mobileSolucionesOpen, setMobileSolucionesOpen] = useState(false);
+    const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    /* ── Hover handlers con pequeño delay para evitar cierre brusco ── */
+    const onEnter = () => {
+        if (leaveTimer.current) clearTimeout(leaveTimer.current);
+        setSolucionesOpen(true);
+    };
+    const onLeave = () => {
+        leaveTimer.current = setTimeout(() => setSolucionesOpen(false), 150);
+    };
+
+    const closeMobile = () => setMobileOpen(false);
 
     return (
-        <Fragment>
+        <>
         <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all">
             <div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
-                
-                {/* Sección Izquierda (Identidad de Marca) */}
-                <Link href="/" className="flex items-center gap-3">
+
+                {/* ── Logo ─────────────────────────────────────────── */}
+                <Link href="/" className="flex items-center gap-3" onClick={closeMobile}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src="/logo.png"
@@ -38,42 +53,140 @@ export default function Header() {
                     </div>
                 </Link>
 
-                {/* Sección Central (Navegación B2B) */}
+                {/* ── Desktop Nav ───────────────────────────────────── */}
                 <nav className="hidden lg:flex items-center gap-8">
-                    {NAV_LINKS.map(({ label, href }) => (
+
+                    {/* Soluciones Industriales — con dropdown */}
+                    <div
+                        className="relative"
+                        onMouseEnter={onEnter}
+                        onMouseLeave={onLeave}
+                    >
                         <Link
-                            key={href}
-                            href={href}
+                            href="/soluciones-industriales"
                             className="text-base font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
                         >
-                            {label}
-                            <CaretDown size={16} weight="bold" className="text-gray-500" />
+                            Soluciones Industriales
+                            <CaretDown
+                                size={16}
+                                weight="bold"
+                                className={`text-gray-500 transition-transform duration-200 ${solucionesOpen ? 'rotate-180' : ''}`}
+                            />
                         </Link>
-                    ))}
+
+                        {/* Dropdown panel */}
+                        {solucionesOpen && (
+                            <div className="absolute top-full left-0 pt-2 z-50" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+                                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 py-2 min-w-[270px] overflow-hidden">
+                                    {SOLUCIONES_LINKS.map(({ label, href }) => (
+                                        <Link
+                                            key={href}
+                                            href={href}
+                                            className="block px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-slate-50 hover:text-black transition-colors"
+                                            onClick={() => setSolucionesOpen(false)}
+                                        >
+                                            {label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* La Planta — link simple */}
+                    <Link
+                        href="/la-planta"
+                        className="text-base font-semibold text-gray-800 hover:text-black transition-colors py-2"
+                    >
+                        La Planta
+                    </Link>
                 </nav>
 
-                {/* Sección Derecha (Herramientas y CTA) */}
-                <div className="flex items-center gap-4 md:gap-6">
-                    <MagnifyingGlass size={20} weight="bold" className="text-gray-700 hover:text-black cursor-pointer transition-colors" />
-                    
-                    {/*
-                     * Efecto hover: fill → outline (capturas adjuntas)
-                     * border-2 siempre presente (evita layout shift)
-                     * Default:  bg-blue-600 text-white  border-transparent
-                     * Hover:    bg-transparent text-blue-600 border-blue-600
-                     */}
+                {/* ── Derecha: Contacto + Hamburguesa ──────────────── */}
+                <div className="flex items-center gap-3 md:gap-5">
                     <Link
                         href="/contacto"
                         className="rounded-xl border-2 border-blue-600 bg-blue-600 px-5 py-2.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-transparent hover:text-blue-600 active:scale-95"
                     >
                         Contacto
                     </Link>
+
+                    {/* Hamburguesa — solo mobile */}
+                    <button
+                        className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
+                        onClick={() => setMobileOpen(!mobileOpen)}
+                        aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+                        aria-expanded={mobileOpen}
+                    >
+                        {mobileOpen
+                            ? <X    size={22} weight="bold" />
+                            : <List size={22} weight="bold" />
+                        }
+                    </button>
                 </div>
-                
+
             </div>
         </header>
 
-        {/* QuoteModal removido — el flujo de contacto va ahora a /contacto */}
-        </Fragment>
+        {/* ── Mobile Menu Panel ─────────────────────────────────────── */}
+        {mobileOpen && (
+            <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-white overflow-y-auto border-t border-gray-100">
+                <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col">
+
+                    {/* Soluciones Industriales — accordion */}
+                    <div>
+                        <button
+                            className="w-full flex items-center justify-between py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
+                            onClick={() => setMobileSolucionesOpen(!mobileSolucionesOpen)}
+                            aria-expanded={mobileSolucionesOpen}
+                        >
+                            Soluciones Industriales
+                            <CaretDown
+                                size={18}
+                                weight="bold"
+                                className={`text-gray-500 transition-transform duration-200 ${mobileSolucionesOpen ? 'rotate-180' : ''}`}
+                            />
+                        </button>
+
+                        {mobileSolucionesOpen && (
+                            <div className="py-2 pl-4 flex flex-col">
+                                {SOLUCIONES_LINKS.map(({ label, href }) => (
+                                    <Link
+                                        key={href}
+                                        href={href}
+                                        className="py-3 text-base font-semibold text-gray-600 hover:text-black border-b border-gray-50 transition-colors"
+                                        onClick={closeMobile}
+                                    >
+                                        {label}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* La Planta */}
+                    <Link
+                        href="/la-planta"
+                        className="py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
+                        onClick={closeMobile}
+                    >
+                        La Planta
+                    </Link>
+
+                    {/* CTA Contacto */}
+                    <div className="pt-6">
+                        <Link
+                            href="/contacto"
+                            className="block w-full text-center rounded-xl border-2 border-blue-600 bg-blue-600 px-5 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:bg-transparent hover:text-blue-600"
+                            onClick={closeMobile}
+                        >
+                            Contacto
+                        </Link>
+                    </div>
+
+                </nav>
+            </div>
+        )}
+        </>
     );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ProcessSection from '@/components/process-section';
 
 export const metadata: Metadata = {
 	title: 'La Planta | Industria Gráfica Córdoba — Barrio San Vicente',
@@ -37,6 +38,9 @@ export default function LaPlantaPage() {
 					</p>
 				</div>
 			</section>
+
+			{/* Sección de video y fotos de la planta */}
+			<ProcessSection />
 		</main>
 	);
 }
