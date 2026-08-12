@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, Fragment } from 'react';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { CaretDown, MagnifyingGlass } from '@phosphor-icons/react';
-import QuoteModal from '@/components/ui/QuoteModal';
 
 const NAV_LINKS = [
     { label: 'Soluciones Industriales', href: '/soluciones-industriales' },
@@ -13,7 +12,6 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
-    const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
     return (
         <Fragment>
@@ -58,21 +56,24 @@ export default function Header() {
                 <div className="flex items-center gap-4 md:gap-6">
                     <MagnifyingGlass size={20} weight="bold" className="text-gray-700 hover:text-black cursor-pointer transition-colors" />
                     
-                    <button
-                        onClick={() => setIsQuoteModalOpen(true)}
-                        className="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 rounded-xl px-5 py-2.5 shadow-sm hover:shadow-md transition-all active:scale-95 text-white font-semibold text-sm tracking-wide"
+                    {/*
+                     * Efecto hover: fill → outline (capturas adjuntas)
+                     * border-2 siempre presente (evita layout shift)
+                     * Default:  bg-blue-600 text-white  border-transparent
+                     * Hover:    bg-transparent text-blue-600 border-blue-600
+                     */}
+                    <Link
+                        href="/contacto"
+                        className="rounded-xl border-2 border-blue-600 bg-blue-600 px-5 py-2.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-transparent hover:text-blue-600 active:scale-95"
                     >
-                        Cotizar Producción
-                    </button>
+                        Contacto
+                    </Link>
                 </div>
                 
             </div>
         </header>
 
-        <QuoteModal
-            isOpen={isQuoteModalOpen}
-            onClose={() => setIsQuoteModalOpen(false)}
-        />
+        {/* QuoteModal removido — el flujo de contacto va ahora a /contacto */}
         </Fragment>
     );
 }

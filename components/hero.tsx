@@ -1,37 +1,59 @@
 export default function Hero() {
 	return (
-		<section className="font-sans px-4 py-8 lg:px-8 lg:py-12">
-			<div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#dcfce7] via-[#eff6ff] to-[#f3e8ff] p-4 lg:p-6">
-				<div className="flex flex-col lg:flex-row">
-					<div className="flex flex-col justify-center p-10 lg:w-1/2 lg:p-16">
-						<span className="mb-6 inline-block w-fit rounded-full bg-pink-500 px-4 py-1 text-xs font-bold uppercase tracking-wider text-white lg:text-sm">
-							INDUSTRIA GRÁFICA
-						</span>
+		<section className="px-2 py-3 lg:px-4 lg:py-4" style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}>
+			<div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#5ee7dc] via-white to-[#c9b6f7] p-3 lg:p-4">
 
-						<h1 className="mb-6 text-5xl font-extrabold text-slate-700 lg:text-6xl">
-							Más de 30 años transformando ideas en realidades tangibles.
+				{/* minHeight 560px → el video respira igual que en Taylor */}
+				<div className="flex flex-col lg:flex-row" style={{ minHeight: '560px' }}>
+
+					{/* ── Columna izquierda ─────────────────────────── */}
+					<div className="flex flex-col justify-center p-6 lg:w-1/2 lg:p-12">
+
+						{/*
+						 * H1 — Formato exacto de Taylor:
+						 *   • Texto negro/oscuro en las primeras líneas
+						 *   • Última parte en color (gradiente azul→violeta)
+						 *   • Font: Lato 900 (Black) — extraído del DevTools
+						 *   • Tamaño: text-5xl lg:text-6xl  ≈ 82px de Taylor
+						 *   • SEO keywords: imprenta Córdoba, producción offset, impresión industrial
+						 */}
+						<h1
+							className="mb-5 text-5xl font-black leading-tight text-slate-900 lg:text-6xl"
+						>
+							30 años de producción{' '}
+							<br className="hidden lg:block" />
+							gráfica en Córdoba,{' '}
+							<br className="hidden lg:block" />
+							<span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+								al servicio de tu marca.
+							</span>
 						</h1>
 
-						<h2 className="mb-3 text-2xl font-bold text-slate-700">
-							Imprenta Industrial en Córdoba
+						{/*
+						 * H2 — Equivalente al "A Global Printing Company" de Taylor
+						 *   • Corto, con peso semibold, sin color extra
+						 *   • SEO: "imprenta offset industrial", "Córdoba Argentina"
+						 */}
+						<h2 className="mb-3 text-xl font-bold text-slate-700">
+							Imprenta Offset Industrial — Córdoba, Argentina
 						</h2>
 
-						<p className="mb-8 max-w-md text-lg text-slate-600">
-							Ofrecemos soluciones creativas y un gran compromiso de atención a
-							nuestros clientes. Producción offset a gran escala, troquelados
-							complejos y encuadernación: infraestructura gráfica propia, también
-							en modalidad de marca blanca para agencias y corporaciones.
+						{/* Descripción mínima — 1 línea */}
+						<p className="mb-7 max-w-sm text-base text-slate-600">
+							Troquelado, encuadernación y marca blanca para agencias y corporaciones.
 						</p>
 
+						{/* CTA — azul sólido, tamaño grande */}
 						<a
-							href="#cotizar"
-							className="inline-flex w-fit rounded-full bg-blue-600 px-8 py-4 font-bold text-white transition-transform hover:scale-105"
+							href="/contacto"
+							className="inline-flex w-fit rounded-full bg-blue-600 px-10 py-4 text-lg font-bold text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:scale-[1.03]"
 						>
-							Cotizar producción
+							Hablemos de tu proyecto
 						</a>
 					</div>
 
-					<div className="relative h-full min-h-[400px] w-full overflow-hidden rounded-3xl lg:min-h-[500px] lg:w-1/2 lg:rounded-l-[15rem] lg:rounded-r-2xl">
+					{/* ── Video — sin min-h propio, llena el flex parent ── */}
+					<div className="relative w-full overflow-hidden rounded-3xl lg:w-1/2 lg:rounded-l-[15rem] lg:rounded-r-2xl">
 						<video
 							autoPlay
 							loop
@@ -43,8 +65,9 @@ export default function Hero() {
 						</video>
 						<div className="pointer-events-none absolute inset-0 bg-black/5" />
 					</div>
+
 				</div>
 			</div>
 		</section>
-	);
+	)
 }
