@@ -52,8 +52,8 @@ export default function Hero() {
 						</a>
 					</div>
 
-					{/* ── Video — sin min-h propio, llena el flex parent ── */}
-					<div className="relative w-full overflow-hidden rounded-3xl lg:w-1/2 lg:rounded-l-[15rem] lg:rounded-r-2xl">
+					{/* ── Video — aspect-[9/16] en mobile para que el contenedor tenga altura real ── */}
+					<div className="relative w-full aspect-[9/16] overflow-hidden rounded-3xl lg:aspect-auto lg:w-1/2 lg:rounded-l-[15rem] lg:rounded-r-2xl">
 						<video
 							autoPlay
 							loop
@@ -63,7 +63,6 @@ export default function Hero() {
 							poster="/process-poster.jpg"
 							className="absolute inset-0 h-full w-full object-cover"
 						>
-							<source src="/hero.webm" type="video/webm" />
 							<source src="/hero.mp4" type="video/mp4" />
 						</video>
 						<div className="pointer-events-none absolute inset-0 bg-black/5" />
