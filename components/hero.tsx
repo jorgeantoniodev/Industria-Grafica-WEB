@@ -60,7 +60,7 @@ export default function Hero() {
 							muted
 							playsInline
 							preload="auto"
-							poster="/process-poster.jpg"
+							poster="/hero-poster.jpg"
 							className="absolute inset-0 h-full w-full object-cover"
 						>
 							<source src="/hero.mp4" type="video/mp4" />
