@@ -1,0 +1,76 @@
+import { Meta, Story } from "@storybook/addon-docs/blocks";
+import * as MediaGridStories from './MediaGridSection.stories';
+import * as LogoCarouselStories from './LogoCarousel.stories';
+import * as ServicesSectionStories from './ServicesSection.stories';
+import * as AudiencesSectionStories from './AudiencesSection.stories';
+import * as HeroStories from './Hero.stories';
+import * as FormModalStories from './FormModal.stories';
+import * as HeaderStories from './Header.stories';
+import * as WhatsAppButtonStories from './WhatsAppButton.stories';
+
+<Meta title="Vista General / Librería" />
+
+# Librería de Componentes
+
+Vista general de todos los componentes extraídos. A medida que avancemos con la extracción, cada componente aparecerá aquí con su Story validada.
+
+---
+
+## 1. Media Grid Section
+Sección asimétrica multimedia con soporte de grilla de imágenes y video con lazy-loading automático.
+
+<Story of={MediaGridStories.Default} />
+
+---
+
+## 2. Logo Carousel
+Carrusel de marquesina infinita con logotipos, con velocidad y título personalizable.
+
+<Story of={LogoCarouselStories.Default} />
+
+---
+
+## 3. Services Section
+Grilla 2×2 de tarjetas con gradientes, glows y efectos hover para presentar servicios o productos.
+
+<Story of={ServicesSectionStories.Default} />
+
+---
+
+## 4. Audiences Section
+Sistema de tabs + composición visual en capas para presentar segmentos de audiencia o perfiles de cliente. Soporta navegación por teclado y layouts semánticos.
+
+<Story of={AudiencesSectionStories.Default} />
+
+---
+
+## 5. Hero (PageHero)
+Sección de encabezado de página principal. Estructurado en dos columnas con fondo de gradiente asimétrico. Soporta video e imágenes estáticas, además de inyección libre de JSX para el titular principal.
+
+<Story of={HeroStories.Default} />
+
+---
+
+## 6. Form Modal
+Modal de formulario con layout y diseño fijo portado del "QuoteModal" original. La lógica visual y el grid de dos columnas se encuentran encapsulados, exponiendo configuración de campos y un acento de color predefinido para branding.
+
+<Story of={FormModalStories.Default} />
+
+---
+
+## 7. Site Header
+Cabecera de navegación principal, pegadiza (sticky), con soporte para logo enriquecido (título + subtítulo), enlaces, menú dropdown simple por hover y acordeón en mobile. Color de acento corporativo extraído mediante CSS Variables nativas en Tailwind.
+
+<Story of={HeaderStories.Default} />
+
+---
+
+## 8. WhatsApp Floating Button
+Botón oficial de contacto rápido, anclado en las esquinas inferiores con su verde y SVGs nativos inmutables, pero configurable a nivel link y posición.
+
+<Story of={WhatsAppButtonStories.DefaultRight} />
+
+---
+
+*(Próximamente: footer, etc.)*
+

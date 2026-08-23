@@ -2,71 +2,46 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Lightbulb } from 'lucide-react';
 
-interface ServiceItem {
+export interface ServiceItem {
 	id: string;
 	title: string;
 	description: string;
 	href: string;
-	bgGradient: string;
-	glowColor: string;
-	/** Ruta a la imagen. Si está vacío, no se renderiza imagen (espacio para agregar). */
+	/**
+	 * Configuración de color de la tarjeta.
+	 * Usar strings completos de clases Tailwind para compatibilidad con JIT.
+	 * Ej: { gradient: 'bg-gradient-to-br from-blue-600 to-cyan-400', glow: 'bg-cyan-300/40' }
+	 */
+	theme: {
+		gradient: string;
+		glow: string;
+	};
+	/** Ruta a la imagen PNG (idealmente con fondo transparente). Opcional. */
 	imageSrc?: string;
 	imageAlt?: string;
+	/** Si es true, la imagen carga de forma eager (usar en la tarjeta más visible de la página). */
+	eagerLoad?: boolean;
 }
 
-const servicesData: ServiceItem[] = [
-	{
-		id: 'corporativo-salud',
-		title: 'Corporativo & Salud',
-		description: 'Papelería institucional e insumos médicos a gran escala desde Córdoba. Formularios, recetarios y carpetas corporativas.',
-		href: '/soluciones-industriales',
-		// ✅ Gradiente saturado
-		bgGradient: 'bg-gradient-to-br from-blue-600 to-cyan-400',
-		glowColor: 'bg-cyan-300/40',
-		// Busca este archivo en public/services/
-		imageSrc: '/services/imagen-corporativo.png',
-		imageAlt: 'Servicios corporativos y de salud',
-	},
-	{
-		id: 'offset',
-		title: 'Impresión Offset Comercial',
-		description: 'Imprenta offset B2B para grandes tiradas. Catálogos, folletería comercial y papelería masiva con capacidad industrial.',
-		href: '/soluciones-industriales#offset',
-		// ✅ Gradiente saturado
-		bgGradient: 'bg-gradient-to-br from-violet-700 to-fuchsia-400',
-		glowColor: 'bg-fuchsia-300/40',
-		// Busca este archivo en public/services/
-		imageSrc: '/services/offset.png',
-		imageAlt: 'Impresión offset comercial',
-	},
-	{
-		id: 'troquelados-packaging',
-		title: 'Troquelados & Packaging',
-		description: 'Packaging personalizado para empresas: cajas troqueladas y acabados premium con barniz UV o laminado.',
-		href: '/soluciones-industriales#troquelados',
-		// ✅ Gradiente saturado
-		bgGradient: 'bg-gradient-to-br from-orange-500 to-yellow-400',
-		glowColor: 'bg-yellow-300/40',
-		// ✅ Imagen de packaging actualizada
-		// Guardá la imagen adjunta en: /public/services/caja-packaging.png
-		imageSrc: '/services/caja-packaging.png',
-		imageAlt: 'Modelo sosteniendo caja de packaging personalizada con logo de cliente',
-	},
-	{
-		id: 'encuadernacion-editorial',
-		title: 'Encuadernación & Editorial',
-		description: 'Imprimió tu libro con respaldo industrial. Lomo cuadrado (Hotmelt), encuadernación abrochada y servicios editoriales para escritores y editoriales.',
-		href: '/soluciones-industriales#encuadernacion',
-		// ✅ Gradiente saturado
-		bgGradient: 'bg-gradient-to-br from-teal-500 to-emerald-400',
-		glowColor: 'bg-emerald-300/40',
-		// Busca este archivo en public/services/
-		imageSrc: '/services/encuadernacion.png',
-		imageAlt: 'Servicios de encuadernación editorial',
-	},
-];
+export interface ServicesSectionProps {
+	services: ServiceItem[];
+	badgeText?: string;
+	titlePrefix?: string;
+	titleHighlight?: string;
+	subtitle?: string;
+	description?: string;
+}
 
-export default function ServicesSection() {
+export default function ServicesSection({
+	services,
+	badgeText = 'Servicios & Producción',
+	titlePrefix = 'Tus proyectos. Tu empresa.',
+	titleHighlight = 'Potenciá tu marca.',
+	subtitle = 'Soluciones para el Alcance de tus Operaciones',
+	description = 'Atendemos tus necesidades en cada etapa del proceso con capacidad industrial líder y modelos de servicio escalables diseñados para acompañar el crecimiento de tu organización.',
+}: ServicesSectionProps) {
+	if (!services || services.length === 0) return null;
+
 	return (
 		<section className="w-full py-16 lg:py-24 bg-slate-50 text-slate-900">
 			<div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -78,39 +53,37 @@ export default function ServicesSection() {
 							<Lightbulb className="h-5 w-5" />
 						</div>
 						<span className="text-sm font-semibold tracking-wide text-purple-800 uppercase">
-							Capacidad Industrial & Producción
+							{badgeText}
 						</span>
 					</div>
 
 					{/* Encabezado principal */}
 					<h2 className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-slate-900">
-						Tus proyectos. Tu empresa.{' '}
+						{titlePrefix}{' '}
 						<span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-blue-500">
-							Potenciá tu marca con Industria Gráfica.
+							{titleHighlight}
 						</span>
 					</h2>
 
 					<h3 className="mt-8 text-2xl font-bold text-slate-800 lg:text-3xl">
-						Soluciones para el Alcance de tus Operaciones
+						{subtitle}
 					</h3>
 					<p className="mt-3 text-lg text-slate-600 max-w-3xl leading-relaxed">
-						Atendemos tus necesidades en cada etapa del proceso con capacidad industrial
-						líder y modelos de servicio escalables diseñados para acompañar el crecimiento
-						de tu organización.
+						{description}
 					</p>
 				</div>
 
 				{/* Grilla 2×2 */}
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-					{servicesData.map((service) => (
+					{services.map((service) => (
 						<Link
 							key={service.id}
 							href={service.href}
-							className={`group relative overflow-hidden rounded-[2rem] p-8 lg:p-10 min-h-[520px] flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-xl ${service.bgGradient}`}
+							className={`group relative overflow-hidden rounded-[2rem] p-8 lg:p-10 min-h-[520px] flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-xl ${service.theme.gradient}`}
 						>
 							{/* Glow en el fondo */}
 							<div
-								className={`absolute -bottom-10 -right-10 w-72 h-72 ${service.glowColor} rounded-full blur-3xl pointer-events-none z-0`}
+								className={`absolute -bottom-10 -right-10 w-72 h-72 ${service.theme.glow} rounded-full blur-3xl pointer-events-none z-0`}
 							/>
 
 							{/* Contenido textual (z-10 para estar encima de la imagen) */}
@@ -128,12 +101,7 @@ export default function ServicesSection() {
 								<ArrowUpRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
 							</div>
 
-							{/*
-							 * Imagen flotante — solo se renderiza si imageSrc tiene valor.
-							 * Para las tarjetas sin imagen, este bloque no existe en el DOM.
-							 * Cuando tengas la imagen PNG con transparencia, agregá imageSrc al objeto
-							 * correspondiente en servicesData y la imagen aparecerá automáticamente.
-							 */}
+							{/* Imagen flotante — solo se renderiza si imageSrc tiene valor */}
 							{service.imageSrc && service.imageAlt && (
 								<div className="absolute bottom-0 right-0 w-[80%] h-full z-0 overflow-hidden pointer-events-none">
 									<div className="relative h-full w-full">
@@ -142,7 +110,7 @@ export default function ServicesSection() {
 											alt={service.imageAlt}
 											fill
 											sizes="(max-width: 768px) 100vw, 50vw"
-											loading={service.id === 'troquelados-packaging' ? 'eager' : 'lazy'}
+											loading={service.eagerLoad ? 'eager' : 'lazy'}
 											className="object-contain object-right-bottom transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl"
 										/>
 									</div>
@@ -155,3 +123,4 @@ export default function ServicesSection() {
 		</section>
 	);
 }
+

@@ -3,190 +3,259 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { CaretDown, List, X } from '@phosphor-icons/react';
+import { cn } from '@/lib/utils';
 
-const SOLUCIONES_LINKS = [
-    { label: 'Impresión Offset Comercial',  href: '/soluciones-industriales#offset' },
-    { label: 'Troquelados & Packaging',     href: '/soluciones-industriales#troquelados' },
-    { label: 'Encuadernación & Editorial',  href: '/soluciones-industriales#encuadernacion' },
-    { label: 'Agencias & Marca Blanca',     href: '/agencias' },
-];
+export interface NavLink {
+	label: string;
+	href: string;
+}
 
-export default function Header() {
-    const [solucionesOpen, setSolucionesOpen]           = useState(false);
-    const [mobileOpen, setMobileOpen]                   = useState(false);
-    const [mobileSolucionesOpen, setMobileSolucionesOpen] = useState(false);
-    const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+export interface NavDropdown {
+	label: string;
+	items: NavLink[];
+}
 
-    /* ── Hover handlers con pequeño delay para evitar cierre brusco ── */
-    const onEnter = () => {
-        if (leaveTimer.current) clearTimeout(leaveTimer.current);
-        setSolucionesOpen(true);
-    };
-    const onLeave = () => {
-        leaveTimer.current = setTimeout(() => setSolucionesOpen(false), 150);
-    };
+export type NavItem = NavLink | NavDropdown;
 
-    const closeMobile = () => setMobileOpen(false);
+export interface HeaderTheme {
+	accentColor: string;
+}
 
-    return (
-        <>
-        <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all">
-            <div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+export interface HeaderProps {
+	logo: {
+		src: string;
+		alt: string;
+		title: string;
+		subtitle?: string;
+		href?: string;
+	};
+	navigation: NavItem[];
+	cta: {
+		label: string;
+		href: string;
+	};
+	theme?: HeaderTheme;
+}
 
-                {/* ── Logo ─────────────────────────────────────────── */}
-                <Link href="/" className="flex items-center gap-3" onClick={closeMobile}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/logo.png"
-                        alt="Industria Gráfica Córdoba — Logo"
-                        width={40}
-                        height={40}
-                        className="object-contain"
-                    />
-                    <div className="flex flex-col gap-1">
-                        <span className="text-lg md:text-xl font-black tracking-tight text-gray-950 leading-none">
-                            Industria Gráfica
-                        </span>
-                        <span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase block">
-                            Imprenta Industrial
-                        </span>
-                    </div>
-                </Link>
+export default function Header({
+	logo,
+	navigation,
+	cta,
+	theme,
+}: HeaderProps) {
+	const [mobileOpen, setMobileOpen] = useState(false);
+	const [openDesktopIndex, setOpenDesktopIndex] = useState<number | null>(null);
+	const [openMobileIndices, setOpenMobileIndices] = useState<Record<number, boolean>>({});
+	
+	const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-                {/* ── Desktop Nav ───────────────────────────────────── */}
-                <nav className="hidden lg:flex items-center gap-8">
+	const closeMobile = () => setMobileOpen(false);
 
-                    {/* Soluciones Industriales — con dropdown */}
-                    <div
-                        className="relative"
-                        onMouseEnter={onEnter}
-                        onMouseLeave={onLeave}
-                    >
-                        <Link
-                            href="/soluciones-industriales"
-                            className="text-base font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
-                        >
-                            Soluciones Industriales
-                            <CaretDown
-                                size={16}
-                                weight="bold"
-                                className={`text-gray-500 transition-transform duration-200 ${solucionesOpen ? 'rotate-180' : ''}`}
-                            />
-                        </Link>
+	const onEnterDropdown = (index: number) => {
+		if (leaveTimer.current) clearTimeout(leaveTimer.current);
+		setOpenDesktopIndex(index);
+	};
 
-                        {/* Dropdown panel */}
-                        {solucionesOpen && (
-                            <div className="absolute top-full left-0 pt-2 z-50" onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 py-2 min-w-[270px] overflow-hidden">
-                                    {SOLUCIONES_LINKS.map(({ label, href }) => (
-                                        <Link
-                                            key={href}
-                                            href={href}
-                                            className="block px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-slate-50 hover:text-black transition-colors"
-                                            onClick={() => setSolucionesOpen(false)}
-                                        >
-                                            {label}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+	const onLeaveDropdown = () => {
+		leaveTimer.current = setTimeout(() => setOpenDesktopIndex(null), 150);
+	};
 
-                    {/* La Planta — link simple */}
-                    <Link
-                        href="/la-planta"
-                        className="text-base font-semibold text-gray-800 hover:text-black transition-colors py-2"
-                    >
-                        La Planta
-                    </Link>
-                </nav>
+	const toggleMobileDropdown = (index: number) => {
+		setOpenMobileIndices((prev) => ({
+			...prev,
+			[index]: !prev[index],
+		}));
+	};
 
-                {/* ── Derecha: Contacto + Hamburguesa ──────────────── */}
-                <div className="flex items-center gap-3 md:gap-5">
-                    <Link
-                        href="/contacto"
-                        className="rounded-xl border-2 border-blue-600 bg-blue-600 px-5 py-2.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-transparent hover:text-blue-600 active:scale-95"
-                    >
-                        Contacto
-                    </Link>
+	return (
+		<>
+			<header
+				className="sticky top-0 z-50 w-full bg-white border-b border-gray-100 transition-all"
+				style={{
+					'--header-accent': theme?.accentColor || '#2563eb', // blue-600 default
+				} as React.CSSProperties}
+			>
+				<div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+					{/* ── Logo ─────────────────────────────────────────── */}
+					<Link href={logo.href || '/'} className="flex items-center gap-3" onClick={closeMobile}>
+						{/* eslint-disable-next-line @next/next/no-img-element */}
+						<img
+							src={logo.src}
+							alt={logo.alt}
+							width={40}
+							height={40}
+							className="object-contain"
+						/>
+						<div className="flex flex-col gap-1">
+							<span className="text-lg md:text-xl font-black tracking-tight text-gray-950 leading-none">
+								{logo.title}
+							</span>
+							{logo.subtitle && (
+								<span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase block">
+									{logo.subtitle}
+								</span>
+							)}
+						</div>
+					</Link>
 
-                    {/* Hamburguesa — solo mobile */}
-                    <button
-                        className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-                        aria-expanded={mobileOpen}
-                    >
-                        {mobileOpen
-                            ? <X    size={22} weight="bold" />
-                            : <List size={22} weight="bold" />
-                        }
-                    </button>
-                </div>
+					{/* ── Desktop Nav ───────────────────────────────────── */}
+					<nav className="hidden lg:flex items-center gap-8">
+						{navigation.map((item, index) => {
+							if ('items' in item) {
+								const isOpen = openDesktopIndex === index;
+								return (
+									<div
+										key={index}
+										className="relative"
+										onMouseEnter={() => onEnterDropdown(index)}
+										onMouseLeave={onLeaveDropdown}
+									>
+										<button
+											className="text-base font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
+											aria-expanded={isOpen}
+										>
+											{item.label}
+											<CaretDown
+												size={16}
+												weight="bold"
+												className={cn(
+													'text-gray-500 transition-transform duration-200',
+													isOpen && 'rotate-180'
+												)}
+											/>
+										</button>
 
-            </div>
-        </header>
+										{/* Dropdown panel */}
+										{isOpen && (
+											<div
+												className="absolute top-full left-0 pt-2 z-50"
+												onMouseEnter={() => onEnterDropdown(index)}
+												onMouseLeave={onLeaveDropdown}
+											>
+												<div className="bg-white rounded-2xl shadow-xl border border-gray-100 py-2 min-w-[270px] overflow-hidden">
+													{item.items.map((subItem) => (
+														<Link
+															key={subItem.href}
+															href={subItem.href}
+															className="block px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-slate-50 hover:text-black transition-colors"
+															onClick={() => setOpenDesktopIndex(null)}
+														>
+															{subItem.label}
+														</Link>
+													))}
+												</div>
+											</div>
+										)}
+									</div>
+								);
+							} else {
+								// NavLink
+								return (
+									<Link
+										key={item.href}
+										href={item.href}
+										className="text-base font-semibold text-gray-800 hover:text-black transition-colors py-2"
+									>
+										{item.label}
+									</Link>
+								);
+							}
+						})}
+					</nav>
 
-        {/* ── Mobile Menu Panel ─────────────────────────────────────── */}
-        {mobileOpen && (
-            <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-white overflow-y-auto border-t border-gray-100">
-                <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col">
+					{/* ── Derecha: Contacto + Hamburguesa ──────────────── */}
+					<div className="flex items-center gap-3 md:gap-5">
+						<Link
+							href={cta.href}
+							className="rounded-xl border-2 border-[var(--header-accent)] bg-[var(--header-accent)] px-5 py-2.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-transparent hover:text-[var(--header-accent)] active:scale-95"
+						>
+							{cta.label}
+						</Link>
 
-                    {/* Soluciones Industriales — accordion */}
-                    <div>
-                        <button
-                            className="w-full flex items-center justify-between py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
-                            onClick={() => setMobileSolucionesOpen(!mobileSolucionesOpen)}
-                            aria-expanded={mobileSolucionesOpen}
-                        >
-                            Soluciones Industriales
-                            <CaretDown
-                                size={18}
-                                weight="bold"
-                                className={`text-gray-500 transition-transform duration-200 ${mobileSolucionesOpen ? 'rotate-180' : ''}`}
-                            />
-                        </button>
+						{/* Hamburguesa — solo mobile */}
+						<button
+							className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
+							onClick={() => setMobileOpen(!mobileOpen)}
+							aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+							aria-expanded={mobileOpen}
+						>
+							{mobileOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
+						</button>
+					</div>
+				</div>
+			</header>
 
-                        {mobileSolucionesOpen && (
-                            <div className="py-2 pl-4 flex flex-col">
-                                {SOLUCIONES_LINKS.map(({ label, href }) => (
-                                    <Link
-                                        key={href}
-                                        href={href}
-                                        className="py-3 text-base font-semibold text-gray-600 hover:text-black border-b border-gray-50 transition-colors"
-                                        onClick={closeMobile}
-                                    >
-                                        {label}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+			{/* ── Mobile Menu Panel ─────────────────────────────────────── */}
+			{mobileOpen && (
+				<div className="lg:hidden fixed inset-x-0 top-20 bottom-0 z-40 bg-white overflow-y-auto border-t border-gray-100">
+					<nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col">
+						{navigation.map((item, index) => {
+							if ('items' in item) {
+								const isMobileOpen = openMobileIndices[index] || false;
+								return (
+									<div key={index}>
+										<button
+											className="w-full flex items-center justify-between py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
+											onClick={() => toggleMobileDropdown(index)}
+											aria-expanded={isMobileOpen}
+										>
+											{item.label}
+											<CaretDown
+												size={18}
+												weight="bold"
+												className={cn(
+													'text-gray-500 transition-transform duration-200',
+													isMobileOpen && 'rotate-180'
+												)}
+											/>
+										</button>
 
-                    {/* La Planta */}
-                    <Link
-                        href="/la-planta"
-                        className="py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
-                        onClick={closeMobile}
-                    >
-                        La Planta
-                    </Link>
+										{isMobileOpen && (
+											<div className="py-2 pl-4 flex flex-col">
+												{item.items.map((subItem) => (
+													<Link
+														key={subItem.href}
+														href={subItem.href}
+														className="py-3 text-base font-semibold text-gray-600 hover:text-black border-b border-gray-50 transition-colors"
+														onClick={closeMobile}
+													>
+														{subItem.label}
+													</Link>
+												))}
+											</div>
+										)}
+									</div>
+								);
+							} else {
+								return (
+									<Link
+										key={item.href}
+										href={item.href}
+										className="py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
+										onClick={closeMobile}
+									>
+										{item.label}
+									</Link>
+								);
+							}
+						})}
 
-                    {/* CTA Contacto */}
-                    <div className="pt-6">
-                        <Link
-                            href="/contacto"
-                            className="block w-full text-center rounded-xl border-2 border-blue-600 bg-blue-600 px-5 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:bg-transparent hover:text-blue-600"
-                            onClick={closeMobile}
-                        >
-                            Contacto
-                        </Link>
-                    </div>
-
-                </nav>
-            </div>
-        )}
-        </>
-    );
+						{/* CTA Contacto */}
+						<div className="pt-6">
+							<Link
+								href={cta.href}
+								style={{
+									'--header-accent': theme?.accentColor || '#2563eb', // Asegurar que la variable llegue aquí por si no hereda en fixed
+								} as React.CSSProperties}
+								className="block w-full text-center rounded-xl border-2 border-[var(--header-accent)] bg-[var(--header-accent)] px-5 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:bg-transparent hover:text-[var(--header-accent)]"
+								onClick={closeMobile}
+							>
+								{cta.label}
+							</Link>
+						</div>
+					</nav>
+				</div>
+			)}
+		</>
+	);
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import ProcessSection from '@/components/process-section';
+import MediaGridSection from '@/components/media-grid-section';
 
 export const metadata: Metadata = {
 	title: 'La Planta | Industria Gráfica Córdoba — Barrio San Vicente',
@@ -40,7 +40,22 @@ export default function LaPlantaPage() {
 			</section>
 
 			{/* Sección de video y fotos de la planta */}
-			<ProcessSection />
+			<MediaGridSection
+				title="Oficio en movimiento"
+				description="Offset, troquelado y encuadernación, en la planta de Barrio San Vicente."
+				primaryCta={{ label: 'Cotizar producción', href: '#cotizar' }}
+				secondaryCta={{ label: 'Conocer la planta en detalle', href: '/la-planta' }}
+				images={[
+					{ src: '/process-1.jpg', alt: 'Máquina Offset Industrial' },
+					{ src: '/process-2.jpg', alt: 'Rodillos Offset en detalle' },
+					{ src: '/process-3.jpg', alt: 'Apilado de packaging' },
+				]}
+				video={{
+					mp4Src:  '/process.mp4',
+					webmSrc: '/process.webm',
+					poster:  '/process-poster.jpg',
+				}}
+			/>
 		</main>
 	);
 }

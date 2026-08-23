@@ -25,8 +25,24 @@ export const metadata: Metadata = {
     'Producción offset a gran escala, troquelados y encuadernación en Córdoba. Más de 30 años de trabajo gráfico industrial con compromiso real de calidad y plazos.',
 };
 
-import Header from "@/components/header";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import Header, { NavItem } from "@/components/header";
+import WhatsAppButton from "@/components/ui/whatsapp-button";
+
+const SITE_NAVIGATION: NavItem[] = [
+  {
+    label: 'Soluciones Industriales',
+    items: [
+      { label: 'Impresión Offset Comercial',  href: '/soluciones-industriales#offset' },
+      { label: 'Troquelados & Packaging',     href: '/soluciones-industriales#troquelados' },
+      { label: 'Encuadernación & Editorial',  href: '/soluciones-industriales#encuadernacion' },
+      { label: 'Agencias & Marca Blanca',     href: '/agencias' },
+    ],
+  },
+  {
+    label: 'La Planta',
+    href: '/la-planta',
+  }
+];
 
 export default function RootLayout({
   children,
@@ -41,9 +57,27 @@ export default function RootLayout({
       style={{ fontFamily: 'var(--font-lato), sans-serif' }}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
+        <Header 
+          logo={{
+            src: "/logo.png",
+            alt: "Industria Gráfica Córdoba — Logo",
+            title: "Industria Gráfica",
+            subtitle: "Imprenta Industrial"
+          }}
+          navigation={SITE_NAVIGATION}
+          cta={{
+            label: "Contacto",
+            href: "/contacto"
+          }}
+          theme={{
+            accentColor: "#2563eb" // Azul blue-600 oficial original
+          }}
+        />
         {children}
-        <WhatsAppButton />
+        <WhatsAppButton 
+          phoneNumber="5493514597594"
+          message="Hola Industria Gráfica, me gustaría hacer una consulta"
+        />
       </body>
     </html>
   );

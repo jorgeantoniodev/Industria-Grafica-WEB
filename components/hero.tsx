@@ -1,75 +1,133 @@
-export default function Hero() {
+import React from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
+// ─── Interfaces ────────────────────────────────────────────────────────────────
+
+export interface HeroTheme {
+	/**
+	 * Clase Tailwind del gradiente de fondo de la tarjeta principal.
+	 * Ej: 'bg-gradient-to-br from-[#5ee7dc] via-white to-[#c9b6f7]'
+	 */
+	backgroundGradient: string;
+	/**
+	 * Clases Tailwind para el botón principal (color estático).
+	 * Ej: 'bg-blue-600'
+	 */
+	ctaBg: string;
+	/**
+	 * Clases Tailwind para el estado hover del botón principal.
+	 * Ej: 'hover:bg-blue-700'
+	 */
+	ctaHoverBg: string;
+}
+
+export interface HeroMedia {
+	type: 'video' | 'image';
+	src: string;
+	/** Opcional. Usado como poster si es video, ignorado si es imagen. */
+	poster?: string;
+	/** Opcional. Texto alternativo, usado si es imagen. */
+	alt?: string;
+}
+
+export interface HeroProps {
+	/** Título principal (H1). Soporta ReactNode para inyectar spans de colores o `<br>`. */
+	headline: React.ReactNode;
+	/** Subtítulo (H2). Texto corto. */
+	subheadline?: string;
+	/** Descripción (P). Párrafo introductorio. */
+	description?: string;
+	/** Texto del botón CTA. */
+	ctaText: string;
+	/** Enlace del botón CTA. */
+	ctaLink: string;
+	/** Media (Video o Imagen) para la columna derecha. */
+	media: HeroMedia;
+	/** Configuración de colores del tema. */
+	theme: HeroTheme;
+}
+
+// ─── Componente ────────────────────────────────────────────────────────────────
+
+export default function Hero({
+	headline,
+	subheadline,
+	description,
+	ctaText,
+	ctaLink,
+	media,
+	theme,
+}: HeroProps) {
 	return (
-		<section className="px-2 py-3 lg:px-4 lg:py-4" style={{ fontFamily: 'var(--font-lato), Lato, sans-serif' }}>
-			<div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#5ee7dc] via-white to-[#c9b6f7] p-3 lg:p-4">
-
-				{/* minHeight 560px → el video respira igual que en Taylor */}
+		<section className="font-sans px-2 py-3 lg:px-4 lg:py-4">
+			<div className={cn(
+				"mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] p-3 lg:p-4",
+				theme.backgroundGradient
+			)}>
+				{/* minHeight 560px asegura que el contenedor tenga espacio de respiración */}
 				<div className="flex flex-col lg:flex-row" style={{ minHeight: '560px' }}>
-
+					
 					{/* ── Columna izquierda ─────────────────────────── */}
 					<div className="flex flex-col justify-center p-6 lg:w-1/2 lg:p-12">
-
-						{/*
-						 * H1 — Formato exacto de Taylor:
-						 *   • Texto negro/oscuro en las primeras líneas
-						 *   • Última parte en color (gradiente azul→violeta)
-						 *   • Font: Lato 900 (Black) — extraído del DevTools
-						 *   • Tamaño: text-5xl lg:text-6xl  ≈ 82px de Taylor
-						 *   • SEO keywords: imprenta Córdoba, producción offset, impresión industrial
-						 */}
-						<h1
-							className="mb-5 text-5xl font-black leading-tight text-slate-900 lg:text-6xl"
-						>
-							30 años de producción{' '}
-							<br className="hidden lg:block" />
-							gráfica en Córdoba,{' '}
-							<br className="hidden lg:block" />
-							<span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-								al servicio de tu marca.
-							</span>
+						<h1 className="mb-5 text-5xl font-black leading-tight text-slate-900 lg:text-6xl">
+							{headline}
 						</h1>
 
-						{/*
-						 * H2 — Equivalente al "A Global Printing Company" de Taylor
-						 *   • Corto, con peso semibold, sin color extra
-						 *   • SEO: "imprenta offset industrial", "Córdoba Argentina"
-						 */}
-						<h2 className="mb-3 text-xl font-bold text-slate-700">
-							Imprenta Offset Industrial — Córdoba, Argentina
-						</h2>
+						{subheadline && (
+							<h2 className="mb-3 text-xl font-bold text-slate-700">
+								{subheadline}
+							</h2>
+						)}
 
-						{/* Descripción mínima — 1 línea */}
-						<p className="mb-7 max-w-sm text-base text-slate-600">
-							Troquelado, encuadernación y marca blanca para agencias y corporaciones.
-						</p>
+						{description && (
+							<p className="mb-7 max-w-sm text-base text-slate-600">
+								{description}
+							</p>
+						)}
 
-						{/* CTA — azul sólido, tamaño grande */}
 						<a
-							href="/contacto"
-							className="inline-flex w-fit rounded-full bg-blue-600 px-10 py-4 text-lg font-bold text-white shadow-lg transition-all duration-200 hover:bg-blue-700 hover:scale-[1.03]"
+							href={ctaLink}
+							className={cn(
+								"inline-flex w-fit rounded-full px-10 py-4 text-lg font-bold text-white shadow-lg transition-all duration-200 hover:scale-[1.03]",
+								theme.ctaBg,
+								theme.ctaHoverBg
+							)}
 						>
-							Hablemos de tu proyecto
+							{ctaText}
 						</a>
 					</div>
 
-					{/* ── Video — aspect-[9/16] en mobile para que el contenedor tenga altura real ── */}
-					<div className="relative w-full aspect-[9/16] overflow-hidden rounded-3xl lg:aspect-auto lg:w-1/2 lg:rounded-l-[15rem] lg:rounded-r-2xl">
-						<video
-							autoPlay
-							loop
-							muted
-							playsInline
-							preload="auto"
-							poster="/hero-poster.jpg"
-							className="absolute inset-0 h-full w-full object-cover"
-						>
-							<source src="/hero.mp4" type="video/mp4" />
-						</video>
+					{/* ── Columna derecha: Media ──────────────────────── */}
+					<div className="relative w-full aspect-[9/16] overflow-hidden rounded-3xl lg:aspect-auto lg:w-1/2 lg:rounded-l-[15rem] lg:rounded-r-2xl bg-black/5">
+						{media.type === 'video' ? (
+							<video
+								autoPlay
+								loop
+								muted
+								playsInline
+								preload="auto"
+								poster={media.poster}
+								className="absolute inset-0 h-full w-full object-cover"
+							>
+								<source src={media.src} type="video/mp4" />
+							</video>
+						) : (
+							<Image
+								src={media.src}
+								alt={media.alt ?? ''}
+								fill
+								priority
+								className="absolute inset-0 h-full w-full object-cover"
+								sizes="(max-width: 1024px) 100vw, 50vw"
+							/>
+						)}
+						{/* Overlay sutil para oscurecer ligeramente el media */}
 						<div className="pointer-events-none absolute inset-0 bg-black/5" />
 					</div>
 
 				</div>
 			</div>
 		</section>
-	)
+	);
 }
