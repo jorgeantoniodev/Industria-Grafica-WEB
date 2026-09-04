@@ -16,6 +16,8 @@ const lato = Lato({
   display: "swap",
 });
 
+const isMaintenance = process.env.MAINTENANCE_MODE === 'true';
+
 export const metadata: Metadata = {
   title: {
     default: 'Industria Gráfica Córdoba — Imprenta Industrial en Barrio San Vicente',
@@ -23,10 +25,20 @@ export const metadata: Metadata = {
   },
   description:
     'Producción offset a gran escala, troquelados y encuadernación en Córdoba. Más de 30 años de trabajo gráfico industrial con compromiso real de calidad y plazos.',
+  robots: isMaintenance
+    ? {
+        index: false,
+        follow: false,
+      }
+    : {
+        index: true,
+        follow: true,
+      },
 };
 
 import Header, { NavItem } from "@/components/header";
 import WhatsAppButton from "@/components/ui/whatsapp-button";
+import MaintenanceOverlay from "@/components/maintenance-overlay";
 
 const SITE_NAVIGATION: NavItem[] = [
   {
@@ -57,6 +69,17 @@ export default function RootLayout({
       style={{ fontFamily: 'var(--font-lato), sans-serif' }}
     >
       <body className="min-h-full flex flex-col">
+        <MaintenanceOverlay
+          maintenanceMode={isMaintenance}
+          phoneNumber="5493514597594"
+          message="Hola Industria Gráfica, me gustaría hacer una consulta"
+          logo={{
+            src: "/logo.png",
+            alt: "Industria Gráfica Córdoba — Logo",
+            title: "Industria Gráfica",
+            subtitle: "Imprenta Industrial",
+          }}
+        />
         <Header 
           logo={{
             src: "/logo.png",
