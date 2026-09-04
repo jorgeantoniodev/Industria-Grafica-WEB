@@ -16,7 +16,8 @@ const lato = Lato({
   display: "swap",
 });
 
-const isMaintenance = process.env.MAINTENANCE_MODE === 'true';
+// Temporal: desactivar cuando el sitio sea aprobado para publicación.
+const isMaintenance = true;
 
 export const metadata: Metadata = {
   title: {
