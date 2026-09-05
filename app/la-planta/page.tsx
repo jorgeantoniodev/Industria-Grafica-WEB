@@ -43,8 +43,8 @@ export default function LaPlantaPage() {
 			<MediaGridSection
 				title="Oficio en movimiento"
 				description="Offset, troquelado y encuadernación, en la planta de Barrio San Vicente."
-				primaryCta={{ label: 'Cotizar producción', href: '#cotizar' }}
-				secondaryCta={{ label: 'Conocer la planta en detalle', href: '/la-planta' }}
+				primaryCta={{ label: 'Cotizar producción', href: '/contacto' }}
+				secondaryCta={{ label: 'Ver soluciones industriales', href: '/soluciones-industriales' }}
 				images={[
 					{ src: '/process-1.jpg', alt: 'Máquina Offset Industrial' },
 					{ src: '/process-2.jpg', alt: 'Rodillos Offset en detalle' },
