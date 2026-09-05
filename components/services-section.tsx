@@ -37,8 +37,8 @@ export default function ServicesSection({
 	badgeText = 'Servicios & Producción',
 	titlePrefix = 'Tus proyectos. Tu empresa.',
 	titleHighlight = 'Potenciá tu marca.',
-	subtitle = 'Soluciones para el Alcance de tus Operaciones',
-	description = 'Atendemos tus necesidades en cada etapa del proceso con capacidad industrial líder y modelos de servicio escalables diseñados para acompañar el crecimiento de tu organización.',
+	subtitle = 'Lo que producimos en nuestra planta',
+	description = 'Nos dedicamos a transformar tus ideas en realidades tangibles desde hace más de 30 años. Ofrecemos soluciones que destacan por su creatividad, por nuestro compromiso de atención y seguimiento a nuestros clientes.',
 }: ServicesSectionProps) {
 	if (!services || services.length === 0) return null;
 

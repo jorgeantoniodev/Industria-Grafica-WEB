@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: '%s | Industria Gráfica Córdoba',
   },
   description:
-    'Producción offset a gran escala, troquelados y encuadernación en Córdoba. Más de 30 años de trabajo gráfico industrial con compromiso real de calidad y plazos.',
+    'Imprenta offset industrial desde Córdoba: pliegos de hasta 102 × 72 cm, troquelado, laminado y encuadernación. Más de 30 años de producción gráfica. Pedí tu presupuesto.',
   robots: isMaintenance
     ? {
         index: false,

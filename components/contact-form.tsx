@@ -5,12 +5,12 @@ import { submitContactForm, ContactFormState } from '@/app/actions/contact';
 
 const TIPOS_TRABAJO = [
 	'Seleccioná una opción',
-	'Impresión offset a gran escala',
+	'Impresión offset comercial',
 	'Troquelado y terminaciones',
-	'Encuadernación industrial',
+	'Encuadernación',
 	'Folletería y catálogos',
 	'Packaging y embalaje',
-	'Marca blanca para agencias',
+	'Producción confidencial / Marca blanca',
 	'Otro',
 ];
 
@@ -211,19 +211,6 @@ export default function ContactForm() {
 				/>
 			</div>
 
-			{/* ── Newsletter ────────────────────────────────────────── */}
-			<div className="flex items-center gap-2.5">
-				<input
-					id="newsletter"
-					name="newsletter"
-					type="checkbox"
-					disabled={isSubmitting}
-					className="h-4 w-4 accent-blue-600"
-				/>
-				<label htmlFor="newsletter" className="text-sm text-gray-600">
-					Quiero recibir novedades y asesoramiento técnico de Industria Gráfica
-				</label>
-			</div>
 
 			{/* ── Botón Submit con Prevención de Doble Envío ─────────── */}
 			<button

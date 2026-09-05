@@ -23,14 +23,24 @@ import {
 const audiences: AudienceItem[] = [
 	{
 		id: 'agencias',
-		title: 'Marca blanca para agencias',
+		title: 'Producción confidencial para agencias',
 		badge: 'MÁS DE 30 AÑOS EN EL RUBRO',
-		headline: 'Escala tus operaciones sin límites.',
+		headline: 'Tu cliente sigue siendo tu cliente. Nosotros nos ocupamos de la producción.',
 		description:
-			'Proveemos infraestructura gráfica completa. Operamos en segundo plano como tu socio de producción, garantizando calidad superior y márgenes rentables para tu agencia.',
+			'Imprimimos, troquelamos y encuadernamos respetando la confidencialidad de cada proyecto. Operamos en segundo plano como tu taller de producción, para que puedas concentrarte en la relación con tu cliente.',
 		features: [
-			{ icon: Printer, title: 'Producción offset a gran escala', description: 'Capacidad para imprimir tiradas masivas con tiempos de respuesta inmejorables.' },
-			{ icon: Palette, title: 'Acabados complejos', description: 'Desde barnices sectorizados hasta cortes especiales que añaden valor premium.' },
+			{
+				icon: Printer,
+				title: 'Capacidad de pliego offset',
+				description:
+					'Impresión en pliegos de hasta 102 × 72 cm (área máxima de impresión 100 × 70 cm) en tiradas donde el offset marca la diferencia.',
+			},
+			{
+				icon: Palette,
+				title: 'Terminaciones en planta',
+				description:
+					'Plastificado OPP mate o brillante, barniz UV, troquelado, perforado y doblado.',
+			},
 		],
 		ctaText: 'Explorar soluciones para agencias',
 		ctaLink: '/agencias',
@@ -50,12 +60,22 @@ const audiences: AudienceItem[] = [
 		id: 'corporativo',
 		title: 'Corporativo e institucional',
 		badge: 'ALTO VOLUMEN',
-		headline: 'Soluciones institucionales de alto rendimiento.',
+		headline: 'Papelería institucional y documentación corporativa.',
 		description:
-			'Producimos formularios, recetarios, revistas institucionales y catálogos corporativos. Trabajamos bajo planificación industrial',
+			'Producimos formularios continuos, comprobantes fiscales, recetarios, carpetas y catálogos. Planificación y seguimiento directo de cada pedido.',
 		features: [
-			{ icon: Stack, title: 'Formularios y fichas médicas', description: 'Impresión de alta precisión para documentos corporativos y sector salud.' },
-			{ icon: Target, title: 'Calidad sostenida en el tiempo', description: 'Mismo estándar de calidad, plazos y atención en cada tirada, año tras año.' },
+			{
+				icon: Stack,
+				title: 'Comprobantes y formularios',
+				description:
+					'Facturas, remitos, recibos, planillas y blocs recetarios Rp.',
+			},
+			{
+				icon: Target,
+				title: 'Atención y seguimiento directo',
+				description:
+					'Atención personalizada y posibilidad de coordinar visitas a planta para el seguimiento de la producción.',
+			},
 		],
 		ctaText: 'Solicitar asesoría institucional',
 		ctaLink: '/soluciones-industriales',
@@ -73,13 +93,23 @@ const audiences: AudienceItem[] = [
 	{
 		id: 'pymes',
 		title: 'Marcas y pymes',
-		badge: 'DISEÑO A MEDIDA',
-		headline: 'Materiales que hacen destacar tu identidad.',
+		badge: 'PACKAGING Y PIEZAS A MEDIDA',
+		headline: 'Packaging, etiquetas y materiales impresos para tu marca.',
 		description:
-			'Trabajos de diseño no repetitivo, packaging chico y materiales de marca para negocios medianos. Llevamos tu identidad visual a otro nivel.',
+			'Packaging en papel, cartulina o microcorrugado: cajas, estuches, etiquetas, fajas, marbetes y bolsas. Asesoramiento sobre cantidades mínimas según el tipo de pieza.',
 		features: [
-			{ icon: Package, title: 'Packaging personalizado', description: 'Cajas y empaques a medida para productos boutique y de consumo.' },
-			{ icon: ChartLineUp, title: 'Impresión variable', description: 'Personalización de cada pieza para campañas de marketing únicas.' },
+			{
+				icon: Package,
+				title: 'Packaging y estuchería',
+				description:
+					'Cajas, estuches, fajas, marbetes y bolsas en cartulinas encapadas o cartón microcorrugado.',
+			},
+			{
+				icon: ChartLineUp,
+				title: 'Piezas comerciales y promocionales',
+				description:
+					'Afiches, volantes, almanaques, stickers en papel, individuales y posavasos.',
+			},
 		],
 		ctaText: 'Ver opciones de packaging',
 		ctaLink: '/soluciones-industriales#troquelados',
@@ -123,20 +153,22 @@ const clientLogos: ClientLogo[] = [
 const servicesData: ServiceItem[] = [
 	{
 		id: 'corporativo-salud',
-		title: 'Corporativo & Salud',
-		description: 'Papelería institucional e insumos médicos a gran escala desde Córdoba. Formularios, recetarios y carpetas corporativas.',
+		title: 'Corporativo & Institucional',
+		description:
+			'Papelería administrativa y comercial desde Córdoba: formularios continuos, comprobantes fiscales, carpetas institucionales y blocs recetarios Rp.',
 		href: '/soluciones-industriales',
 		theme: {
 			gradient: 'bg-gradient-to-br from-blue-600 to-cyan-400',
 			glow: 'bg-cyan-300/40',
 		},
 		imageSrc: '/services/imagen-corporativo.png',
-		imageAlt: 'Servicios corporativos y de salud',
+		imageAlt: 'Servicios corporativos e institucionales',
 	},
 	{
 		id: 'offset',
 		title: 'Impresión Offset Comercial',
-		description: 'Imprenta offset B2B para grandes tiradas. Catálogos, folletería comercial y papelería masiva con capacidad industrial.',
+		description:
+			'Folletería, catálogos y papelería en tiradas medianas y altas. Impresión en pliegos de hasta 102 × 72 cm (área imprimible 100 × 70 cm) en cuatro colores o monocolor.',
 		href: '/soluciones-industriales#offset',
 		theme: {
 			gradient: 'bg-gradient-to-br from-violet-700 to-fuchsia-400',
@@ -148,7 +180,8 @@ const servicesData: ServiceItem[] = [
 	{
 		id: 'troquelados-packaging',
 		title: 'Troquelados & Packaging',
-		description: 'Packaging personalizado para empresas: cajas troqueladas y acabados premium con barniz UV o laminado.',
+		description:
+			'Packaging en papel, cartulina o microcorrugado: cajas, estuches, etiquetas, fajas y bolsas. Troquelado, plastificado OPP y barniz UV.',
 		href: '/soluciones-industriales#troquelados',
 		theme: {
 			gradient: 'bg-gradient-to-br from-orange-500 to-yellow-400',
@@ -161,7 +194,8 @@ const servicesData: ServiceItem[] = [
 	{
 		id: 'encuadernacion-editorial',
 		title: 'Encuadernación & Editorial',
-		description: 'Imprimió tu libro con respaldo industrial. Lomo cuadrado (Hotmelt), encuadernación abrochada y servicios editoriales para escritores y editoriales.',
+		description:
+			'Libros, revistas, agendas, cuadernos y catálogos. Encuadernación abrochada a caballo, cosida (tapa blanda o dura), pegada (binder) y anillada.',
 		href: '/soluciones-industriales#encuadernacion',
 		theme: {
 			gradient: 'bg-gradient-to-br from-teal-500 to-emerald-400',
@@ -180,7 +214,7 @@ export default function Home() {
 			<Hero 
 				headline={
 					<>
-						30 años de producción <br className="hidden lg:block" />
+						Más de 30 años de producción <br className="hidden lg:block" />
 						gráfica en Córdoba, <br className="hidden lg:block" />
 						<span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
 							al servicio de tu marca.
@@ -188,7 +222,7 @@ export default function Home() {
 					</>
 				}
 				subheadline="Imprenta Offset Industrial — Córdoba, Argentina"
-				description="Troquelado, encuadernación y marca blanca para agencias y corporaciones."
+				description="Impresión offset, troquelado, encuadernación y producción confidencial para agencias y empresas."
 				ctaText="Hablemos de tu proyecto"
 				ctaLink="/contacto"
 				media={{
@@ -211,6 +245,8 @@ export default function Home() {
 				services={servicesData}
 				badgeText="Capacidad Industrial & Producción"
 				titleHighlight="Potenciá tu marca con Industria Gráfica."
+				subtitle="Lo que producimos en nuestra planta"
+				description="Nos dedicamos a transformar tus ideas en realidades tangibles desde hace más de 30 años. Ofrecemos soluciones que destacan por su creatividad, por nuestro compromiso de atención y seguimiento a nuestros clientes."
 			/>
 		</main>
 	);

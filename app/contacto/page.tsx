@@ -42,9 +42,7 @@ export default function ContactoPage() {
 							Producción industrial con respaldo real.
 						</h2>
 						<p className="mb-8 text-base leading-relaxed text-gray-600">
-							Producción offset industrial, troquelados y encuadernación en Córdoba.
-							Nuestra infraestructura propia nos permite responder a las exigencias
-							técnicas y los estándares de calidad que tu empresa necesita.
+							Prensas offset, troquelado, laminado y encuadernación en nuestra planta de Barrio San Vicente. Atención personalizada, seguimiento directo y posibilidad de coordinar visitas técnicas para revisar tu tirada.
 						</p>
 
 						{/* Bloque informativo de planta y canal directo (sin testimonios ficticios) */}
@@ -75,7 +73,7 @@ export default function ContactoPage() {
 									Canal de atención rápida
 								</span>
 								<p className="text-sm text-slate-300 mb-3">
-									Para consultas operativas urgentes o envío de muestras:
+									Para consultas rápidas o coordinar una visita a planta:
 								</p>
 								<a
 									href="https://wa.me/5493514597594?text=Hola%20Industria%20Gr%C3%A1fica%2C%20me%20gustar%C3%ADa%20hacer%20una%20consulta"

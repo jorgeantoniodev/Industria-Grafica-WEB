@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
 	title: 'Impresión Offset Comercial en Córdoba | Industria Gráfica Córdoba',
 	description:
-		'Offset comercial, troquelados y encuadernación industrial en Barrio San Vicente, Córdoba. Grandes tirajes con calidad sostenida, packaging a medida y cumplimiento de plazos.',
+		'Impresión offset, troquelado, laminado y encuadernación desde Córdoba. Producción de catálogos, packaging, papelería y libros. Pedí presupuesto.',
 };
 
 export default function SolucionesIndustrialesPage() {
@@ -20,8 +20,7 @@ export default function SolucionesIndustrialesPage() {
 						<span className="text-blue-400">de Impresión en Córdoba</span>
 					</h1>
 					<p className="text-lg text-slate-400 max-w-2xl">
-						Producción offset de alta complejidad, troquelados y encuadernación
-						para empresas, agencias y distribuidores en todo el país.
+						Producción offset, troquelado, laminado y encuadernación para empresas, agencias e imprentas desde Córdoba.
 					</p>
 				</div>
 			</section>
@@ -33,11 +32,8 @@ export default function SolucionesIndustrialesPage() {
 						Impresión Offset Comercial
 					</h2>
 					<p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
-					Producción física pesada para grandes tirajes, folletería masiva y
-					papelería comercial con calidad sostenida y cumplimiento estricto de
-					plazos. Trabajamos con papeles estucados, offset y especiales en pliegos
-					de hasta 70×100 cm.
-				</p>
+						Producción de folletos, catálogos, revistas y papelería comercial en tiradas donde el offset resulta conveniente. Cuatro máquinas offset para optimizar trabajos monocolor y full color en pliegos de hasta 102 × 72 cm (área máxima de impresión 100 × 70 cm). Trabajamos papeles industriales (obra, ilustración, kraft, comercial, bookcel y NAT) de 70 a 350 g.
+					</p>
 				</div>
 			</section>
 
@@ -48,9 +44,7 @@ export default function SolucionesIndustrialesPage() {
 						Troquelados y Terminaciones Especiales
 					</h2>
 					<p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
-						Estuches, cajas personalizadas, troquelados complejos y acabados
-						con laminado en polipropileno o barniz UV. Diseñamos y fabricamos
-						troqueles propios para mayor flexibilidad de producción.
+						Packaging en papel, cartulina o microcorrugado: cajas, estuches, etiquetas, fajas, marbetes y bolsas. Cartulinas encapadas (duplex, triplex, rígida, Naturale) hasta 350 g y cartón microcorrugado simple o montado. Terminaciones con plastificado OPP mate o brillante, barniz UV brillante, troquelado, perforado, puntillado, redondeado de puntas y pegado.
 					</p>
 				</div>
 			</section>
@@ -59,12 +53,10 @@ export default function SolucionesIndustrialesPage() {
 			<section id="encuadernacion" className="py-20 lg:py-28 scroll-mt-20">
 				<div className="max-w-7xl mx-auto px-6 lg:px-8">
 					<h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6">
-						Encuadernación de Libros y Revistas
+						Encuadernación de Libros, Revistas y Catálogos
 					</h2>
 					<p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
-						Trenes de encuadernación abrochada y lomo cuadrado perfecto (Hotmelt)
-						para libros, revistas y catálogos. Capacidad para tirajes desde
-						500 hasta 50.000 ejemplares.
+						Encuadernación abrochada a caballo, cosida con tapa blanda o tapa dura, pegada (binder) y anillado metálico o plástico. Servicio de intercalado de pliegos para revistas y libros, encapado de tapas para agendas y cuadernos, y retractilado termofusionado.
 					</p>
 				</div>
 			</section>

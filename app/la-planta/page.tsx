@@ -4,7 +4,7 @@ import MediaGridSection from '@/components/media-grid-section';
 export const metadata: Metadata = {
 	title: 'La Planta | Industria Gráfica Córdoba — Barrio San Vicente',
 	description:
-		'Conocé la planta de producción de Industria Gráfica Córdoba en Barrio San Vicente: maquinaria offset, trenes de encuadernación, capacidad técnica y equipo.',
+		'Conocé la planta de Industria Gráfica Córdoba en Entre Ríos 2650, Barrio San Vicente: prensas offset, troquelado, laminado y encuadernación. Coordiná una visita técnica.',
 };
 
 export default function LaPlantaPage() {
@@ -13,7 +13,7 @@ export default function LaPlantaPage() {
 			<section className="py-24 lg:py-32 bg-slate-950 text-white">
 				<div className="max-w-7xl mx-auto px-6 lg:px-8">
 					<p className="text-sm font-semibold uppercase tracking-widest text-amber-400 mb-4">
-						Barrio San Vicente · Córdoba
+						Entre Ríos 2650 · Barrio San Vicente · Córdoba
 					</p>
 					<h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none mb-6">
 						La Planta<br />
@@ -29,12 +29,10 @@ export default function LaPlantaPage() {
 			<section className="py-20 lg:py-28">
 				<div className="max-w-7xl mx-auto px-6 lg:px-8">
 					<h2 className="text-3xl font-bold text-slate-900 mb-6">
-						Capacidad técnica y maquinaria
+						Equipamiento de taller y capacidades
 					</h2>
-					<p className="text-lg text-slate-600 max-w-3xl">
-						Prensas offset de 4 y 5 cuerpos, troqueladora de cama plana,
-						trenes de encuadernación abrochada y hotmelt, guillotinas y
-						acabado en barniz UV y laminado BOPP.
+					<p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
+						Contamos con cuatro prensas offset para cubrir distintos formatos y tipos de tirada: Roland 600 (full color, pliego máx. 102 × 72 cm, impresión máx. 100 × 70 cm), Heidelberg GTO (full color, pliego máx. 49 × 36 cm, impresión máx. 47 × 34 cm), Komori (monocolor, pliego máx. 65 × 47,5 cm, impresión máx. 64 × 45 cm) y Multilith (monocolor, pliego máx. 36 × 24 cm, impresión máx. 34 × 22 cm). Área de troquelado, plastificado OPP mate o brillante, barniz UV y encuadernación.
 					</p>
 				</div>
 			</section>

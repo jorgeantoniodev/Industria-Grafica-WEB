@@ -62,7 +62,6 @@ export async function submitContactForm(
 		const tipo = (formData.get('tipo') as string)?.trim();
 		const cliente = (formData.get('cliente') as string)?.trim();
 		const mensaje = (formData.get('mensaje') as string)?.trim();
-		const newsletter = formData.get('newsletter') === 'on';
 
 		// 4. Validación estricta en servidor
 		if (!nombre || nombre.length < 2) {
@@ -117,9 +116,7 @@ export async function submitContactForm(
 		const safeEmail = escapeHtml(email);
 		const safeTipo = escapeHtml(tipo);
 		const safeCliente = escapeHtml(cliente || 'No especificado');
-		const safeNewsletter = escapeHtml(newsletter ? 'Sí' : 'No');
 		const safeMensaje = escapeHtml(mensaje);
-		const safeMailto = encodeURIComponent(email);
 
 		// 6. Envío mediante HTTP REST API de Resend (compatible con Cloudflare Workers / OpenNext)
 		const resendPayload = {
@@ -133,10 +130,9 @@ export async function submitContactForm(
 					<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
 						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold; width: 140px;">Nombre:</td><td style="padding: 8px 0; color: #0f172a;">${safeNombre} ${safeApellido}</td></tr>
 						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold;">Empresa:</td><td style="padding: 8px 0; color: #0f172a;">${safeEmpresa}</td></tr>
-						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold;">E-mail:</td><td style="padding: 8px 0; color: #0f172a;"><a href="mailto:${safeMailto}">${safeEmail}</a></td></tr>
+						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold;">E-mail:</td><td style="padding: 8px 0; color: #0f172a;">${safeEmail}</td></tr>
 						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold;">Tipo de trabajo:</td><td style="padding: 8px 0; color: #0f172a;">${safeTipo}</td></tr>
 						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold;">¿Cliente previo?:</td><td style="padding: 8px 0; color: #0f172a;">${safeCliente}</td></tr>
-						<tr><td style="padding: 8px 0; color: #64748b; font-weight: bold;">Newsletter:</td><td style="padding: 8px 0; color: #0f172a;">${safeNewsletter}</td></tr>
 					</table>
 					<div style="background-color: #f8fafc; padding: 16px; border-radius: 6px; border-left: 4px solid #2563eb;">
 						<h4 style="margin: 0 0 8px 0; color: #334155;">Detalle del proyecto:</h4>
