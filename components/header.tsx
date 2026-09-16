@@ -187,15 +187,39 @@ export default function Header({
 						})}
 					</nav>
 
-					{/* ── Hamburguesa — solo mobile ───────────────────── */}
-					<button
-						className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
-						onClick={() => setMobileOpen(!mobileOpen)}
-						aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-						aria-expanded={mobileOpen}
-					>
-						{mobileOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
-					</button>
+					{/* ── Acciones a la derecha (Socials + Hamburguesa) ─── */}
+					<div className="flex items-center gap-1 sm:gap-2">
+						{/* Social Icons */}
+						<div className="flex items-center gap-0.5 sm:gap-1">
+							<a
+								href="https://www.instagram.com/industriagrafica_ok/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-gray-400 hover:text-[#5332ED] transition-colors w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-50"
+								aria-label="Instagram"
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.802c-2.67 0-2.987.01-4.042.059-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.048 1.055-.058 1.37-.058 4.04 0 2.67.01 2.987.058 4.042.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.042.058 2.67 0 2.987-.01 4.04-.058.975-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.04 0-2.67-.01-2.987-.058-4.042-.045-.975-.207-1.505-.344-1.858a3.097 3.097 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.055-.048-1.37-.058-4.04-.058zM12 6.865a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 1.802a3.333 3.333 0 1 0 0 6.666 3.333 3.333 0 0 0 0-6.666zm5.338-3.205a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+							</a>
+							<a
+								href="https://www.facebook.com/profile.php?id=61561856879737"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-gray-400 hover:text-[#5332ED] transition-colors w-9 h-9 flex items-center justify-center rounded-xl hover:bg-gray-50"
+								aria-label="Facebook"
+							>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="23" height="23" fill="currentColor"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 16.9913 5.65695 21.1283 10.4375 21.881V14.8906H7.89844V12H10.4375V9.79688C10.4375 7.29063 11.9305 5.90625 14.2146 5.90625C15.3088 5.90625 16.4531 6.10156 16.4531 6.10156V8.5625H15.1921C13.95 8.5625 13.5625 9.33334 13.5625 10.1242V12H16.3359L15.8926 14.8906H13.5625V21.881C18.3431 21.1283 22 16.9913 22 12C22 6.47715 17.5228 2 12 2Z"></path></svg>
+							</a>
+						</div>
+						{/* Hamburguesa — solo mobile */}
+						<button
+							className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors ml-1"
+							onClick={() => setMobileOpen(!mobileOpen)}
+							aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+							aria-expanded={mobileOpen}
+						>
+							{mobileOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
+						</button>
+					</div>
 				</div>
 			</header>
 
