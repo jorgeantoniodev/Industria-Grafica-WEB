@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { CaretDown, List, X } from '@phosphor-icons/react';
 import { cn } from '@/lib/utils';
 
@@ -30,17 +31,12 @@ export interface HeaderProps {
 		href?: string;
 	};
 	navigation: NavItem[];
-	cta: {
-		label: string;
-		href: string;
-	};
 	theme?: HeaderTheme;
 }
 
 export default function Header({
 	logo,
 	navigation,
-	cta,
 	theme,
 }: HeaderProps) {
 	const [mobileOpen, setMobileOpen] = useState(false);
@@ -60,6 +56,28 @@ export default function Header({
 		leaveTimer.current = setTimeout(() => setOpenDesktopIndex(null), 150);
 	};
 
+	const pathname = usePathname();
+	const [currentHash, setCurrentHash] = useState('');
+
+	useEffect(() => {
+		setCurrentHash(window.location.hash);
+		const handleHashChange = () => setCurrentHash(window.location.hash);
+		window.addEventListener('hashchange', handleHashChange);
+		return () => window.removeEventListener('hashchange', handleHashChange);
+	}, [pathname]);
+
+	const isActive = (href: string) => {
+		const [linkPath, linkHash] = href.split('#');
+		if (pathname !== linkPath) return false;
+		if (linkPath === '/quienes-somos') {
+			if (linkHash === 'ubicacion') {
+				return currentHash === '#ubicacion';
+			}
+			return currentHash !== '#ubicacion';
+		}
+		return true;
+	};
+
 	const toggleMobileDropdown = (index: number) => {
 		setOpenMobileIndices((prev) => ({
 			...prev,
@@ -75,9 +93,9 @@ export default function Header({
 					'--header-accent': theme?.accentColor || '#2563eb', // blue-600 default
 				} as React.CSSProperties}
 			>
-				<div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+				<div className="relative w-full max-w-none px-6 md:px-8 h-20 flex items-center justify-between">
 					{/* ── Logo ─────────────────────────────────────────── */}
-					<Link href={logo.href || '/'} className="flex items-center gap-3" onClick={closeMobile}>
+					<Link href={logo.href || '/'} className="flex items-center gap-3 z-10" onClick={closeMobile}>
 						{/* eslint-disable-next-line @next/next/no-img-element */}
 						<img
 							src={logo.src}
@@ -99,7 +117,7 @@ export default function Header({
 					</Link>
 
 					{/* ── Desktop Nav ───────────────────────────────────── */}
-					<nav className="hidden lg:flex items-center gap-8">
+					<nav className="hidden lg:flex items-center gap-6 xl:gap-10 2xl:gap-14 absolute left-1/2 -translate-x-1/2">
 						{navigation.map((item, index) => {
 							if ('items' in item) {
 								const isOpen = openDesktopIndex === index;
@@ -111,7 +129,7 @@ export default function Header({
 										onMouseLeave={onLeaveDropdown}
 									>
 										<button
-											className="text-base font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2"
+											className="text-sm xl:text-base font-semibold text-gray-800 hover:text-black transition-colors flex items-center gap-1.5 py-2 whitespace-nowrap"
 											aria-expanded={isOpen}
 										>
 											{item.label}
@@ -150,11 +168,17 @@ export default function Header({
 								);
 							} else {
 								// NavLink
+								const active = isActive(item.href);
 								return (
 									<Link
 										key={item.href}
 										href={item.href}
-										className="text-base font-semibold text-gray-800 hover:text-black transition-colors py-2"
+										className={cn(
+											'text-sm xl:text-base font-semibold py-2 whitespace-nowrap transition-colors',
+											active
+												? 'text-brand-electric-violet'
+												: 'text-gray-800 hover:text-brand-electric-violet'
+										)}
 									>
 										{item.label}
 									</Link>
@@ -163,25 +187,15 @@ export default function Header({
 						})}
 					</nav>
 
-					{/* ── Derecha: Contacto + Hamburguesa ──────────────── */}
-					<div className="flex items-center gap-3 md:gap-5">
-						<Link
-							href={cta.href}
-							className="rounded-xl border-2 border-[var(--header-accent)] bg-[var(--header-accent)] px-5 py-2.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-transparent hover:text-[var(--header-accent)] active:scale-95"
-						>
-							{cta.label}
-						</Link>
-
-						{/* Hamburguesa — solo mobile */}
-						<button
-							className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
-							onClick={() => setMobileOpen(!mobileOpen)}
-							aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-							aria-expanded={mobileOpen}
-						>
-							{mobileOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
-						</button>
-					</div>
+					{/* ── Hamburguesa — solo mobile ───────────────────── */}
+					<button
+						className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors"
+						onClick={() => setMobileOpen(!mobileOpen)}
+						aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+						aria-expanded={mobileOpen}
+					>
+						{mobileOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
+					</button>
 				</div>
 			</header>
 
@@ -227,11 +241,17 @@ export default function Header({
 									</div>
 								);
 							} else {
+								const active = isActive(item.href);
 								return (
 									<Link
 										key={item.href}
 										href={item.href}
-										className="py-4 text-lg font-bold text-gray-900 border-b border-gray-100"
+										className={cn(
+											'py-4 text-lg font-bold border-b border-gray-100 transition-colors',
+											active
+												? 'text-brand-electric-violet'
+												: 'text-gray-900 hover:text-brand-electric-violet'
+										)}
 										onClick={closeMobile}
 									>
 										{item.label}
@@ -240,19 +260,6 @@ export default function Header({
 							}
 						})}
 
-						{/* CTA Contacto */}
-						<div className="pt-6">
-							<Link
-								href={cta.href}
-								style={{
-									'--header-accent': theme?.accentColor || '#2563eb', // Asegurar que la variable llegue aquí por si no hereda en fixed
-								} as React.CSSProperties}
-								className="block w-full text-center rounded-xl border-2 border-[var(--header-accent)] bg-[var(--header-accent)] px-5 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:bg-transparent hover:text-[var(--header-accent)]"
-								onClick={closeMobile}
-							>
-								{cta.label}
-							</Link>
-						</div>
 					</nav>
 				</div>
 			)}

@@ -53,6 +53,8 @@ export interface AudienceItem {
 	image: string;
 	/** Alt text explícito. Si no se define, usa el título de la audiencia. */
 	imageAlt?: string;
+	/** Posición de la imagen (ej: 'center 30%') */
+	objectPosition?: string;
 	/**
 	 * Componente de icono para el badge flotante.
 	 * Compatible con className (Lucide, Phosphor, Heroicons, etc.).
@@ -88,24 +90,27 @@ const LAYOUT_VARIANTS: Record<AudienceLayout, {
 }> = {
 	'feature-left': {
 		composition: 'h-[450px] lg:h-[550px]',
-		blob: 'top-0 left-1/2 -translate-x-1/2 w-[80%] h-[80%]',
+		blob: 'top-[6%] right-[8%] w-[78%] h-[78%]',
 		blobShape: 'rounded-[8rem_8rem_8rem_1rem]',
-		image: 'bottom-0 left-0 w-[75%] h-[75%] z-10 shadow-2xl',
-		badge: 'top-[10%] right-[10%] z-20 shadow-xl',
+		image: 'bottom-[6%] left-[8%] w-[78%] h-[78%] z-10 shadow-2xl',
+		badge:
+			'top-[16%] left-[86%] -translate-x-1/2 -translate-y-1/2 z-20 shadow-xl',
 	},
 	'portrait': {
 		composition: 'h-[450px] lg:h-[550px]',
-		blob: 'right-0 top-0 w-[70%] h-full',
+		blob: 'top-[6%] right-[10%] w-[70%] h-[82%]',
 		blobShape: 'rounded-[1rem_8rem_8rem_8rem]',
-		image: 'bottom-[10%] left-0 w-[75%] h-[75%] z-10 shadow-2xl',
-		badge: 'top-1/2 left-[5%] -translate-y-1/2 z-20 shadow-xl',
+		image: 'bottom-[6%] left-[10%] w-[70%] h-[82%] z-10 shadow-2xl',
+		badge:
+			'top-[12%] left-[80%] -translate-x-1/2 -translate-y-1/2 z-20 shadow-xl',
 	},
 	'landscape': {
 		composition: 'h-[450px] lg:h-[550px]',
-		blob: 'bottom-0 right-0 w-[80%] h-[75%]',
+		blob: 'bottom-[6%] right-[6%] w-[82%] h-[72%]',
 		blobShape: 'rounded-[8rem_1rem_8rem_8rem]',
-		image: 'top-0 left-0 w-[75%] h-[75%] z-10 shadow-2xl',
-		badge: 'bottom-[15%] left-[5%] z-20 shadow-xl',
+		image: 'top-[6%] left-[6%] w-[82%] h-[72%] z-10 shadow-2xl',
+		badge:
+			'top-[78%] left-[88%] -translate-x-1/2 -translate-y-1/2 z-20 shadow-xl',
 	},
 };
 
@@ -248,6 +253,7 @@ export default function AudiencesSection({
 								<div className={cn("relative w-full lg:w-1/2", layoutConfig.composition)}>
 									{/* Blob de fondo — geometría del componente, color del tema */}
 									<div
+										aria-hidden="true"
 										className={cn(
 											"absolute",
 											layoutConfig.blob,
@@ -263,18 +269,22 @@ export default function AudiencesSection({
 											alt={audience.imageAlt ?? audience.title}
 											fill
 											className="object-cover"
+											style={audience.objectPosition ? { objectPosition: audience.objectPosition } : undefined}
 											sizes="(max-width: 1024px) 100vw, 50vw"
 											priority={audience.priority}
 										/>
 									</div>
 
 									{/* Badge Flotante */}
-									<div className={cn(
-										"absolute flex h-14 w-14 items-center justify-center rounded-full",
-										layoutConfig.badge,
-										audience.theme.floatingBadgeBg
-									)}>
-										<FloatingBadgeIcon className="h-7 w-7 text-white" />
+									<div
+										aria-hidden="true"
+										className={cn(
+											"pointer-events-none absolute flex h-12 w-12 items-center justify-center rounded-full sm:h-14 sm:w-14",
+											layoutConfig.badge,
+											audience.theme.floatingBadgeBg
+										)}
+									>
+										<FloatingBadgeIcon className="h-6 w-6 text-white sm:h-7 sm:w-7" />
 									</div>
 								</div>
 

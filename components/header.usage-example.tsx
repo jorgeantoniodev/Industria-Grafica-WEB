@@ -11,15 +11,15 @@ export function IndustriaGraficaHeaderExample() {
 		{
 			label: 'Soluciones Industriales',
 			items: [
-				{ label: 'Impresión Offset Comercial', href: '/soluciones-industriales#offset' },
-				{ label: 'Troquelados & Packaging', href: '/soluciones-industriales#troquelados' },
-				{ label: 'Encuadernación & Editorial', href: '/soluciones-industriales#encuadernacion' },
+				{ label: 'Impresión Offset Comercial', href: '/servicios#offset' },
+				{ label: 'Troquelados & Packaging', href: '/servicios#troquelados' },
+				{ label: 'Encuadernación & Editorial', href: '/servicios#encuadernacion' },
 				{ label: 'Agencias & Marca Blanca', href: '/agencias' },
 			],
 		},
 		{
 			label: 'La Planta',
-			href: '/la-planta',
+			href: '/quienes-somos',
 		},
 	];
 
@@ -33,10 +33,6 @@ export function IndustriaGraficaHeaderExample() {
 					subtitle: 'Imprenta Industrial', // CAMBIAR
 				}}
 				navigation={navigation}
-				cta={{
-					label: 'Contacto', // CAMBIAR
-					href: '/contacto', // CAMBIAR
-				}}
 				theme={{
 					accentColor: '#2563eb', // CAMBIAR - Azul oficial
 				}}
@@ -73,10 +69,6 @@ export function GenericHeaderExample() {
 					subtitle: 'Cloud Platform', // CAMBIAR (opcional)
 				}}
 				navigation={navigation}
-				cta={{
-					label: 'Get Started', // CAMBIAR
-					href: '/signup', // CAMBIAR
-				}}
 				theme={{
 					accentColor: '#10b981', // emerald-500
 				}}

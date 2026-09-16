@@ -5,8 +5,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/casos-de-exito',
-        destination: '/soluciones-industriales',
+        destination: '/servicios',
         permanent: false,
+      },
+      {
+        source: '/soluciones-industriales/:path*',
+        destination: '/servicios/:path*',
+        permanent: true,
       },
     ];
   },

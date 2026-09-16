@@ -17,7 +17,7 @@ const lato = Lato({
 });
 
 // Temporal: desactivar cuando el sitio sea aprobado para publicación.
-const isMaintenance = true;
+const isMaintenance = process.env.MAINTENANCE_MODE === 'true';
 
 export const metadata: Metadata = {
   title: {
@@ -38,23 +38,18 @@ export const metadata: Metadata = {
 };
 
 import Header, { NavItem } from "@/components/header";
+import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/ui/whatsapp-button";
 import MaintenanceOverlay from "@/components/maintenance-overlay";
+import { footerData } from "@/content/footer-data";
 
 const SITE_NAVIGATION: NavItem[] = [
-  {
-    label: 'Soluciones Industriales',
-    items: [
-      { label: 'Impresión Offset Comercial',  href: '/soluciones-industriales#offset' },
-      { label: 'Troquelados & Packaging',     href: '/soluciones-industriales#troquelados' },
-      { label: 'Encuadernación & Editorial',  href: '/soluciones-industriales#encuadernacion' },
-      { label: 'Agencias & Marca Blanca',     href: '/agencias' },
-    ],
-  },
-  {
-    label: 'La Planta',
-    href: '/la-planta',
-  }
+  { label: 'Inicio',               href: '/' },
+  { label: 'Servicios',            href: '/servicios' },
+  { label: 'Quienes somos?',       href: '/quienes-somos' },
+  { label: 'Preguntas frecuentes', href: '/preguntas-frecuentes' },
+  { label: 'Ubicación',            href: '/quienes-somos#ubicacion' },
+  { label: 'Contacto',             href: '/contacto' },
 ];
 
 export default function RootLayout({
@@ -89,15 +84,24 @@ export default function RootLayout({
             subtitle: "Imprenta Industrial"
           }}
           navigation={SITE_NAVIGATION}
-          cta={{
-            label: "Contacto",
-            href: "/contacto"
-          }}
           theme={{
-            accentColor: "#2563eb" // Azul blue-600 oficial original
+            accentColor: "#5332ED"
           }}
         />
         {children}
+        <Footer
+          logo={{
+            src: "/logo.png",
+            alt: "Industria Gráfica Córdoba — Logo",
+            title: "Industria Gráfica",
+            subtitle: "Imprenta Industrial"
+          }}
+          intro={footerData.intro}
+          contact={footerData.contact}
+          navigation={footerData.navigation}
+          social={footerData.social}
+          copyright={footerData.copyright}
+        />
         <WhatsAppButton 
           phoneNumber="5493514597594"
           message="Hola Industria Gráfica, me gustaría hacer una consulta"

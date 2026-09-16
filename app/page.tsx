@@ -11,19 +11,20 @@ import {
 	Printer,
 	Palette,
 	Stack,
-	ShieldCheck,
-	Package,
 	Target,
 	ChartLineUp,
-	Warning,
 } from '@phosphor-icons/react';
+import HandHeartIcon from '@/components/ui/hand-heart-icon';
+import ShredderIcon from '@/components/ui/shredder-icon';
+import { PackagingBoxIcon } from '@/components/ui/packaging-box-icon';
+import { TargetArrowIcon } from '@/components/ui/target-arrow-icon';
 
 // ─── Datos de audiencias ───────────────────────────────────────────────────────
 
 const audiences: AudienceItem[] = [
 	{
 		id: 'agencias',
-		title: 'Producción confidencial para agencias',
+		title: 'Agencias e imprentas',
 		badge: 'MÁS DE 30 AÑOS EN EL RUBRO',
 		headline: 'Tu cliente sigue siendo tu cliente. Nosotros nos ocupamos de la producción.',
 		description:
@@ -44,21 +45,22 @@ const audiences: AudienceItem[] = [
 		],
 		ctaText: 'Explorar soluciones para agencias',
 		ctaLink: '/agencias',
-		image: '/agencias.jpg',
-		floatingBadgeIcon: ShieldCheck,
+		image: '/images/agencias-marca-blanca-colaboracion.jpg',
+		imageAlt: 'Dos profesionales revisando una pieza gráfica',
+		floatingBadgeIcon: HandHeartIcon,
 		priority: true,
 		layout: 'feature-left',
 		theme: {
-			colorText: 'text-blue-700',
-			colorBg: 'bg-blue-700',
-			colorLightBg: 'bg-blue-50',
-			blobGradient: 'bg-gradient-to-br from-blue-100 to-indigo-50',
-			floatingBadgeBg: 'bg-blue-700',
+			colorText: 'text-brand-electric-violet',
+			colorBg: 'bg-brand-electric-violet',
+			colorLightBg: 'bg-brand-electric-violet/10',
+			blobGradient: 'bg-[#5332ed]/20',
+			floatingBadgeBg: 'bg-brand-electric-violet',
 		},
 	},
 	{
 		id: 'corporativo',
-		title: 'Corporativo e institucional',
+		title: 'Empresas e instituciones',
 		badge: 'ALTO VOLUMEN',
 		headline: 'Papelería institucional y documentación corporativa.',
 		description:
@@ -78,16 +80,17 @@ const audiences: AudienceItem[] = [
 			},
 		],
 		ctaText: 'Solicitar asesoría institucional',
-		ctaLink: '/soluciones-industriales',
-		image: '/corporativo.jpg',
-		floatingBadgeIcon: Warning,
+		ctaLink: '/servicios',
+		image: '/images/mario.png',
+		imageAlt: 'Operario en máquina offset Roland Miehle en planta de producción',
+		floatingBadgeIcon: ShredderIcon,
 		layout: 'portrait',
 		theme: {
-			colorText: 'text-orange-600',
-			colorBg: 'bg-orange-600',
-			colorLightBg: 'bg-orange-50',
-			blobGradient: 'bg-gradient-to-bl from-orange-100 to-amber-50',
-			floatingBadgeBg: 'bg-orange-600',
+			colorText: 'text-brand-electric-violet',
+			colorBg: 'bg-brand-electric-violet',
+			colorLightBg: 'bg-brand-electric-violet/10',
+			blobGradient: 'bg-[#5332ed]/20',
+			floatingBadgeBg: 'bg-brand-electric-violet',
 		},
 	},
 	{
@@ -99,7 +102,7 @@ const audiences: AudienceItem[] = [
 			'Packaging en papel, cartulina o microcorrugado: cajas, estuches, etiquetas, fajas, marbetes y bolsas. Asesoramiento sobre cantidades mínimas según el tipo de pieza.',
 		features: [
 			{
-				icon: Package,
+				icon: PackagingBoxIcon,
 				title: 'Packaging y estuchería',
 				description:
 					'Cajas, estuches, fajas, marbetes y bolsas en cartulinas encapadas o cartón microcorrugado.',
@@ -112,16 +115,18 @@ const audiences: AudienceItem[] = [
 			},
 		],
 		ctaText: 'Ver opciones de packaging',
-		ctaLink: '/soluciones-industriales#troquelados',
-		image: '/pymes.jpg',
-		floatingBadgeIcon: Target,
+		ctaLink: '/servicios#troquelados',
+		image: '/images/marcas-pymes-produccion-real.png',
+		imageAlt: 'Pieza impresa con distintos sellos editoriales en la planta de Industria Gráfica Córdoba',
+		objectPosition: 'center 30%',
+		floatingBadgeIcon: TargetArrowIcon,
 		layout: 'landscape',
 		theme: {
-			colorText: 'text-purple-600',
-			colorBg: 'bg-purple-600',
-			colorLightBg: 'bg-purple-50',
-			blobGradient: 'bg-gradient-to-tr from-purple-200 to-fuchsia-100',
-			floatingBadgeBg: 'bg-pink-600',
+			colorText: 'text-brand-electric-violet',
+			colorBg: 'bg-brand-electric-violet',
+			colorLightBg: 'bg-brand-electric-violet/10',
+			blobGradient: 'bg-[#5332ed]/20',
+			floatingBadgeBg: 'bg-brand-electric-violet',
 		},
 	},
 ];
@@ -152,57 +157,62 @@ const clientLogos: ClientLogo[] = [
 
 const servicesData: ServiceItem[] = [
 	{
-		id: 'corporativo-salud',
-		title: 'Corporativo & Institucional',
-		description:
-			'Papelería administrativa y comercial desde Córdoba: formularios continuos, comprobantes fiscales, carpetas institucionales y blocs recetarios Rp.',
-		href: '/soluciones-industriales',
+		id: 'offset',
+		title: 'Impresión offset',
+		description: 'Full color y monocolor en distintos formatos.',
+		href: '/servicios#offset',
 		theme: {
-			gradient: 'bg-gradient-to-br from-blue-600 to-cyan-400',
-			glow: 'bg-cyan-300/40',
+			gradient: 'card-print',
+			glow: 'bg-[#ff6000]/35',
 		},
-		imageSrc: '/services/imagen-corporativo.png',
-		imageAlt: 'Servicios corporativos e institucionales',
+		imageSrc: '/services/igc-flashback-00005.png',
+		imageAlt: '',
+		imageShape: 'circle',
+		objectPosition: 'center 40%',
 	},
 	{
-		id: 'offset',
-		title: 'Impresión Offset Comercial',
-		description:
-			'Folletería, catálogos y papelería en tiradas medianas y altas. Impresión en pliegos de hasta 102 × 72 cm (área imprimible 100 × 70 cm) en cuatro colores o monocolor.',
-		href: '/soluciones-industriales#offset',
+		id: 'corporativo-salud',
+		title: 'Corporativo e institucional',
+		description: 'Formularios, comprobantes y carpetas.',
+		href: '/servicios',
 		theme: {
-			gradient: 'bg-gradient-to-br from-violet-700 to-fuchsia-400',
-			glow: 'bg-fuchsia-300/40',
+			gradient: 'card-marketing',
+			glow: 'bg-[#11b8ff]/35',
 		},
-		imageSrc: '/services/offset.png',
-		imageAlt: 'Impresión offset comercial',
+		imageSrc: '/services/talonario-joan-Photoroom.png',
+		imageAlt: 'Talonario comercial y formularios corporativos',
+		imageShape: 'arch',
+		imageScaleClass: 'scale-[1.8]',
+		backdropColor: '#103ABF',
 	},
 	{
 		id: 'troquelados-packaging',
-		title: 'Troquelados & Packaging',
-		description:
-			'Packaging en papel, cartulina o microcorrugado: cajas, estuches, etiquetas, fajas y bolsas. Troquelado, plastificado OPP y barniz UV.',
-		href: '/soluciones-industriales#troquelados',
+		title: 'Packaging y troquelado',
+		description: 'Cajas, estuches, etiquetas y fajas.',
+		href: '/servicios#troquelados',
 		theme: {
-			gradient: 'bg-gradient-to-br from-orange-500 to-yellow-400',
-			glow: 'bg-yellow-300/40',
+			gradient: 'card-packaging',
+			glow: 'bg-[#e200ff]/35',
 		},
-		imageSrc: '/services/caja-packaging.png',
-		imageAlt: 'Modelo sosteniendo caja de packaging personalizada con logo de cliente',
+		imageSrc: '/services/caja-mockup.png',
+		imageAlt: 'Caja de packaging personalizada para hamburguesas y gastronomía',
+		imageShape: 'arch',
+		backdropColor: '#730AB0',
 		eagerLoad: true,
 	},
 	{
 		id: 'encuadernacion-editorial',
-		title: 'Encuadernación & Editorial',
-		description:
-			'Libros, revistas, agendas, cuadernos y catálogos. Encuadernación abrochada a caballo, cosida (tapa blanda o dura), pegada (binder) y anillada.',
-		href: '/soluciones-industriales#encuadernacion',
+		title: 'Editorial y encuadernación',
+		description: 'Libros, revistas, catálogos y cuadernos.',
+		href: '/servicios#encuadernacion',
 		theme: {
-			gradient: 'bg-gradient-to-br from-teal-500 to-emerald-400',
-			glow: 'bg-emerald-300/40',
+			gradient: 'card-fulfillment',
+			glow: 'bg-[#00ffdb]/35',
 		},
-		imageSrc: '/services/encuadernacion.png',
+		imageSrc: '/services/igc-flashback-00007.png',
 		imageAlt: 'Servicios de encuadernación editorial',
+		imageShape: 'rounded-rect',
+		imageFit: 'cover',
 	},
 ];
 
@@ -216,7 +226,7 @@ export default function Home() {
 					<>
 						Más de 30 años de producción <br className="hidden lg:block" />
 						gráfica en Córdoba, <br className="hidden lg:block" />
-						<span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+						<span className="bg-gradient-to-r from-[#7026CE] to-[#A31198] bg-clip-text text-transparent">
 							al servicio de tu marca.
 						</span>
 					</>
@@ -228,17 +238,16 @@ export default function Home() {
 				media={{
 					type: 'video',
 					src: '/hero.mp4',
-					poster: '/hero-poster.jpg'
 				}}
 				theme={{
 					backgroundGradient: 'bg-gradient-to-br from-[#5ee7dc] via-white to-[#c9b6f7]',
-					ctaBg: 'bg-blue-600',
-					ctaHoverBg: 'hover:bg-blue-700'
+					ctaBg: 'bg-brand-electric-violet',
+					ctaHoverBg: 'hover:bg-[#4327C2]'
 				}}
 			/>
 			<AudiencesSection
 				audiences={audiences}
-				sectionTitle="¿Qué te representa más?"
+				sectionTitle="Soluciones según tu perfil"
 			/>
 			<LogoCarousel logos={clientLogos} />
 			<ServicesSection

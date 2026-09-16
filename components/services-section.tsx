@@ -21,6 +21,16 @@ export interface ServiceItem {
 	imageAlt?: string;
 	/** Si es true, la imagen carga de forma eager (usar en la tarjeta más visible de la página). */
 	eagerLoad?: boolean;
+	/** Forma de renderizado de la imagen: 'default', 'circle', 'rounded-rect' o 'arch'. */
+	imageShape?: 'default' | 'circle' | 'rounded-rect' | 'arch';
+	/** Posición del objeto en la máscara circular (ej: 'center 40%'). */
+	objectPosition?: string;
+	/** Si la imagen debe actuar como máscara de recorte ('cover') o contenerse libremente ('contain') */
+	imageFit?: 'contain' | 'cover';
+	/** Clases extra para escalar la imagen individualmente (ej: 'scale-125') */
+	imageScaleClass?: string;
+	/** Color de fondo para el área con forma (ej: '#16089D', '#730AB0'). */
+	backdropColor?: string;
 }
 
 export interface ServicesSectionProps {
@@ -73,50 +83,113 @@ export default function ServicesSection({
 					</p>
 				</div>
 
-				{/* Grilla 2×2 */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+				{/* Grilla: 2×2 en pantallas grandes (≥ 1024px), 1 columna en pantallas intermedias y móviles */}
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
 					{services.map((service) => (
-						<Link
-							key={service.id}
-							href={service.href}
-							className={`group relative overflow-hidden rounded-[2rem] p-8 lg:p-10 min-h-[520px] flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-xl ${service.theme.gradient}`}
-						>
-							{/* Glow en el fondo */}
-							<div
-								className={`absolute -bottom-10 -right-10 w-72 h-72 ${service.theme.glow} rounded-full blur-3xl pointer-events-none z-0`}
-							/>
+						<div key={service.id} className="@container mx-auto h-full w-full max-w-[600px] lg:max-w-none">
+							<Link
+								href={service.href}
+								className={`group relative overflow-hidden rounded-[2rem] h-full min-h-[clamp(390px,88cqi,520px)] p-[clamp(1.5rem,6.75cqi,2.5rem)] flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-xl ${service.theme.gradient}`}
+							>
+								{/* Glow en el fondo */}
+								<div
+									className={`absolute -bottom-10 -right-10 w-72 h-72 ${service.theme.glow} rounded-full blur-3xl pointer-events-none z-0`}
+								/>
 
-							{/* Contenido textual (z-10 para estar encima de la imagen) */}
-							<div className="relative z-10 max-w-[55%]">
-								<h4 className="text-4xl font-bold text-white tracking-tight leading-snug mb-4">
-									{service.title}
-								</h4>
-								<p className="text-base lg:text-lg text-white font-normal leading-relaxed">
-									{service.description}
-								</p>
-							</div>
-
-							{/* Botón ArrowUpRight — esquina superior derecha */}
-							<div className="absolute top-6 right-6 z-20 flex h-12 w-12 items-center justify-center rounded-xl bg-white p-3 text-black shadow-md transition-all duration-300 group-hover:scale-110">
-								<ArrowUpRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-							</div>
-
-							{/* Imagen flotante — solo se renderiza si imageSrc tiene valor */}
-							{service.imageSrc && service.imageAlt && (
-								<div className="absolute bottom-0 right-0 w-[80%] h-full z-0 overflow-hidden pointer-events-none">
-									<div className="relative h-full w-full">
-										<Image
-											src={service.imageSrc}
-											alt={service.imageAlt}
-											fill
-											sizes="(max-width: 768px) 100vw, 50vw"
-											loading={service.eagerLoad ? 'eager' : 'lazy'}
-											className="object-contain object-right-bottom transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl"
-										/>
-									</div>
+								{/* Contenido textual (z-20 para estar siempre por encima de las imágenes/formas) */}
+								<div className="relative z-20 max-w-[calc(100%_-_4rem)] @min-[480px]:max-w-[50%] @min-[560px]:max-w-[45%] pointer-events-none">
+									<h4 className="text-[clamp(1.75rem,6cqi,2.25rem)] font-bold text-white tracking-tight leading-snug mb-3 @min-[480px]:mb-4">
+										{service.title}
+									</h4>
+									<p className="text-[clamp(0.875rem,3cqi,1.125rem)] text-white/90 font-normal leading-relaxed">
+										{service.description}
+									</p>
 								</div>
-							)}
-						</Link>
+
+								{/* Botón ArrowUpRight — esquina superior derecha */}
+								<div className="absolute top-[clamp(1.25rem,4cqi,2rem)] right-[clamp(1.25rem,4cqi,2rem)] z-30 flex h-[clamp(2.5rem,8cqi,3rem)] w-[clamp(2.5rem,8cqi,3rem)] items-center justify-center rounded-xl bg-white p-2.5 @min-[560px]:p-3 text-black shadow-md transition-all duration-300 group-hover:scale-110">
+									<ArrowUpRight className="h-[clamp(1.25rem,4cqi,1.5rem)] w-[clamp(1.25rem,4cqi,1.5rem)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+								</div>
+
+								{/* Imagen de la tarjeta */}
+								{service.imageSrc && (
+									service.imageShape === 'circle' ? (
+										<div
+											className={`card-circle-mask absolute bottom-2 right-2 @min-[480px]:bottom-4 @min-[480px]:right-4 w-[clamp(195px,57.5cqi,340px)] h-[clamp(195px,57.5cqi,340px)] rounded-full z-10 pointer-events-auto ${
+												service.backdropColor ? 'p-3 sm:p-4 lg:p-5 flex items-center justify-center' : ''
+											}`}
+											style={service.backdropColor ? { backgroundColor: service.backdropColor } : undefined}
+										>
+											<div className="relative w-full h-full rounded-full overflow-hidden">
+												<Image
+													src={service.imageSrc}
+													alt={service.imageAlt ?? ''}
+													fill
+													sizes="(max-width: 1024px) 340px, 400px"
+													loading={service.eagerLoad ? 'eager' : 'lazy'}
+													className="object-cover"
+													style={{ objectPosition: service.objectPosition || 'center 40%' }}
+												/>
+											</div>
+										</div>
+									) : service.imageShape === 'rounded-rect' ? (
+										<div
+											className="group/rect absolute bottom-0 right-0 w-[62%] @min-[480px]:w-[58%] h-[52%] @min-[480px]:h-[60%] @min-[560px]:h-[68%] rounded-tl-[40px] @min-[480px]:rounded-tl-[55px] @min-[560px]:rounded-tl-[70px] overflow-hidden z-10 pointer-events-auto transition-transform duration-[350ms] ease-out group-hover:scale-[1.02] group-hover/rect:scale-[1.04]"
+											style={service.backdropColor ? { backgroundColor: service.backdropColor } : undefined}
+										>
+											{/* Imagen del talonario o máscara cover */}
+											<div className="relative w-full h-full flex items-center justify-center">
+												<Image
+													src={service.imageSrc}
+													alt={service.imageAlt ?? ''}
+													fill
+													sizes="(max-width: 1024px) 260px, 350px"
+													loading={service.eagerLoad ? 'eager' : 'lazy'}
+													className={
+														service.imageFit === 'cover'
+															? "object-cover object-center w-full h-full transition-transform duration-[350ms] ease-out group-hover:scale-105 group-hover/rect:scale-110"
+															: "object-contain object-center scale-[1.40] @min-[480px]:scale-[1.46] @min-[560px]:scale-[1.50] transition-transform duration-[350ms] ease-out group-hover:scale-[1.45] @min-[480px]:group-hover:scale-[1.49] @min-[560px]:group-hover:scale-[1.53] drop-shadow-2xl"
+													}
+												/>
+											</div>
+										</div>
+									) : service.imageShape === 'arch' ? (
+										<div className="group/arch absolute bottom-0 right-3 @min-[480px]:right-6 @min-[560px]:right-8 w-[clamp(190px,54cqi,320px)] h-[clamp(220px,59cqi,350px)] z-10 pointer-events-auto">
+											{/* Arco con base en la parte inferior */}
+											<div
+												className="absolute bottom-0 right-0 w-full h-full rounded-t-full flex items-center justify-center p-[clamp(1rem,4cqi,2rem)] pb-[clamp(1.5rem,6cqi,2.5rem)] transition-transform duration-[350ms] ease-out group-hover:scale-[1.02] group-hover/arch:scale-[1.04]"
+												style={{ backgroundColor: service.backdropColor || '#730AB0' }}
+											>
+												{/* Imagen de la caja dentro del arco, sin recortarse */}
+												<div className="relative w-full h-[70%] transition-transform duration-[350ms] ease-out group-hover:scale-105 group-hover/arch:scale-[1.08]">
+													<Image
+														src={service.imageSrc}
+														alt={service.imageAlt ?? ''}
+														fill
+														sizes="(max-width: 1024px) 250px, 320px"
+														loading={service.eagerLoad ? 'eager' : 'lazy'}
+														className={`object-contain object-center drop-shadow-2xl ${service.imageScaleClass || ''}`}
+													/>
+												</div>
+											</div>
+										</div>
+									) : (
+										<div className="absolute bottom-0 right-0 w-[clamp(220px,62cqi,380px)] h-[clamp(240px,68cqi,420px)] z-0 overflow-hidden pointer-events-none">
+											<div className="relative h-full w-full">
+												<Image
+													src={service.imageSrc}
+													alt={service.imageAlt ?? ''}
+													fill
+													sizes="(max-width: 1024px) 280px, 380px"
+													loading={service.eagerLoad ? 'eager' : 'lazy'}
+													className="object-contain object-right-bottom transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl"
+												/>
+											</div>
+										</div>
+									)
+								)}
+							</Link>
+						</div>
 					))}
 				</div>
 			</div>

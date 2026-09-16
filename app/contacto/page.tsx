@@ -17,7 +17,7 @@ export default function ContactoPage() {
 			<div className="mx-auto max-w-6xl grid grid-cols-1 gap-12 lg:gap-16 md:grid-cols-2">
 
 				{/* ── Columna izquierda: Formulario conectado ────────── */}
-				<section>
+				<section id="formulario" className="scroll-mt-32">
 					<h1 className="mb-4 text-4xl font-black text-slate-900 md:text-5xl">
 						Hablemos de tu proyecto
 					</h1>
@@ -36,39 +36,20 @@ export default function ContactoPage() {
 				</section>
 
 				{/* ── Columna derecha: Información de Planta y Canales ── */}
-				<aside className="flex flex-col justify-between">
-					<div>
-						<h2 className="mb-5 text-3xl font-black text-slate-900">
-							Producción industrial con respaldo real.
-						</h2>
-						<p className="mb-8 text-base leading-relaxed text-gray-600">
-							Prensas offset, troquelado, laminado y encuadernación en nuestra planta de Barrio San Vicente. Atención personalizada, seguimiento directo y posibilidad de coordinar visitas técnicas para revisar tu tirada.
-						</p>
+				<aside id="datos-contacto" className="flex flex-col justify-between scroll-mt-32">
+					<div className="flex flex-col gap-8">
+						<div>
+							<h2 className="mb-5 text-3xl font-black text-slate-900">
+								Producción industrial con respaldo real.
+							</h2>
+							<p className="text-base leading-relaxed text-gray-600">
+								Prensas offset, troquelado, laminado y encuadernación en nuestra planta de Barrio San Vicente. Atención personalizada, seguimiento directo y posibilidad de coordinar visitas técnicas para revisar tu tirada.
+							</p>
+						</div>
 
-						{/* Bloque informativo de planta y canal directo (sin testimonios ficticios) */}
+						{/* Bloque informativo de canales directo */}
 						<div className="rounded-2xl bg-slate-900 p-8 text-white space-y-6 shadow-lg border border-slate-800">
 							<div>
-								<span className="text-xs font-bold uppercase tracking-widest text-blue-400 block mb-1">
-									Planta de producción y talleres
-								</span>
-								<p className="text-lg font-bold text-white leading-snug">
-									Entre Ríos 2650, Barrio San Vicente
-								</p>
-								<p className="text-sm text-slate-400">
-									Córdoba Capital, X5006, Argentina
-								</p>
-							</div>
-
-							<div className="border-t border-slate-800 pt-5">
-								<span className="text-xs font-bold uppercase tracking-widest text-blue-400 block mb-1">
-									Horario de atención técnica
-								</span>
-								<p className="text-sm text-slate-200">
-									Lunes a Viernes de 8:00 a 17:00 hs.
-								</p>
-							</div>
-
-							<div className="border-t border-slate-800 pt-5">
 								<span className="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">
 									Canal de atención rápida
 								</span>
@@ -79,7 +60,7 @@ export default function ContactoPage() {
 									href="https://wa.me/5493514597594?text=Hola%20Industria%20Gr%C3%A1fica%2C%20me%20gustar%C3%ADa%20hacer%20una%20consulta"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#20bd5a] transition-colors"
+									className="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#20bd5a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
 								>
 									<span>Contactar por WhatsApp</span>
 									<span>→</span>

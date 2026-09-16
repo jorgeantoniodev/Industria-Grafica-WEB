@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Play, Pause } from '@phosphor-icons/react';
+import { AnimatedGradientButton } from '@/components/ui/animated-gradient-button';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -149,86 +150,89 @@ export default function MediaGridSection({
             )}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start gap-4">
+          <div className="flex items-start">
             {primaryCta && (
-              <a
-                href={primaryCta.href}
-                className="inline-flex items-center justify-center rounded-full border border-slate-800 bg-transparent px-10 py-4 text-sm font-bold uppercase tracking-wider text-slate-800 transition-colors hover:bg-slate-800 hover:text-white"
-              >
+              <AnimatedGradientButton href={primaryCta.href}>
                 {primaryCta.label}
-              </a>
-            )}
-            {secondaryCta && (
-              <a
-                href={secondaryCta.href}
-                className="inline-flex items-center gap-2 px-2 py-4 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors group"
-              >
-                {secondaryCta.label}
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </a>
+              </AnimatedGradientButton>
             )}
           </div>
         </div>
 
         {/* ── Right column: Asymmetric grid (65%) ─────────────────────────── */}
-        <div className="w-full lg:w-[65%] grid grid-cols-1 lg:grid-cols-10 gap-1 lg:gap-[4px]">
+        <div className="w-full lg:w-[65%] flex flex-col justify-between">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-10 gap-1 lg:gap-[4px]">
 
-          {/* Top row — both images always visible */}
-          <div className="relative lg:col-span-5 w-full min-h-[320px] h-full bg-slate-100">
-            <Image
-              src={images[0].src}
-              alt={images[0].alt}
-              fill
-              className="object-cover w-full h-full"
-              sizes="(max-width: 1024px) 100vw, 33vw"
-            />
+            {/* Top row — both images always visible */}
+            <div className="relative lg:col-span-5 w-full min-h-[320px] h-full bg-slate-100">
+              <Image
+                src={images[0].src}
+                alt={images[0].alt}
+                fill
+                className="object-cover w-full h-full"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+            </div>
+            <div className="relative lg:col-span-5 w-full min-h-[320px] h-full bg-slate-100">
+              <Image
+                src={images[1].src}
+                alt={images[1].alt}
+                fill
+                className="object-cover w-full h-full"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+            </div>
+
+            {/* Bottom row — image[2] is desktop-only */}
+            <div className="relative hidden lg:block lg:col-span-4 w-full min-h-[350px] h-full bg-slate-100">
+              <Image
+                src={images[2].src}
+                alt={images[2].alt}
+                fill
+                className="object-cover w-full h-full"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+            </div>
+
+            {/* Video cell */}
+            <div className="relative lg:col-span-6 w-full aspect-[565/334] h-full bg-slate-900 group">
+              <video
+                ref={videoRef}
+                poster={video.poster}
+                loop
+                muted
+                playsInline
+                preload="none"
+                className="w-full h-full object-cover"
+              />
+
+              {/* Play / Pause overlay button */}
+              <button
+                onClick={togglePlay}
+                className="absolute bottom-4 right-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all hover:bg-black/70 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label={isPlaying ? 'Pausar video' : 'Reproducir video'}
+              >
+                {isPlaying
+                  ? <Pause weight="fill" className="h-6 w-6" />
+                  : <Play  weight="fill" className="h-6 w-6" />
+                }
+              </button>
+            </div>
+
           </div>
-          <div className="relative lg:col-span-5 w-full min-h-[320px] h-full bg-slate-100">
-            <Image
-              src={images[1].src}
-              alt={images[1].alt}
-              fill
-              className="object-cover w-full h-full"
-              sizes="(max-width: 1024px) 100vw, 33vw"
-            />
-          </div>
 
-          {/* Bottom row — image[2] is desktop-only */}
-          <div className="relative hidden lg:block lg:col-span-4 w-full min-h-[350px] h-full bg-slate-100">
-            <Image
-              src={images[2].src}
-              alt={images[2].alt}
-              fill
-              className="object-cover w-full h-full"
-              sizes="(max-width: 1024px) 100vw, 33vw"
-            />
-          </div>
-
-          {/* Video cell */}
-          <div className="relative lg:col-span-6 w-full aspect-[565/334] h-full bg-slate-900 group">
-            <video
-              ref={videoRef}
-              poster={video.poster}
-              loop
-              muted
-              playsInline
-              preload="none"
-              className="w-full h-full object-cover"
-            />
-
-            {/* Play / Pause overlay button */}
-            <button
-              onClick={togglePlay}
-              className="absolute bottom-4 right-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white backdrop-blur-md transition-all hover:bg-black/70 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/50"
-              aria-label={isPlaying ? 'Pausar video' : 'Reproducir video'}
-            >
-              {isPlaying
-                ? <Pause weight="fill" className="h-6 w-6" />
-                : <Play  weight="fill" className="h-6 w-6" />
-              }
-            </button>
-          </div>
-
+          {/* Enlace secundario debajo de la grilla de fotos */}
+          {secondaryCta && (
+            <div className="mt-4 lg:mt-6 flex items-center justify-start lg:justify-end">
+              <a
+                href={secondaryCta.href}
+                className="inline-flex items-center gap-2 text-base font-semibold text-slate-700 hover:text-brand-electric-violet transition-colors group"
+              >
+                <span>{secondaryCta.label}</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1.5 font-bold">→</span>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </section>

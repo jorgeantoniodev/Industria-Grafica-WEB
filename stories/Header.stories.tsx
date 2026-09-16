@@ -17,15 +17,15 @@ const industriaGraficaNavigation: NavItem[] = [
 	{
 		label: 'Soluciones Industriales',
 		items: [
-			{ label: 'Impresión Offset Comercial', href: '/soluciones-industriales#offset' },
-			{ label: 'Troquelados & Packaging', href: '/soluciones-industriales#troquelados' },
-			{ label: 'Encuadernación & Editorial', href: '/soluciones-industriales#encuadernacion' },
+			{ label: 'Impresión Offset Comercial', href: '/servicios#offset' },
+			{ label: 'Troquelados & Packaging', href: '/servicios#troquelados' },
+			{ label: 'Encuadernación & Editorial', href: '/servicios#encuadernacion' },
 			{ label: 'Agencias & Marca Blanca', href: '/agencias' },
 		],
 	},
 	{
 		label: 'La Planta',
-		href: '/la-planta',
+		href: '/quienes-somos',
 	},
 ];
 
@@ -51,10 +51,6 @@ export const Default: Story = {
 			subtitle: 'Imprenta Industrial',
 		},
 		navigation: industriaGraficaNavigation,
-		cta: {
-			label: 'Contacto',
-			href: '/contacto',
-		},
 		theme: {
 			accentColor: '#2563eb', // Blue-600
 		},
@@ -78,10 +74,6 @@ export const AlternateColorGeneric: Story = {
 			// Sin subtitle
 		},
 		navigation: genericNavigation,
-		cta: {
-			label: 'Get Started',
-			href: '/signup',
-		},
 		theme: {
 			accentColor: '#ef4444', // Red-500
 		},

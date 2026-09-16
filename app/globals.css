@@ -3,11 +3,32 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Brand Colors */
+  --brand-electric-violet: #5332ed;
+  --brand-deep-violet: #6d28d2;
+  --brand-lavender-pale: #ecd9f3;
+  --brand-magenta: #b80982;
+  --brand-violet-soft: #a073e2;
+  --brand-plum: #a0139c;
+  --brand-rose-soft: #cc73c0;
+  --brand-purple: #891cb4;
+  --brand-lavender: #c49fe6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-electric-violet: var(--brand-electric-violet);
+  --color-brand-deep-violet: var(--brand-deep-violet);
+  --color-brand-lavender-pale: var(--brand-lavender-pale);
+  --color-brand-magenta: var(--brand-magenta);
+  --color-brand-violet-soft: var(--brand-violet-soft);
+  --color-brand-plum: var(--brand-plum);
+  --color-brand-rose-soft: var(--brand-rose-soft);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-lavender: var(--brand-lavender);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --animate-marquee: marquee var(--duration, 40s) linear infinite;
@@ -57,4 +78,110 @@ body {
   summary {
     @apply cursor-pointer;
   }
+}
+
+@utility bg-continuous-gradient {
+  background-image: linear-gradient(
+    135deg,
+    #5332ed 0%,
+    #6d28d2 28%,
+    #891cb4 55%,
+    #a0139c 78%,
+    #b80982 100%
+  );
+  background-size: 200% 200%;
+}
+
+@utility bg-pos-0 { background-position: 0% 0%; }
+@utility bg-pos-33 { background-position: 0% 33.33%; }
+@utility bg-pos-66 { background-position: 0% 66.66%; }
+@utility bg-pos-100 { background-position: 0% 100%; }
+
+@utility bg-pos-tl { background-position: 0% 0%; }
+@utility bg-pos-tr { background-position: 100% 0%; }
+@utility bg-pos-bl { background-position: 0% 100%; }
+@utility bg-pos-br { background-position: 100% 100%; }
+
+@utility card-print {
+  background: linear-gradient(
+    45deg,
+    #c000ff 6%,
+    #ff6000 97%
+  );
+}
+
+@utility card-marketing {
+  background: linear-gradient(
+    135deg,
+    #1800ff 6%,
+    #11b8ff 100%
+  );
+}
+
+@utility card-packaging {
+  background: linear-gradient(
+    138deg,
+    #1000ff 0%,
+    #e200ff 100%
+  );
+}
+
+@utility card-fulfillment {
+  background: linear-gradient(
+    135deg,
+    #00a398 34%,
+    #00ffdb 100%
+  );
+}
+
+.card-print {
+  background: linear-gradient(
+    45deg,
+    #c000ff 6%,
+    #ff6000 97%
+  );
+}
+
+.card-marketing {
+  background: linear-gradient(
+    135deg,
+    #1800ff 6%,
+    #11b8ff 100%
+  );
+}
+
+.card-packaging {
+  background: linear-gradient(
+    138deg,
+    #1000ff 0%,
+    #e200ff 100%
+  );
+}
+
+.card-fulfillment {
+  background: linear-gradient(
+    135deg,
+    #00a398 34%,
+    #00ffdb 100%
+  );
+}
+
+.card-circle-contour {
+  background: #A317A0;
+}
+
+.card-circle-mask {
+  transition: transform 350ms ease-out;
+}
+
+.card-circle-mask img {
+  transition: transform 350ms ease-out;
+}
+
+.card-circle-mask:hover {
+  transform: scale(1.04);
+}
+
+.card-circle-mask:hover img {
+  transform: scale(1.10);
 }
