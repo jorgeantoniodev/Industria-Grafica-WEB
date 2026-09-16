@@ -15,128 +15,142 @@ export const metadata: Metadata = {
 
 const FAQ_ITEMS: FAQItem[] = [
 	{
-		id: 'como-solicitar-presupuesto',
-		question: '¿Cómo realizo un pedido?',
+		id: 'como-solicitar-cotizacion',
+		question: '¿Cómo solicito una cotización?',
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Podés solicitar tu cotización o iniciar un pedido enviándonos el detalle de tu proyecto a través de nuestro{' '}
+					Podés solicitar una cotización mediante el{' '}
 					<Link
 						href="/contacto#formulario"
 						className="text-brand-electric-violet font-semibold underline underline-offset-2 hover:opacity-85"
 					>
-						formulario web de contacto
+						formulario de contacto
 					</Link>
-					, por correo electrónico a{' '}
+					, escribiendo a{' '}
 					<a
 						href="mailto:presupuestos@prematgrafica.com.ar"
 						className="text-brand-electric-violet font-semibold underline underline-offset-2 hover:opacity-85"
 					>
 						presupuestos@prematgrafica.com.ar
 					</a>{' '}
-					o escribiéndonos directamente por{' '}
+					o enviando un{' '}
 					<a
-						href="https://wa.me/5493514597594?text=Hola%20Industria%20Gr%C3%A1fica%2C%20quisiera%20solicitar%20un%20presupuesto"
+						href="https://wa.me/5493514597594?text=Hola%20Industria%20Gr%C3%A1fica%2C%20quisiera%20solicitar%20una%20cotizaci%C3%B3n"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="text-brand-electric-violet font-semibold underline underline-offset-2 hover:opacity-85"
 					>
 						WhatsApp al +54 9 351 459-7594
 					</a>
-					.
-				</p>
-				<p>
-					Para responderte con la propuesta técnica adecuada, indicanos qué pieza necesitás producir, tamaño final, cantidad estimada, tipo de material o gramaje y las terminaciones deseadas (troquelado, barniz UV, plastificado OPP o encuadernación).
+					. Contanos qué trabajo necesitás cotizar y la cantidad aproximada.
 				</p>
 			</div>
 		),
 	},
 	{
-		id: 'ubicacion-horarios',
-		question: '¿Cuáles son sus horarios?',
+		id: 'horarios-ubicacion',
+		question: '¿Cuáles son los horarios y dónde están ubicados?',
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Nuestro horario de atención y recepción en planta es de <strong>lunes a viernes de 08:00 a 17:00 hs</strong>.
-				</p>
-				<p>
-					El taller y oficinas se encuentran ubicados en <strong>Entre Ríos 2650, Barrio San Vicente, Córdoba Capital</strong> (X5006). Si querés realizar una visita técnica a planta o retirar mercadería en persona, te sugerimos avisarnos previamente para coordinar la entrega.
-				</p>
-				<div>
+					Atendemos de lunes a viernes de 08:00 a 17:00. Estamos en{' '}
 					<Link
 						href="/quienes-somos#ubicacion"
-						className="inline-flex items-center gap-1.5 text-brand-electric-violet font-semibold underline underline-offset-2 hover:opacity-85"
+						className="text-brand-electric-violet font-semibold underline underline-offset-2 hover:opacity-85"
 					>
-						<span>Ver mapa y ubicación exacta</span>
-						<span>→</span>
+						Entre Ríos 2650, Barrio San Vicente, Córdoba Capital, X5006, Argentina
 					</Link>
-				</div>
+					.
+				</p>
 			</div>
 		),
 	},
 	{
-		id: 'compra-web',
-		question: 'Realicé una compra por la web, ¿qué hago ahora?',
+		id: 'tipos-trabajos',
+		question: '¿Qué tipos de trabajos realizan?',
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Una vez enviada tu solicitud de presupuesto o pedido a través de nuestro sitio web, el equipo comercial y de preimpresión procesa la información y se comunica con vos (habitualmente vía WhatsApp o email) para los siguientes pasos:
+					Realizamos papelería comercial, packaging, trabajos editoriales y piezas publicitarias: hojas membretadas, tarjetas, formularios, sobres, carpetas, cajas, bolsas, etiquetas, estuches, libros, revistas, agendas, cuadernos, catálogos, volantes, afiches y otras piezas impresas en papel o cartulina.
 				</p>
-				<ul className="list-disc pl-5 space-y-1.5">
-					<li>Confirmar la cotización y verificar la disponibilidad de pliegos y materiales.</li>
-					<li>Revisar los archivos originales de diseño para asegurar que cumplan las normas de imprenta.</li>
-					<li>Coordinar la emisión de factura, formas de pago y fecha programada de entrega o despacho.</li>
-				</ul>
 			</div>
 		),
 	},
 	{
-		id: 'tiempos-entrega',
-		question: '¿Cuánto tarda mi pedido?',
+		id: 'materiales',
+		question: '¿Qué materiales trabajan?',
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Los tiempos de producción dependen de la magnitud de la tirada, el formato y los procesos de acabado posteriores requeridos (troquelado, plastificado OPP, barniz UV o encuadernación abrochada/cosida).
+					Trabajamos con papeles industriales como obra, ilustración, kraft, comercial, bookcel y NAT, en gramajes de 70 a 350 g. También utilizamos cartulinas encapadas como dúplex, tríplex, rígida y Naturale de hasta 350 g, además de cartón microcorrugado simple o montado con cartulina impresa.
 				</p>
+			</div>
+		),
+	},
+	{
+		id: 'terminaciones',
+		question: '¿Qué terminaciones y encuadernaciones realizan?',
+		answer: (
+			<div className="space-y-3">
 				<p>
-					Como referencia general, las tiradas offset habituales se completan en un plazo aproximado de <strong>3 a 7 días hábiles</strong> tras la aprobación final de los archivos. Si tenés una fecha límite estricta o un evento, comunicanos el plazo al momento de cotizar para evaluar la viabilidad de una entrega prioritaria.
+					Realizamos abrochado a caballo, encuadernación cosida con tapa blanda o dura, encuadernación pegada, anillado, intercalado de pliegos, barniz UV brillante, plastificado OPP mate o brillante, troquelado, perforado, puntillado, doblado, redondeado de puntas, pegado, encapado de tapas y retractilado termofusionado.
+				</p>
+			</div>
+		),
+	},
+	{
+		id: 'impresion-offset',
+		question: '¿Cuándo conviene imprimir en offset?',
+		answer: (
+			<div className="space-y-3">
+				<p>
+					Como referencia, el offset suele resultar conveniente en tiradas superiores a 1.000 pliegos. Sin embargo, algunas piezas con terminaciones especiales también pueden resultar convenientes en cantidades menores. Consultanos para evaluar las características de cada trabajo.
 				</p>
 			</div>
 		),
 	},
 	{
 		id: 'preparacion-archivos',
-		question: '¿Cómo preparo mi archivo para que salga bien impreso?',
+		question: '¿Cómo debo preparar los archivos?',
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Para garantizar la máxima nitidez y fidelidad de color en prensa offset industrial, recomendamos preparar los originales siguiendo estas especificaciones:
+					Como referencia general:
 				</p>
 				<ul className="list-disc pl-5 space-y-1.5">
-					<li><strong>Formato de entrega:</strong> Archivo PDF de alta resolución (PDF/X-1a o exportación de calidad de impresión) en escala 1:1.</li>
-					<li><strong>Espacio de color:</strong> CMYK al 100% en imágenes, fondos y tipografías (no utilizar modo RGB ni colores no convertidos).</li>
-					<li><strong>Resolución:</strong> Imágenes a un mínimo de 300 DPI en su tamaño real de reproducción.</li>
-					<li><strong>Demasía y marcas:</strong> Incluir 3 a 5 mm de sangrado (bleed) perimetral y marcas de corte para evitar bordes blancos tras el refilado.</li>
-					<li><strong>Tipografías:</strong> Todas las fuentes convertidas a curvas (trazados) o incrustadas en el PDF.</li>
-					<li><strong>Líneas de troquel:</strong> En piezas troqueladas (cajas, carpetas, estuches), ubicar el trazado de corte y plegado en una capa independiente con un color directo claramente identificado.</li>
+					<li>Trabajá en modo de color CMYK.</li>
+					<li>Utilizá imágenes de 350 DPI.</li>
+					<li>Prepará el archivo en tamaño real.</li>
+					<li>Incluí al menos 3 mm de demasía para el corte.</li>
+					<li>Convertí las tipografías a curvas.</li>
+					<li>Dejá márgenes internos adecuados.</li>
 				</ul>
+				<p>
+					Los formatos recomendados son PDF, AI, EPS, CDR, JPG sin compresión y TIF. Si necesitás preparar un PDF, consultanos para recibir orientación según el programa que utilices.
+				</p>
 			</div>
 		),
 	},
 	{
-		id: 'papeles-materiales',
-		question: '¿Qué materiales usan?',
+		id: 'ayuda-diseno',
+		question: '¿Me pueden ayudar con el diseño o la preparación del archivo?',
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Disponemos de un amplio stock de sustratos para cubrir las distintas necesidades de la industria gráfica, publicitaria y editorial:
+					Actualmente brindamos acompañamiento y asesoramiento técnico para preparar los archivos de impresión. No ofrecemos un servicio integral de diseño desde cero.
 				</p>
-				<ul className="list-disc pl-5 space-y-1.5">
-					<li><strong>Papeles:</strong> Obra blanco (70 a 120 g), ilustración mate y brillante (90 a 350 g), papel kraft, comercial, bookcel ahuesado y papel reciclado/NAT.</li>
-					<li><strong>Cartulinas:</strong> Cartulinas encapadas dúplex y tríplex, cartulina rígida y Naturale de hasta 350 g para estuchería, packaging y carpetas.</li>
-					<li><strong>Cartón microcorrugado:</strong> Microcorrugado simple faz o montado con cartulina impresa para cajas de alta resistencia estructural.</li>
-					<li><strong>Acabados:</strong> Plastificado OPP mate o brillante, barniz de máquina y barniz UV para protección y realce visual.</li>
-				</ul>
+			</div>
+		),
+	},
+	{
+		id: 'tiempos-entrega',
+		question: '¿Cuánto tarda un trabajo?',
+		answer: (
+			<div className="space-y-3">
+				<p>
+					Consultanos el plazo correspondiente al solicitar la cotización.
+				</p>
 			</div>
 		),
 	},
@@ -146,46 +160,8 @@ const FAQ_ITEMS: FAQItem[] = [
 		answer: (
 			<div className="space-y-3">
 				<p>
-					<strong>Sí, realizamos envíos a todo el país.</strong>
+					Sí, realizamos envíos a todo el país.
 				</p>
-				<p>
-					En <strong>Córdoba Capital y alrededores</strong> ofrecemos entregas programadas en tu empresa o retiro directo en nuestro taller en Barrio San Vicente. Para el interior de la provincia de Córdoba y el <strong>resto de la Argentina</strong>, embalamos y despachamos la mercadería a través de empresas de transporte de carga, expresos o comisionistas de tu preferencia o con los que operamos de manera habitual.
-				</p>
-			</div>
-		),
-	},
-	{
-		id: 'problemas-pedido',
-		question: '¿Qué hago si tengo un problema con mi pedido?',
-		answer: (
-			<div className="space-y-3">
-				<p>
-					En Industria Gráfica Córdoba nos hacemos responsables de la calidad de nuestro trabajo. Si al recibir tu producción encontrás cualquier observación respecto a cortes, colores, cantidades o acabados:
-				</p>
-				<ol className="list-decimal pl-5 space-y-1.5">
-					<li>Escribinos de inmediato por WhatsApp al <strong>+54 9 351 459-7594</strong> o contactá directamente a tu asesor de cuenta.</li>
-					<li>Compartinos una fotografía o video donde se aprecie la observación junto con el número de remito o pedido.</li>
-					<li>Nuestro equipo técnico cotejará la muestra física con los archivos aprobados de prensa para darte una solución ágil y adecuada.</li>
-				</ol>
-			</div>
-		),
-	},
-	{
-		id: 'ayuda-diseno',
-		question: 'No tengo diseño, ¿me pueden ayudar?',
-		answer: (
-			<div className="space-y-3">
-				<p>
-					<strong>Sí, brindamos asesoramiento técnico integral de preimpresión.</strong>
-				</p>
-				<p>
-					Si bien la mayoría de nuestros clientes industriales y agencias entregan sus propios originales listos para prensa, nuestro equipo puede:
-				</p>
-				<ul className="list-disc pl-5 space-y-1.5">
-					<li>Entregarte planos y plantillas técnicas de troquel con las medidas exactas para que tu diseñador arme la gráfica sobre seguro.</li>
-					<li>Revisar y adecuar archivos preexistentes (resolución, demasías, conversión de colores y sangrados).</li>
-					<li>Orientarte técnicamente sobre el formato más eficiente para aprovechar el pliego y reducir desperdicios de papel.</li>
-				</ul>
 			</div>
 		),
 	},
