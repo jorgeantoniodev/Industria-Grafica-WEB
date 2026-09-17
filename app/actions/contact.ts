@@ -27,11 +27,36 @@ function sanitizeHeader(str: string): string {
 	return str.replace(/[\r\n]+/g, ' ').trim();
 }
 
+import { cookies } from 'next/headers';
+import crypto from 'crypto';
+
 export async function submitContactForm(
 	_prevState: ContactFormState,
 	formData: FormData
 ): Promise<ContactFormState> {
 	try {
+		// 0. Mantenimiento y protección por cookie
+		if (process.env.MAINTENANCE_MODE === 'true') {
+			const cookieStore = await cookies();
+			const accessCookie = cookieStore.get('igc_preview_access');
+			const secretToken = process.env.PREVIEW_ACCESS_TOKEN;
+			
+			let hasAccess = false;
+			if (accessCookie && secretToken) {
+				const expectedValue = crypto.createHash('sha256').update(secretToken).digest('hex');
+				if (accessCookie.value === expectedValue) {
+					hasAccess = true;
+				}
+			}
+			
+			if (!hasAccess) {
+				return {
+					success: false,
+					error: 'El sitio se encuentra en mantenimiento y no puede procesar consultas públicas en este momento.',
+				};
+			}
+		}
+
 		// 1. Protección Anti-Spam: Honeypot
 		const honeypot = formData.get('_hp_website') as string;
 		if (honeypot && honeypot.trim() !== '') {
