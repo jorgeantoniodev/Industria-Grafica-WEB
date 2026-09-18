@@ -11,26 +11,11 @@ const lato = Lato({
   display: "swap",
 });
 
+import { checkMaintenanceAccess } from "@/lib/auth";
+
 export async function generateMetadata(): Promise<Metadata> {
   const envVars = await getEnvVars();
-  let isMaintenanceActive = envVars.MAINTENANCE_MODE !== 'false';
-
-  if (isMaintenanceActive) {
-    const secretToken = envVars.PREVIEW_ACCESS_TOKEN;
-    if (secretToken && secretToken.trim() !== '') {
-      const cookieStore = await cookies();
-      const accessCookie = cookieStore.get('igc_preview_access');
-      if (accessCookie) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(secretToken);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const expectedValue = Array.prototype.map.call(new Uint8Array(hashBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
-        if (accessCookie.value === expectedValue) {
-          isMaintenanceActive = false;
-        }
-      }
-    }
-  }
+  const isMaintenanceActive = !(await checkMaintenanceAccess(envVars));
 
   if (isMaintenanceActive) {
     return {
@@ -73,24 +58,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const envVars = await getEnvVars();
-  let isMaintenanceActive = envVars.MAINTENANCE_MODE !== 'false';
-
-  if (isMaintenanceActive) {
-    const secretToken = envVars.PREVIEW_ACCESS_TOKEN;
-    if (secretToken && secretToken.trim() !== '') {
-      const cookieStore = await cookies();
-      const accessCookie = cookieStore.get('igc_preview_access');
-      if (accessCookie) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(secretToken);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const expectedValue = Array.prototype.map.call(new Uint8Array(hashBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
-        if (accessCookie.value === expectedValue) {
-          isMaintenanceActive = false;
-        }
-      }
-    }
-  }
+  const isMaintenanceActive = !(await checkMaintenanceAccess(envVars));
 
   if (isMaintenanceActive) {
     return (

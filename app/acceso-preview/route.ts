@@ -1,10 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getEnvVars } from '@/lib/env';
-
-// Convert array buffer to hex string
-function buf2hex(buffer: ArrayBuffer) {
-  return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
-}
+import crypto from 'crypto';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -19,11 +15,8 @@ export async function GET(request: Request) {
 
   const response = NextResponse.redirect(new URL('/', request.url));
 
-  // Hash the token for the cookie value using Web Crypto API
-  const encoder = new TextEncoder();
-  const data = encoder.encode(secretToken);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const cookieValue = buf2hex(hashBuffer);
+  // Hash the token for the cookie value using Node Crypto
+  const cookieValue = crypto.createHash('sha256').update(secretToken).digest('hex');
 
   response.cookies.set({
     name: 'igc_preview_access',
