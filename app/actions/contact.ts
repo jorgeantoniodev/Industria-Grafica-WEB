@@ -27,34 +27,23 @@ function sanitizeHeader(str: string): string {
 	return str.replace(/[\r\n]+/g, ' ').trim();
 }
 
-import { cookies } from 'next/headers';
-import crypto from 'crypto';
+import { getEnvVars } from '@/lib/env';
+import { checkMaintenanceAccess } from '@/lib/auth';
 
 export async function submitContactForm(
 	_prevState: ContactFormState,
 	formData: FormData
 ): Promise<ContactFormState> {
 	try {
+		const envVars = await getEnvVars();
+
 		// 0. Mantenimiento y protección por cookie
-		if (process.env.MAINTENANCE_MODE === 'true') {
-			const cookieStore = await cookies();
-			const accessCookie = cookieStore.get('igc_preview_access');
-			const secretToken = process.env.PREVIEW_ACCESS_TOKEN;
-			
-			let hasAccess = false;
-			if (accessCookie && secretToken) {
-				const expectedValue = crypto.createHash('sha256').update(secretToken).digest('hex');
-				if (accessCookie.value === expectedValue) {
-					hasAccess = true;
-				}
-			}
-			
-			if (!hasAccess) {
-				return {
-					success: false,
-					error: 'El sitio se encuentra en mantenimiento y no puede procesar consultas públicas en este momento.',
-				};
-			}
+		const hasAccess = await checkMaintenanceAccess(envVars);
+		if (!hasAccess) {
+			return {
+				success: false,
+				error: 'El sitio se encuentra en mantenimiento y no puede procesar consultas públicas en este momento.',
+			};
 		}
 
 		// 1. Protección Anti-Spam: Honeypot
@@ -118,9 +107,9 @@ export async function submitContactForm(
 		console.log(`[Contact Action] Solicitud recibida: Tipo=${cleanTipo}`);
 
 		// 5. Configuración de destinatario y proveedor
-		const apiKey = process.env.RESEND_API_KEY;
-		const toEmail = process.env.CONTACT_TO_EMAIL || 'presupuestos@prematgrafica.com.ar';
-		const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Presupuestos Web <onboarding@resend.dev>';
+		const apiKey = envVars.RESEND_API_KEY;
+		const toEmail = envVars.CONTACT_TO_EMAIL || 'presupuestos@prematgrafica.com.ar';
+		const fromEmail = envVars.CONTACT_FROM_EMAIL || 'Presupuestos Web <onboarding@resend.dev>';
 
 		// Si no hay credenciales configuradas en el entorno
 		if (!apiKey) {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
 import { cookies } from 'next/headers';
+import { getEnvVars } from "@/lib/env";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -11,19 +12,22 @@ const lato = Lato({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  let isMaintenanceActive = false;
-  if (process.env.MAINTENANCE_MODE === 'true') {
-    isMaintenanceActive = true;
-    const cookieStore = await cookies();
-    const accessCookie = cookieStore.get('igc_preview_access');
-    const secretToken = process.env.PREVIEW_ACCESS_TOKEN;
-    if (accessCookie && secretToken) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(secretToken);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const expectedValue = Array.prototype.map.call(new Uint8Array(hashBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
-      if (accessCookie.value === expectedValue) {
-        isMaintenanceActive = false;
+  const envVars = await getEnvVars();
+  let isMaintenanceActive = envVars.MAINTENANCE_MODE !== 'false';
+
+  if (isMaintenanceActive) {
+    const secretToken = envVars.PREVIEW_ACCESS_TOKEN;
+    if (secretToken && secretToken.trim() !== '') {
+      const cookieStore = await cookies();
+      const accessCookie = cookieStore.get('igc_preview_access');
+      if (accessCookie) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(secretToken);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const expectedValue = Array.prototype.map.call(new Uint8Array(hashBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+        if (accessCookie.value === expectedValue) {
+          isMaintenanceActive = false;
+        }
       }
     }
   }
@@ -68,21 +72,22 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let isMaintenanceActive = false;
-  if (process.env.MAINTENANCE_MODE === 'true') {
-    isMaintenanceActive = true;
-    const cookieStore = await cookies();
-    const accessCookie = cookieStore.get('igc_preview_access');
-    const secretToken = process.env.PREVIEW_ACCESS_TOKEN;
-    
-    if (accessCookie && secretToken) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(secretToken);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const expectedValue = Array.prototype.map.call(new Uint8Array(hashBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
-      
-      if (accessCookie.value === expectedValue) {
-        isMaintenanceActive = false;
+  const envVars = await getEnvVars();
+  let isMaintenanceActive = envVars.MAINTENANCE_MODE !== 'false';
+
+  if (isMaintenanceActive) {
+    const secretToken = envVars.PREVIEW_ACCESS_TOKEN;
+    if (secretToken && secretToken.trim() !== '') {
+      const cookieStore = await cookies();
+      const accessCookie = cookieStore.get('igc_preview_access');
+      if (accessCookie) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(secretToken);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const expectedValue = Array.prototype.map.call(new Uint8Array(hashBuffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+        if (accessCookie.value === expectedValue) {
+          isMaintenanceActive = false;
+        }
       }
     }
   }
