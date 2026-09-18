@@ -27,24 +27,11 @@ function sanitizeHeader(str: string): string {
 	return str.replace(/[\r\n]+/g, ' ').trim();
 }
 
-import { getEnvVars } from '@/lib/env';
-import { checkMaintenanceAccess } from '@/lib/auth';
-
 export async function submitContactForm(
 	_prevState: ContactFormState,
 	formData: FormData
 ): Promise<ContactFormState> {
 	try {
-		const envVars = await getEnvVars();
-
-		// 0. Mantenimiento y protección por cookie
-		const hasAccess = await checkMaintenanceAccess(envVars);
-		if (!hasAccess) {
-			return {
-				success: false,
-				error: 'El sitio se encuentra en mantenimiento y no puede procesar consultas públicas en este momento.',
-			};
-		}
 
 		// 1. Protección Anti-Spam: Honeypot
 		const honeypot = formData.get('_hp_website') as string;
@@ -107,9 +94,9 @@ export async function submitContactForm(
 		console.log(`[Contact Action] Solicitud recibida: Tipo=${cleanTipo}`);
 
 		// 5. Configuración de destinatario y proveedor
-		const apiKey = envVars.RESEND_API_KEY;
-		const toEmail = envVars.CONTACT_TO_EMAIL || 'presupuestos@prematgrafica.com.ar';
-		const fromEmail = envVars.CONTACT_FROM_EMAIL || 'Presupuestos Web <onboarding@resend.dev>';
+		const apiKey = process.env.RESEND_API_KEY;
+		const toEmail = process.env.CONTACT_TO_EMAIL || 'presupuestos@prematgrafica.com.ar';
+		const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Presupuestos Web <onboarding@resend.dev>';
 
 		// Si no hay credenciales configuradas en el entorno
 		if (!apiKey) {

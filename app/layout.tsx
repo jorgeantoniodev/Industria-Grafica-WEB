@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
-import { cookies } from 'next/headers';
-import { getEnvVars } from "@/lib/env";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -11,37 +9,19 @@ const lato = Lato({
   display: "swap",
 });
 
-import { checkMaintenanceAccess } from "@/lib/auth";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const envVars = await getEnvVars();
-  const isMaintenanceActive = !(await checkMaintenanceAccess(envVars));
-
-  if (isMaintenanceActive) {
-    return {
-      title: 'Sitio en construcción | Industria Gráfica Córdoba',
-      robots: {
-        index: false,
-        follow: false,
-        nocache: true,
-      },
-    };
-  }
-
-  return {
-    title: {
-      default: 'Industria Gráfica Córdoba — Imprenta Industrial en Barrio San Vicente',
-      template: '%s | Industria Gráfica Córdoba',
-    },
-    description: 'Imprenta offset industrial desde Córdoba: pliegos de hasta 102 × 72 cm, troquelado, laminado y encuadernación. Más de 30 años de producción gráfica. Pedí tu presupuesto.',
-  };
-}
+export const metadata: Metadata = {
+  title: {
+    default: 'Industria Gráfica Córdoba — Imprenta Industrial en Barrio San Vicente',
+    template: '%s | Industria Gráfica Córdoba',
+  },
+  description:
+    'Imprenta offset industrial desde Córdoba: pliegos de hasta 102 × 72 cm, troquelado, laminado y encuadernación. Más de 30 años de producción gráfica. Pedí tu presupuesto.',
+};
 
 import Header, { NavItem } from "@/components/header";
 import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/ui/whatsapp-button";
 import { footerData } from "@/content/footer-data";
-import MaintenancePage from "./mantenimiento/page";
 
 const SITE_NAVIGATION: NavItem[] = [
   { label: 'Inicio',               href: '/' },
@@ -52,29 +32,11 @@ const SITE_NAVIGATION: NavItem[] = [
   { label: 'Contacto',             href: '/contacto' },
 ];
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const envVars = await getEnvVars();
-  const isMaintenanceActive = !(await checkMaintenanceAccess(envVars));
-
-  if (isMaintenanceActive) {
-    return (
-      <html
-        lang="es"
-        suppressHydrationWarning
-        className={`${lato.variable} h-full antialiased`}
-        style={{ fontFamily: 'var(--font-lato), sans-serif' }}
-      >
-        <body className="min-h-full flex flex-col">
-          <MaintenancePage />
-        </body>
-      </html>
-    );
-  }
-
   return (
     <html
       lang="es"
