@@ -185,3 +185,72 @@ body {
 .card-circle-mask:hover img {
   transform: scale(1.10);
 }
+
+/* ── Smooth Navigation & Anchor Offsets ────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+@keyframes stagger-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* El contenedor principal gestiona el flujo base */
+.page-transition {
+  min-height: 100%;
+}
+
+/* Cascada escalonada (Staggered) para los bloques principales de la página */
+.page-transition main > *:nth-child(1),
+.page-transition > main:not(:has(> *)) {
+  animation: stagger-enter 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.page-transition main > *:nth-child(2) {
+  animation: stagger-enter 320ms cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+}
+
+.page-transition main > *:nth-child(3) {
+  animation: stagger-enter 360ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+}
+
+.page-transition main > *:nth-child(n+4) {
+  animation: stagger-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+
+/* Si una página no usa <main> como hijo inmediato */
+.page-transition:not(:has(main)) > *:nth-child(1) {
+  animation: stagger-enter 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.page-transition:not(:has(main)) > *:nth-child(2) {
+  animation: stagger-enter 320ms cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+}
+
+.page-transition:not(:has(main)) > *:nth-child(n+3) {
+  animation: stagger-enter 360ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .page-transition main > *,
+  .page-transition > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
