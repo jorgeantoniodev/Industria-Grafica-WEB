@@ -29,10 +29,10 @@ const FAQ_ITEMS: FAQItem[] = [
 					</Link>
 					, escribiendo a{' '}
 					<a
-						href="mailto:presupuestos@prematgrafica.com.ar"
+						href="mailto:hola@industriagrafica.com.ar"
 						className="text-brand-electric-violet font-semibold underline underline-offset-2 hover:opacity-85"
 					>
-						presupuestos@prematgrafica.com.ar
+						hola@industriagrafica.com.ar
 					</a>{' '}
 					o enviando un{' '}
 					<a
@@ -105,7 +105,7 @@ const FAQ_ITEMS: FAQItem[] = [
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Como referencia, el offset suele resultar conveniente en tiradas superiores a 1.000 pliegos. Sin embargo, algunas piezas con terminaciones especiales también pueden resultar convenientes en cantidades menores. Consultanos para evaluar las características de cada trabajo.
+					Como referencia, el offset suele resultar conveniente en tiradas superiores a 1.000 pliegos. Sin embargo, debido a los costos actuales de otros sistemas de impresión, algunas piezas con terminaciones especiales también pueden resultar convenientes en cantidades menores. Consultanos para evaluar las características de cada trabajo, ya que también podemos cotizar cantidades menores.
 				</p>
 			</div>
 		),
@@ -116,18 +116,7 @@ const FAQ_ITEMS: FAQItem[] = [
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Como referencia general:
-				</p>
-				<ul className="list-disc pl-5 space-y-1.5">
-					<li>Trabajá en modo de color CMYK.</li>
-					<li>Utilizá imágenes de 350 DPI.</li>
-					<li>Prepará el archivo en tamaño real.</li>
-					<li>Incluí al menos 3 mm de demasía para el corte.</li>
-					<li>Convertí las tipografías a curvas.</li>
-					<li>Dejá márgenes internos adecuados.</li>
-				</ul>
-				<p>
-					Los formatos recomendados son PDF, AI, EPS, CDR, JPG sin compresión y TIF. Si necesitás preparar un PDF, consultanos para recibir orientación según el programa que utilices.
+					Los formatos recomendados son PDF, CDR o TIF sin capas. Si necesitás preparar cualquiera de estos archivos, consultanos para recibir orientación según el programa que utilices.
 				</p>
 			</div>
 		),
@@ -138,7 +127,7 @@ const FAQ_ITEMS: FAQItem[] = [
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Actualmente brindamos acompañamiento y asesoramiento técnico para preparar los archivos de impresión. No ofrecemos un servicio integral de diseño desde cero.
+					Actualmente brindamos acompañamiento y asesoramiento técnico para preparar los archivos de impresión. Solo ofrecemos diseño para piezas simples, pero podemos recomendarte distintos diseñadores que ofrecen un servicio integral de diseño desde cero.
 				</p>
 			</div>
 		),
@@ -149,7 +138,7 @@ const FAQ_ITEMS: FAQItem[] = [
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Consultanos el plazo correspondiente al solicitar la cotización.
+					Cada proyecto tiene muchas variables que considerar al momento de coordinar los tiempos de entrega. Algunas piezas simples pueden resolverse en 48 horas, mientras que los libros o las cajas de alta complejidad pueden requerir varias semanas de producción. Consultanos por el plazo correspondiente al solicitar la cotización. El plazo definitivo se confirma al encargar el trabajo.
 				</p>
 			</div>
 		),
@@ -160,7 +149,7 @@ const FAQ_ITEMS: FAQItem[] = [
 		answer: (
 			<div className="space-y-3">
 				<p>
-					Sí, realizamos envíos a todo el país.
+					Hacemos envíos dentro de la ciudad de Córdoba, siempre coordinándolos previamente con el cliente, quien se encuentra a cargo del costo, especialmente cuando se trata de trabajos de gran volumen o distancias largas. Para clientes del interior de la provincia de Córdoba y del resto del país, contamos con soluciones de envío que también deben coordinarse en cada caso particular.
 				</p>
 			</div>
 		),

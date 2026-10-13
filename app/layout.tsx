@@ -47,8 +47,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Header 
           logo={{
-            src: "/logo.png",
-            alt: "Industria Gráfica Córdoba — Logo",
+            src: "/logo_blanco.svg",
+            alt: "Industria Gráfica Córdoba",
             title: "Industria Gráfica",
             subtitle: "Imprenta Industrial"
           }}

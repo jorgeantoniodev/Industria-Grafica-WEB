@@ -24,10 +24,10 @@ export default function ContactoPage() {
 					<p className="mb-8 text-base text-gray-600">
 						Completá el formulario de solicitud o escribinos directamente a{' '}
 						<a
-							href="mailto:presupuestos@prematgrafica.com.ar"
+							href="mailto:hola@industriagrafica.com.ar"
 							className="text-blue-600 underline underline-offset-2 hover:text-blue-800 font-semibold"
 						>
-							presupuestos@prematgrafica.com.ar
+							hola@industriagrafica.com.ar
 						</a>
 						.
 					</p>

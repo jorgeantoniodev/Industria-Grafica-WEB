@@ -48,7 +48,7 @@ export const footerData = {
       titleColor: "text-brand-lavender",
       links: [
         { label: "Agencias e imprentas", href: "/agencias" },
-        { label: "Producción confidencial", href: "/agencias#produccion-confidencial" }
+        { label: "Tercerización", href: "/agencias#produccion-confidencial" }
       ]
     },
     {

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Agencias y Marca Blanca | Industria Gráfica Córdoba',
+	title: 'Trabajos para Terceros | Industria Gráfica Córdoba',
 	description:
 		'Producción gráfica confidencial para agencias de publicidad, estudios de diseño e imprentas desde Córdoba. Impresión offset, troquelado y terminaciones bajo tu marca.',
 };
@@ -15,8 +15,8 @@ export default function AgenciasPage() {
 						Producción para agencias e imprentas
 					</p>
 					<h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none mb-6">
-						Agencias y<br />
-						<span className="text-fuchsia-400">Marca Blanca</span>
+						Trabajos para<br />
+						<span className="text-fuchsia-400">Terceros</span>
 					</h1>
 					<p className="text-lg text-slate-400 max-w-2xl">
 						Producción confidencial para agencias, estudios e imprentas. Trabajamos como tu taller de producción gráfica desde Córdoba, respetando la confidencialidad de cada proyecto.
@@ -30,7 +30,7 @@ export default function AgenciasPage() {
 						Tu marca, nuestra producción
 					</h2>
 					<p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
-						Trabajamos como proveedor de marca blanca, respetando la confidencialidad de cada proyecto. Tu cliente sigue siendo tu cliente: nosotros nos ocupamos de la producción para que puedas concentrarte en la relación con tu cliente.
+						Trabajamos como tercerizador para otras imprentas, agencias o estudios de diseño, respetando la confidencialidad de cada proyecto. Tu cliente sigue siendo tu cliente: nosotros nos ocupamos de la producción para que puedas concentrarte en la relación con tu cliente.
 					</p>
 				</div>
 			</section>

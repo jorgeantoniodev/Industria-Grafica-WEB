@@ -159,7 +159,7 @@ const servicesData: ServiceItem[] = [
 	{
 		id: 'offset',
 		title: 'Impresión offset',
-		description: 'Full color y monocolor en distintos formatos.',
+		description: 'Full color, monocolor y tintas Pantone en distintos formatos.',
 		href: '/servicios#offset',
 		theme: {
 			gradient: 'card-print',
@@ -173,7 +173,7 @@ const servicesData: ServiceItem[] = [
 	{
 		id: 'corporativo-salud',
 		title: 'Corporativo e institucional',
-		description: 'Formularios, comprobantes y carpetas.',
+		description: 'Formularios, comprobantes fiscales, carpetas, tarjetas, hojas membretadas y más.',
 		href: '/servicios',
 		theme: {
 			gradient: 'card-marketing',
@@ -188,7 +188,7 @@ const servicesData: ServiceItem[] = [
 	{
 		id: 'troquelados-packaging',
 		title: 'Packaging y troquelado',
-		description: 'Cajas, estuches, etiquetas y fajas.',
+		description: 'Cajas, bolsas, sobres, cenefas, círculos, fajas y más.',
 		href: '/servicios#troquelados',
 		theme: {
 			gradient: 'card-packaging',
@@ -203,7 +203,7 @@ const servicesData: ServiceItem[] = [
 	{
 		id: 'encuadernacion-editorial',
 		title: 'Editorial y encuadernación',
-		description: 'Libros, revistas, catálogos y cuadernos.',
+		description: 'Libros, revistas, agendas, cuadernos, catálogos, brochures y más.',
 		href: '/servicios#encuadernacion',
 		theme: {
 			gradient: 'card-fulfillment',
@@ -226,13 +226,13 @@ export default function Home() {
 					<>
 						Más de 30 años de producción <br className="hidden lg:block" />
 						gráfica en Córdoba, <br className="hidden lg:block" />
-						<span className="bg-gradient-to-r from-[#7026CE] to-[#A31198] bg-clip-text text-transparent">
+						<span className="text-brand-electric-violet">
 							al servicio de tu marca.
 						</span>
 					</>
 				}
 				subheadline="Imprenta Offset Industrial — Córdoba, Argentina"
-				description="Impresión offset, troquelado, encuadernación y producción confidencial para agencias y empresas."
+				description="Impresión offset sobre papel y cartulina, troquelado, encuadernación y postimpresión. Producción confidencial para terceros (agencias y empresas del gremio)."
 				ctaText="Hablemos de tu proyecto"
 				ctaLink="/contacto"
 				media={{

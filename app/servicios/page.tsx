@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import OffsetImagesComposition from '@/components/offset-images-composition';
 import { LightRays } from '@/components/ui/light-rays';
 
@@ -57,19 +58,27 @@ export default function ServiciosPage() {
 								</h3>
 								<div className="w-12 h-1 bg-brand-electric-violet rounded-full mb-6" />
 								<p className="text-lg text-slate-600 leading-relaxed mb-4">
-									Producción de folletos, catálogos, revistas y papelería comercial en tiradas donde el offset resulta conveniente. Cuatro máquinas offset para optimizar trabajos monocolor y full color en pliegos de hasta 102 × 72 cm (área máxima de impresión 100 × 70 cm).
+									Producción de folletos, catálogos, libros, revistas y papelería comercial en tiradas donde el offset resulta conveniente. Cuatro máquinas offset para optimizar trabajos monocolor, bicolor y full color en pliegos de hasta 102 × 72 cm (área máxima de impresión 100 × 70 cm).
 								</p>
 								<p className="text-lg text-slate-600 leading-relaxed">
 									Trabajamos papeles industriales (obra, ilustración, kraft, comercial, bookcel y NAT) de 70 a 350 g.
 								</p>
 							</div>
 
-							{/* Columna derecha: espacio en blanco para futura imagen (ver imagen adjunta) */}
+							{/* Columna derecha: fotografía pliego CAJA ALFAJORES */}
 							<div className="relative w-full max-w-lg mx-auto lg:ml-auto">
 								{/* Marco exterior desplazado (estilo diseño de referencia) */}
 								<div className="absolute inset-0 translate-x-4 translate-y-4 border-2 border-slate-300 rounded-2xl pointer-events-none" />
-								{/* Contenedor principal de la imagen (en blanco por ahora) */}
-								<div className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-2xl bg-slate-50/60 border border-slate-200/80 shadow-xs" />
+								{/* Contenedor principal de la imagen */}
+								<div className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-2xl overflow-hidden bg-slate-50/60 border border-slate-200/80 shadow-xs">
+									<Image
+										src="/images/soluciones-industriales/impresion-offset-izquierda.webp"
+										alt="Pliego de impresión offset de cajas de alfajores en máquina"
+										fill
+										className="object-cover"
+										sizes="(max-width: 1024px) 100vw, 500px"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -94,12 +103,20 @@ export default function ServiciosPage() {
 							</p>
 						</div>
 
-						{/* Columna derecha: espacio en blanco para futura imagen (ver imagen adjunta) */}
+						{/* Columna derecha: fotografía BOLSA ÁMBAR */}
 						<div className="relative w-full max-w-lg mx-auto lg:ml-auto">
 							{/* Marco exterior desplazado (estilo diseño de referencia) */}
 							<div className="absolute inset-0 translate-x-4 translate-y-4 border-2 border-slate-300 rounded-2xl pointer-events-none" />
-							{/* Contenedor principal de la imagen (en blanco por ahora) */}
-							<div className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-2xl bg-white border border-slate-200/80 shadow-xs" />
+							{/* Contenedor principal de la imagen */}
+							<div className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-2xl overflow-hidden bg-white border border-slate-200/80 shadow-xs">
+								<Image
+									src="/images/soluciones-industriales/impresion-offset-centro.webp"
+									alt="Bolsa de papel personalizada Ámbar con manija de cordón"
+									fill
+									className="object-cover"
+									sizes="(max-width: 1024px) 100vw, 500px"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -123,12 +140,20 @@ export default function ServiciosPage() {
 							</p>
 						</div>
 
-						{/* Columna derecha: espacio en blanco para futura imagen (ver imagen adjunta) */}
+						{/* Columna derecha: fotografía de LIBROS */}
 						<div className="relative w-full max-w-lg mx-auto lg:ml-auto">
 							{/* Marco exterior desplazado (estilo diseño de referencia) */}
 							<div className="absolute inset-0 translate-x-4 translate-y-4 border-2 border-slate-300 rounded-2xl pointer-events-none" />
-							{/* Contenedor principal de la imagen (en blanco por ahora) */}
-							<div className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-2xl bg-slate-50/60 border border-slate-200/80 shadow-xs" />
+							{/* Contenedor principal de la imagen */}
+							<div className="relative aspect-[4/3] lg:aspect-[5/4] w-full rounded-2xl overflow-hidden bg-slate-50/60 border border-slate-200/80 shadow-xs">
+								<Image
+									src="/images/foto_libro.png"
+									alt="Libro con encuadernación rústica y tapa personalizada Somos Creativos y Espirituales"
+									fill
+									className="object-contain p-4"
+									sizes="(max-width: 1024px) 100vw, 500px"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
