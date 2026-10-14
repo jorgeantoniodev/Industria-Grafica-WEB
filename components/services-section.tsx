@@ -6,7 +6,8 @@ export interface ServiceItem {
 	id: string;
 	title: string;
 	description: string;
-	href: string;
+	/** Destino de la tarjeta. Si se omite, la tarjeta es informativa: sin enlace, flecha ni hover. */
+	href?: string;
 	/**
 	 * Configuración de color de la tarjeta.
 	 * Usar strings completos de clases Tailwind para compatibilidad con JIT.
@@ -87,9 +88,9 @@ export default function ServicesSection({
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
 					{services.map((service) => (
 						<div key={service.id} className="@container mx-auto h-full w-full max-w-[600px] lg:max-w-none">
-							<Link
+							<CardShell
 								href={service.href}
-								className={`group relative overflow-hidden rounded-[2rem] h-full min-h-[clamp(390px,88cqi,520px)] p-[clamp(1.5rem,6.75cqi,2.5rem)] flex flex-col justify-between transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99] shadow-xl ${service.theme.gradient}`}
+								className={`relative overflow-hidden rounded-[2rem] h-full min-h-[clamp(390px,88cqi,520px)] p-[clamp(1.5rem,6.75cqi,2.5rem)] flex flex-col justify-between shadow-xl ${service.href ? INTERACTIVE_CARD_CLASSES : ''} ${service.theme.gradient}`}
 							>
 								{/* Glow en el fondo */}
 								<div
@@ -106,10 +107,12 @@ export default function ServicesSection({
 									</p>
 								</div>
 
-								{/* Botón ArrowUpRight — esquina superior derecha */}
-								<div className="absolute top-[clamp(1.25rem,4cqi,2rem)] right-[clamp(1.25rem,4cqi,2rem)] z-30 flex h-[clamp(2.5rem,8cqi,3rem)] w-[clamp(2.5rem,8cqi,3rem)] items-center justify-center rounded-xl bg-white p-2.5 @min-[560px]:p-3 text-black shadow-md transition-all duration-300 group-hover:scale-110">
-									<ArrowUpRight className="h-[clamp(1.25rem,4cqi,1.5rem)] w-[clamp(1.25rem,4cqi,1.5rem)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-								</div>
+								{/* Botón ArrowUpRight — esquina superior derecha (solo si la tarjeta tiene enlace) */}
+								{service.href && (
+									<div className="absolute top-[clamp(1.25rem,4cqi,2rem)] right-[clamp(1.25rem,4cqi,2rem)] z-30 flex h-[clamp(2.5rem,8cqi,3rem)] w-[clamp(2.5rem,8cqi,3rem)] items-center justify-center rounded-xl bg-white p-2.5 @min-[560px]:p-3 text-black shadow-md transition-all duration-300 group-hover:scale-110">
+										<ArrowUpRight className="h-[clamp(1.25rem,4cqi,1.5rem)] w-[clamp(1.25rem,4cqi,1.5rem)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+									</div>
+								)}
 
 								{/* Imagen de la tarjeta */}
 								{service.imageSrc && (
@@ -188,12 +191,34 @@ export default function ServicesSection({
 										</div>
 									)
 								)}
-							</Link>
+							</CardShell>
 						</div>
 					))}
 				</div>
 			</div>
 		</section>
+	);
+}
+
+/** Clases de interacción: solo aplican cuando la tarjeta es un enlace. */
+const INTERACTIVE_CARD_CLASSES =
+	'group transition-transform duration-300 hover:scale-[1.02] active:scale-[0.99]';
+
+/** Contenedor de tarjeta: `Link` si hay destino, `div` estático si no. */
+function CardShell({
+	href,
+	className,
+	children,
+}: {
+	href?: string;
+	className: string;
+	children: React.ReactNode;
+}) {
+	if (!href) return <div className={className}>{children}</div>;
+	return (
+		<Link href={href} className={className}>
+			{children}
+		</Link>
 	);
 }
 

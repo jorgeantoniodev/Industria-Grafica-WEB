@@ -43,8 +43,6 @@ const audiences: AudienceItem[] = [
 					'Plastificado OPP mate o brillante, barniz UV, troquelado, perforado y doblado.',
 			},
 		],
-		ctaText: 'Explorar soluciones para agencias',
-		ctaLink: '/agencias',
 		image: '/images/agencias-marca-blanca-colaboracion.jpg',
 		imageAlt: 'Dos profesionales revisando una pieza gráfica',
 		floatingBadgeIcon: HandHeartIcon,
@@ -79,8 +77,6 @@ const audiences: AudienceItem[] = [
 					'Atención personalizada y posibilidad de coordinar visitas a planta para el seguimiento de la producción.',
 			},
 		],
-		ctaText: 'Solicitar asesoría institucional',
-		ctaLink: '/servicios',
 		image: '/images/mario.png',
 		imageAlt: 'Operario en máquina offset Roland Miehle en planta de producción',
 		floatingBadgeIcon: ShredderIcon,
@@ -114,8 +110,6 @@ const audiences: AudienceItem[] = [
 					'Afiches, volantes, almanaques, stickers en papel, individuales y posavasos.',
 			},
 		],
-		ctaText: 'Ver opciones de packaging',
-		ctaLink: '/servicios#troquelados',
 		image: '/images/marcas-pymes-produccion-real.png',
 		imageAlt: 'Pieza impresa con distintos sellos editoriales en la planta de Industria Gráfica Córdoba',
 		objectPosition: 'center 30%',
@@ -160,7 +154,6 @@ const servicesData: ServiceItem[] = [
 		id: 'offset',
 		title: 'Impresión offset',
 		description: 'Full color, monocolor y tintas Pantone en distintos formatos.',
-		href: '/servicios#offset',
 		theme: {
 			gradient: 'card-print',
 			glow: 'bg-[#ff6000]/35',
@@ -174,7 +167,6 @@ const servicesData: ServiceItem[] = [
 		id: 'corporativo-salud',
 		title: 'Corporativo e institucional',
 		description: 'Formularios, comprobantes fiscales, carpetas, tarjetas, hojas membretadas y más.',
-		href: '/servicios',
 		theme: {
 			gradient: 'card-marketing',
 			glow: 'bg-[#11b8ff]/35',
@@ -189,7 +181,6 @@ const servicesData: ServiceItem[] = [
 		id: 'troquelados-packaging',
 		title: 'Packaging y troquelado',
 		description: 'Cajas, bolsas, sobres, cenefas, círculos, fajas y más.',
-		href: '/servicios#troquelados',
 		theme: {
 			gradient: 'card-packaging',
 			glow: 'bg-[#e200ff]/35',
@@ -204,7 +195,6 @@ const servicesData: ServiceItem[] = [
 		id: 'encuadernacion-editorial',
 		title: 'Editorial y encuadernación',
 		description: 'Libros, revistas, agendas, cuadernos, catálogos, brochures y más.',
-		href: '/servicios#encuadernacion',
 		theme: {
 			gradient: 'card-fulfillment',
 			glow: 'bg-[#00ffdb]/35',

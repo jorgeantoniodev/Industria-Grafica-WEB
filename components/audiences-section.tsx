@@ -47,8 +47,9 @@ export interface AudienceItem {
 	headline: string;
 	description: string;
 	features: AudienceFeature[];
-	ctaText: string;
-	ctaLink: string;
+	/** CTA opcional: se muestra solo si se definen ambos, `ctaText` y `ctaLink`. */
+	ctaText?: string;
+	ctaLink?: string;
 	/** Ruta a la imagen desde /public */
 	image: string;
 	/** Alt text explícito. Si no se define, usa el título de la audiencia. */
@@ -238,15 +239,17 @@ export default function AudiencesSection({
 										})}
 									</div>
 
-									{/* CTA */}
-									<a
-										href={audience.ctaLink}
-										className={cn("inline-flex items-center gap-2 font-bold transition-all hover:gap-3", audience.theme.colorText)}
-										tabIndex={isActive ? 0 : -1}
-									>
-										{audience.ctaText}
-										<ArrowRight className="h-5 w-5" />
-									</a>
+									{/* CTA (opcional) */}
+									{audience.ctaLink && audience.ctaText && (
+										<a
+											href={audience.ctaLink}
+											className={cn("inline-flex items-center gap-2 font-bold transition-all hover:gap-3", audience.theme.colorText)}
+											tabIndex={isActive ? 0 : -1}
+										>
+											{audience.ctaText}
+											<ArrowRight className="h-5 w-5" />
+										</a>
+									)}
 								</div>
 
 								{/* Columna Derecha: Composición en Capas */}
